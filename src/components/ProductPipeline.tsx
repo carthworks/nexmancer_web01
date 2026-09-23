@@ -18,7 +18,7 @@ export default function ProductPipeline() {
   }, [active, paused, inView]);
 
   return (
-    <section id="pipeline" aria-labelledby="pipeline-title" className="relative border-y border-white/[0.07] bg-[#080A0D] py-24 sm:py-32">
+    <section id="pipeline" aria-labelledby="pipeline-title" className="relative border-y border-white/[0.07] bg-[#0B0E17]/60 py-24 sm:py-32">
       <Container>
         <SectionHeading
           id="pipeline-title"

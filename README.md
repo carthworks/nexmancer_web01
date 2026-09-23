@@ -146,24 +146,41 @@ VITE_CONTACT_ENDPOINT=https://your-api-endpoint.com/contact
 
 ---
 
-## 🔒 Security & Privacy
+## 🔒 Security, Trust & Compliance
 
-- **No Third-Party Trackers**: Does not load client-side analytics or advertising trackers.
+- **No Third-Party Trackers**: Does not load client-side analytics, advertising trackers, or fingerprinting scripts.
+- **DPDP Act 2023 & GDPR Compliant**: Strict data minimization, direct contact data processing exclusively for inquiries, and designated Grievance Officer representation.
 - **Client-Side Anti-Spam**: Incorporates honeypot fields, submission timing thresholds, and link heuristics without intrusive captchas.
 - **Input Sanitization**: Client-side sanitization strips control characters and validates payload limits before submission.
+- **Security Headers**: Production deployment configured with strict Content Security Policy (`CSP`), `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, and `Strict-Transport-Security`.
+
+---
+
+## 🛠️ DevTools Console Helper
+
+In any browser, open Developer Tools (`F12` or `Cmd+Option+I`) to view the interactive developer console signature and run:
+
+```javascript
+window.NX.help()      // Formats available inspection tools and company metadata
+window.NX.caseStudies // Inspects verifiable benchmark metrics
+window.NX.contact()   // Directly initiates an inquiry
+```
 
 ---
 
 ## 🏢 Company & Legal
 
 - **Entity**: NEXMANCER PRIVATE LIMITED
-- **HQ**: Coimbatore, Tamil Nadu, India
+- **Lead Developer**: Karthikeyan T ([@carthworks](https://github.com/carthworks))
+- **HQ**: Coimbatore, Tamil Nadu 641010, India
 - **Email**: [business@nexmancer.com](mailto:business@nexmancer.com)
-- **GitHub**: [github.com/NEXMANCER](https://github.com/NEXMANCER)
+- **GitHub**: [github.com/NEXMANCER](https://github.com/NEXMANCER) · [github.com/carthworks/nexmancer_web01](https://github.com/carthworks/nexmancer_web01)
 - **X (Twitter)**: [@nexmancer](https://x.com/nexmancer)
+- **LinkedIn**: [linkedin.com/in/carthworks](https://www.linkedin.com/in/carthworks)
 
 ---
 
 ## 📄 License
 
 Copyright © 2026 NEXMANCER PRIVATE LIMITED. All rights reserved.
+

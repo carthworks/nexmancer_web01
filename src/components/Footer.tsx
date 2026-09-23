@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Container, Logo } from "./ui";
 import { SITE, isExternal } from "../lib/site";
 
-type Doc = "privacy" | "terms";
+type Doc = "privacy" | "terms" | "engagement";
 type LinkItem = { l: string; href?: string; doc?: Doc };
 
 const COLS: { h: string; links: LinkItem[] }[] = [
@@ -37,10 +37,11 @@ const COLS: { h: string; links: LinkItem[] }[] = [
     ],
   },
   {
-    h: "Legal",
+    h: "Legal & Trust",
     links: [
       { l: "Privacy Policy", doc: "privacy" },
       { l: "Terms of Use", doc: "terms" },
+      { l: "Engagement & Cancellation", doc: "engagement" },
     ],
   },
 ];
@@ -49,17 +50,31 @@ const DOCS: Record<Doc, { t: string; body: string[] }> = {
   privacy: {
     t: "Privacy Policy",
     body: [
-      "This website does not use advertising or analytics trackers. Web fonts are loaded from Google Fonts, which may receive your IP address as part of that request.",
-      "If you contact NEXMANCER through the contact form or by email, the details you provide (name, email, company, subject and message) are used only to respond to your enquiry. We do not sell this information or share it for marketing.",
-      `You may request access to, correction of or deletion of your information at any time by writing to ${SITE.email}.`,
+      `1. Data Controller: ${SITE.legal}, located at ${SITE.city}, is committed to transparent and lawful data processing in accordance with India's Digital Personal Data Protection Act (DPDP Act 2023) and global standards.`,
+      "2. Zero Tracking & Data Minimization: This website does NOT deploy third-party advertising cookies, behavioral tracking pixels, or fingerprinting scripts. Web fonts are served via Google Fonts, which receives standard HTTP IP metadata as part of font asset delivery.",
+      "3. Direct Inquiries: Information provided through our contact form (name, email, company, subject, and message) is utilized exclusively to respond to your technical and business inquiries. We never sell, rent, or lease personal information to third parties.",
+      `4. Your Rights: Under applicable privacy legislation, you have the right to request access to, correction of, or permanent deletion of your contact records. Requests should be directed to ${SITE.email}.`,
+      "5. Data Retention: Inquiry correspondence is retained for operational records for up to 12 months, after which it is securely purged.",
+      `6. Grievance Officer: Designated Grievance Officer, ${SITE.legal}, 6/35 1, Kutty Naicker Street, Pachapalayam, Perur, Coimbatore, Tamil Nadu 641010, India. Email: legal@nexmancer.com.`,
     ],
   },
   terms: {
     t: "Terms of Use",
     body: [
-      `Content on this website is provided for general information about ${SITE.legal} and its areas of technology work.`,
-      `Unless otherwise stated, content, names and logos on this site belong to ${SITE.legal} and may not be reproduced without permission. Third-party names mentioned as technology areas belong to their respective owners and do not imply endorsement or partnership.`,
-      "Nothing on this website is a binding offer. Any engagement is subject to a separate written agreement.",
+      `1. General Terms: Content on this site is provided for general evaluation and informational purposes regarding the technology, systems, and engineering capabilities of ${SITE.legal}.`,
+      `2. Proprietary Rights: Architecture diagrams, software code, wordmarks, and copy on this domain belong exclusively to ${SITE.legal} unless otherwise attributed. Third-party technology names (e.g. AWS, Kubernetes, React, Python) belong to their respective owners and imply no endorsement.`,
+      "3. Acceptable Use: Automated crawling, scraping, vulnerability probe testing without authorization, or submission of harmful or malicious code via forms is strictly prohibited.",
+      "4. Limitation of Liability: Site content is provided 'as is' without warranties of any kind. Under no circumstances shall NEXMANCER be liable for indirect, incidental, or consequential damages resulting from site access.",
+      "5. Governing Law: These terms are governed by the laws of India. Courts situated in Coimbatore, Tamil Nadu, India maintain exclusive jurisdiction over any disputes.",
+    ],
+  },
+  engagement: {
+    t: "Engagement & Cancellation Policy",
+    body: [
+      "1. Commercial Agreements: Website content does not constitute a binding unilateral offer. All commercial software development, R&D squad provisioning, and architecture audits are governed by mutually executed Master Services Agreements (MSA) and Statements of Work (SOW).",
+      "2. Milestones & Delivery: Work is structured around transparent milestone cycles with explicit technical acceptance criteria and a standard 10-business-day client review period.",
+      "3. Cancellation & Termination: Either party may cancel active advisory or sprint services pursuant to the written termination notice provisions defined in the applicable SOW (typically 30 calendar days).",
+      "4. Response SLA: We are committed to prompt communication. Inquiries received via business@nexmancer.com are acknowledged within one business day (Monday through Friday, 09:00 - 18:00 IST).",
     ],
   },
 };
@@ -76,7 +91,7 @@ export default function Footer() {
   }, [doc]);
 
   return (
-    <footer className="relative overflow-hidden border-t border-white/[0.07] bg-[#080A0D] pt-20" aria-labelledby="footer-title">
+    <footer className="relative overflow-hidden border-t border-white/[0.07] bg-[#0B0E17]/80 pt-20" aria-labelledby="footer-title">
       <h2 id="footer-title" className="sr-only">
         Site footer
       </h2>

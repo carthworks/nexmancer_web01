@@ -43,7 +43,7 @@ function Visual({ kind }: { kind: DomainKey }) {
             )
           )}
           {[0, 1, 2].map((c) =>
-            [0, 1, 2, 3].map((r) => <circle key={`n${c}${r}`} cx={30 + c * 80} cy={10 + r * 20} r="3" fill="#0D1117" stroke="rgba(245,247,250,.6)" strokeWidth="1" />)
+            [0, 1, 2, 3].map((r) => <circle key={`n${c}${r}`} cx={30 + c * 80} cy={10 + r * 20} r="3" fill="#0E121B" stroke="rgba(245,247,250,.6)" strokeWidth="1" />)
           )}
         </svg>
       );

@@ -80,7 +80,7 @@ export default function HeroVisual({ active }: { active: DomainKey }) {
         {/* core */}
         <circle cx={C} cy={C} r="120" fill="url(#hv-core)" />
         <circle cx={C} cy={C} r="64" fill="none" stroke="#5B8CFF" strokeOpacity=".45" className="pulse-ring" />
-        <circle cx={C} cy={C} r="64" fill="#0D1117" stroke="url(#hv-stroke)" strokeWidth="1.5" />
+        <circle cx={C} cy={C} r="64" fill="#0E121B" stroke="url(#hv-stroke)" strokeWidth="1.5" />
         <g transform={`translate(${C - 13} ${C - 32})`}>
           <path d="M3 23V3l20 20V3" fill="none" stroke="url(#hv-stroke)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
           <circle cx="3" cy="3" r="2.4" fill="#F5F7FA" />
@@ -102,7 +102,7 @@ export default function HeroVisual({ active }: { active: DomainKey }) {
                 width={w}
                 height="34"
                 rx="17"
-                fill="#050505"
+                fill="#07090E"
                 stroke={on ? "#5B8CFF" : "rgba(255,255,255,0.16)"}
                 style={{ transition: "stroke .6s" }}
               />

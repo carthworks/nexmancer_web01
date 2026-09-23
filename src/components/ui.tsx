@@ -125,7 +125,7 @@ export function Logo({ className }: { className?: string }) {
             <stop offset="1" stopColor="#8B5CF6" />
           </linearGradient>
         </defs>
-        <rect x="0.5" y="0.5" width="31" height="31" rx="8" fill="#0D1117" stroke="rgba(255,255,255,0.12)" />
+        <rect x="0.5" y="0.5" width="31" height="31" rx="8" fill="#0E121B" stroke="rgba(255,255,255,0.12)" />
         <path d="M9 23V9l14 14V9" fill="none" stroke="url(#nx-g)" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
         <circle cx="9" cy="9" r="2.1" fill="#F5F7FA" />
         <circle cx="23" cy="23" r="2.1" fill="#F5F7FA" />

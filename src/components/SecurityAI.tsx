@@ -78,7 +78,7 @@ function DesktopDiagram({ activeOp }: { activeOp: number }) {
       <circle cx={CORE.x} cy={CORE.y} r="130" fill="url(#sa-core)" />
       <circle cx={CORE.x} cy={CORE.y} r="92" fill="none" stroke="rgba(255,255,255,0.06)" strokeDasharray="2 6" />
       <circle cx={CORE.x} cy={CORE.y} r="70" fill="none" stroke="#8B5CF6" strokeOpacity=".45" className="pulse-ring" />
-      <circle cx={CORE.x} cy={CORE.y} r="70" fill="#0D1117" stroke="url(#sa-r)" strokeWidth="1.5" />
+      <circle cx={CORE.x} cy={CORE.y} r="70" fill="#0E121B" stroke="url(#sa-r)" strokeWidth="1.5" />
       <text x={CORE.x} y={CORE.y - 4} textAnchor="middle" fill="#F5F7FA" fontSize="14" fontWeight="700" letterSpacing="2.4" fontFamily="Inter, sans-serif">
         NEXMANCER
       </text>
@@ -89,7 +89,7 @@ function DesktopDiagram({ activeOp }: { activeOp: number }) {
       {/* surfaces */}
       {SECURITY_SURFACES.map((s, i) => (
         <g key={s}>
-          <rect x={LX - PILL_W / 2} y={ys[i] - 17} width={PILL_W} height="34" rx="8" fill="#050505" stroke="rgba(255,255,255,0.14)" />
+          <rect x={LX - PILL_W / 2} y={ys[i] - 17} width={PILL_W} height="34" rx="8" fill="#07090E" stroke="rgba(255,255,255,0.14)" />
           <circle cx={LX - PILL_W / 2 + 16} cy={ys[i]} r="3" fill="#22D3EE" />
           <text x={LX + 8} y={ys[i] + 4.5} textAnchor="middle" fill="#F5F7FA" fontSize="12" letterSpacing="1.6" fontFamily="JetBrains Mono, monospace">
             {s.toUpperCase()}
@@ -108,7 +108,7 @@ function DesktopDiagram({ activeOp }: { activeOp: number }) {
               width={PILL_W}
               height="34"
               rx="8"
-              fill={on ? "#0D1117" : "#050505"}
+              fill={on ? "#141A26" : "#07090E"}
               stroke={on ? "#8B5CF6" : "rgba(255,255,255,0.14)"}
               style={{ transition: "stroke .5s, fill .5s" }}
             />
