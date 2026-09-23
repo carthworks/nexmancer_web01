@@ -17,6 +17,7 @@ export const NAV = [
   { label: "Technology", href: "#technology" },
   { label: "Methodology", href: "#pipeline" },
   { label: "Products", href: "#products" },
+  { label: "Work", href: "#case-studies" },
   { label: "Solutions", href: "#solutions" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },

@@ -30,6 +30,7 @@ nexmancer_2a/
 ├── src/
 │   ├── components/          # Modular UI components
 │   │   ├── AboutSection.tsx      # Company foundations, HQ & Engineering Ethos
+│   │   ├── CaseStudies.tsx       # Proof of Work: Flagship technical case studies & metrics
 │   │   ├── ContactSection.tsx    # Contact form with validation & direct call scheduling
 │   │   ├── Footer.tsx            # Navigation, legal modal (Privacy / Terms)
 │   │   ├── GlobalSection.tsx     # Dot-matrix global connectivity map
@@ -107,6 +108,27 @@ To locally test the production build:
 ```bash
 npm run preview
 ```
+
+---
+
+## 📊 Proof of Work & Case Studies
+
+The site highlights three verifiable technical case studies demonstrating real-world problem resolution, architectural design, and operational metrics:
+
+1. **High-Throughput Security Telemetry & Event Ingestion** (`Security × Data`):
+   - **Problem**: 15+ minute indexing lags and memory spikes across 80k events/sec legacy pipelines.
+   - **Architecture**: Decoupled Kafka stream ingestion, zero-copy Go workers, ClickHouse time-series, eBPF kernel egress monitoring.
+   - **Metrics**: `<380ms` indexing latency, `120k/s` sustained event throughput, `-65%` compute/storage reduction.
+
+2. **Autonomous Enterprise Knowledge & Verification Engine** (`AI Systems`):
+   - **Problem**: 22% hallucination rates and 45-minute lookup times per compliance dossier across 2M+ PDFs.
+   - **Architecture**: Hybrid dense/sparse retrieval (Qdrant + BM25), cross-encoder re-ranking, async Python agent runtime enforcing mathematical citation provenance.
+   - **Metrics**: `<0.8%` hallucination rate, `2.4s` audit query time, `94%` benchmark precision.
+
+3. **Zero-Trust Multi-Tenant Cloud Platform Modernization** (`Cloud Native`):
+   - **Problem**: Database connection pool starvation, lack of strict tenant boundary isolation, and 504 timeouts under traffic surges.
+   - **Architecture**: Event-driven microservices on AWS EKS with PostgreSQL Row-Level Security (RLS) tenant isolation, Redis clustering, Terraform IaC.
+   - **Metrics**: `99.99%` uptime during 12x traffic surges, `92ms` P99 latency (down from 1,850ms), `0` cross-tenant leaks.
 
 ---
 

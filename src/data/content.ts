@@ -195,3 +195,63 @@ export const ETHOS_PRINCIPLES = [
 ];
 
 export const ABOUT_FOCUS = ["Artificial Intelligence", "Cybersecurity", "Data", "Cloud", "Application Engineering"];
+
+export type CaseStudy = {
+  id: string;
+  tag: string;
+  clientType: string;
+  title: string;
+  summary: string;
+  problem: string;
+  architecture: string;
+  stack: string[];
+  metrics: { value: string; label: string; detail: string }[];
+};
+
+export const CASE_STUDIES: CaseStudy[] = [
+  {
+    id: "telemetry",
+    tag: "Security × Data",
+    clientType: "FinTech & Enterprise Cloud",
+    title: "High-Throughput Security Telemetry & Event Ingestion",
+    summary: "Engineered a distributed real-time telemetry pipeline to ingest, normalize, and analyze high-volume audit logs without dropped frames or ingestion lag.",
+    problem: "A high-frequency cloud environment generated over 80,000 security and network events per second. Legacy batch-indexing pipelines suffered from 15+ minute ingestion lags, blind spots during active credential abuse, and memory crashes under sudden volume spikes.",
+    architecture: "Event-driven stream architecture decoupling ingestion from storage via Kafka partitions, Go stream processors performing zero-copy normalization, and an eBPF agent monitoring kernel network egress in real-time.",
+    stack: ["Go", "Apache Kafka", "ClickHouse", "eBPF", "Docker", "AWS"],
+    metrics: [
+      { value: "<380ms", label: "Indexing Latency", detail: "Down from 15+ minutes" },
+      { value: "120k/s", label: "Peak Ingestion", detail: "Events/sec sustained load" },
+      { value: "-65%", label: "Cloud Cost", detail: "Compute & storage reduction" },
+    ],
+  },
+  {
+    id: "knowledge-engine",
+    tag: "AI Systems",
+    clientType: "Regulated Legal & Technical Compliance",
+    title: "Autonomous Enterprise Knowledge & Verification Engine",
+    summary: "Built a domain-adapted agentic RAG system that cross-references complex compliance documentation with strict citation guarantees.",
+    problem: "Engineers and auditors struggled with high hallucination rates (>22%) from off-the-shelf LLMs and 45+ minute manual query times per compliance dossier across 2M+ unstructured PDFs and specifications.",
+    architecture: "Multi-stage retrieval pipeline combining dense vector embeddings (Qdrant) and sparse BM25 indexing, followed by cross-encoder re-ranking and an async Python agent runtime enforcing mathematical citation provenance.",
+    stack: ["Python", "FastAPI", "Qdrant", "PyTorch", "Docker", "AWS"],
+    metrics: [
+      { value: "<0.8%", label: "Hallucination Rate", detail: "Slashing errors from 22%" },
+      { value: "2.4s", label: "Audit Query Time", detail: "Reduced from 45 minutes" },
+      { value: "94%", label: "Benchmark Precision", detail: "Across regulatory checks" },
+    ],
+  },
+  {
+    id: "saas-modernization",
+    tag: "Cloud Native",
+    clientType: "High-Growth B2B SaaS",
+    title: "Zero-Trust Multi-Tenant Cloud Platform Modernization",
+    summary: "Redesigned a legacy application monolith into a modular, horizontally autoscaling multi-tenant cloud service with complete tenant isolation.",
+    problem: "A growing SaaS application suffered database connection pooling starvation, lack of strict tenant boundary isolation at the data layer, and cascading 504 gateway timeouts during predictable monthly traffic spikes.",
+    architecture: "Migrated to an event-driven microservices architecture on AWS EKS with PostgreSQL Row-Level Security (RLS) guaranteeing cryptographic tenant isolation, Redis cluster caching, and automated Terraform infrastructure.",
+    stack: ["Next.js", "Node.js", "PostgreSQL", "Redis", "Terraform", "Kubernetes"],
+    metrics: [
+      { value: "99.99%", label: "Uptime Availability", detail: "During 12x traffic surge" },
+      { value: "92ms", label: "P99 API Latency", detail: "Improved from 1,850ms" },
+      { value: "0", label: "Cross-Tenant Leaks", detail: "Guaranteed via database RLS" },
+    ],
+  },
+];

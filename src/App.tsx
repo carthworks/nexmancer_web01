@@ -4,6 +4,7 @@ import Hero from "./components/Hero";
 import TechnologyGrid from "./components/TechnologyGrid";
 import ProductPipeline from "./components/ProductPipeline";
 import ProductStudio from "./components/ProductStudio";
+import CaseStudies from "./components/CaseStudies";
 import SecurityAI from "./components/SecurityAI";
 import ObjectivesSection from "./components/ObjectivesSection";
 import GlobalSection from "./components/GlobalSection";
@@ -58,7 +59,10 @@ export default function App() {
         {/* 4. FEATURED PRODUCTS & PLATFORMS */}
         <ProductStudio />
 
-        {/* 5. DEEP-TECH SPOTLIGHT: AI × CYBERSECURITY */}
+        {/* 5. PROOF OF WORK: CASE STUDIES */}
+        <CaseStudies />
+
+        {/* 6. DEEP-TECH SPOTLIGHT: AI × CYBERSECURITY */}
         <SecurityAI />
 
         {/* 6. SOLUTIONS & ENGAGEMENT MODELS */}

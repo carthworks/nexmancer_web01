@@ -13,6 +13,7 @@ const COLS: { h: string; links: LinkItem[] }[] = [
       { l: "Technology", href: "#technology" },
       { l: "Methodology", href: "#pipeline" },
       { l: "Products", href: "#products" },
+      { l: "Proof of Work", href: "#case-studies" },
       { l: "Solutions", href: "#solutions" },
       { l: "Contact", href: "#contact" },
     ],
