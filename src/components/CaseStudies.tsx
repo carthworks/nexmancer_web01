@@ -69,62 +69,69 @@ export default function CaseStudies() {
             onPointerMove={spotlightHandler}
             className="spotlight relative overflow-hidden rounded-3xl border border-white/[0.09] bg-graphite/50 p-6 sm:p-10"
           >
-            {/* Meta Row */}
-            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.07] pb-6">
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="rounded-full border border-accent/30 bg-accent/15 px-3 py-1 font-mono text-xs text-accent">
-                  {current.tag}
-                </span>
-                <span className="font-mono text-xs text-muted/70">
-                  Target Sector: <strong className="font-medium text-fg/90">{current.clientType}</strong>
-                </span>
-              </div>
-              <Button href={scheduleMailto(`Architecture Review — ${current.title}`)} variant="secondary" className="!min-h-9 !px-4 !text-xs">
-                Discuss Similar Architecture <Arrow />
-              </Button>
-            </div>
-
-            {/* Title & High-Level Summary */}
-            <div className="mt-8">
-              <h3 className="text-2xl font-bold tracking-tight text-fg sm:text-3xl lg:text-4xl">
-                {current.title}
-              </h3>
-              <p className="mt-3 max-w-3xl text-base leading-relaxed text-muted sm:text-lg">
-                {current.summary}
-              </p>
-            </div>
-
-            {/* Problem vs Architecture Grid */}
-            <div className="mt-10 grid gap-6 lg:grid-cols-2">
-              {/* Problem */}
-              <div className="rounded-2xl border border-rose-500/20 bg-rose-500/[0.03] p-6 sm:p-7">
-                <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-rose-300">
-                  <span className="h-2 w-2 rounded-full bg-rose-400 animate-pulse" />
-                  The Problem & Bottleneck
+            {/* 2-Column: Title & Overview on Left, Problem & Architecture on Right */}
+            <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
+              {/* Left Column: Title & Overview */}
+              <div className="lg:col-span-5 lg:sticky lg:top-28">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="rounded-full border border-accent/30 bg-accent/15 px-3 py-1 font-mono text-xs text-accent">
+                    {current.tag}
+                  </span>
+                  <span className="font-mono text-xs text-muted/70">
+                    Target Sector: <strong className="font-medium text-fg/90">{current.clientType}</strong>
+                  </span>
                 </div>
-                <p className="mt-4 text-[15px] leading-relaxed text-fg/85 sm:text-base">
-                  {current.problem}
+
+                <h3 className="mt-4 text-2xl font-bold tracking-tight text-fg sm:text-3xl lg:text-4xl">
+                  {current.title}
+                </h3>
+                <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg">
+                  {current.summary}
                 </p>
+
+                <div className="mt-6 sm:mt-8">
+                  <Button
+                    href={scheduleMailto(`Architecture Review — ${current.title}`)}
+                    variant="secondary"
+                    className="!min-h-10 !px-5 !text-xs"
+                  >
+                    Discuss Similar Architecture <Arrow />
+                  </Button>
+                </div>
               </div>
 
-              {/* Architecture & Stack */}
-              <div className="rounded-2xl border border-accent/20 bg-accent/[0.03] p-6 sm:p-7">
-                <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-accent">
-                  <span className="h-2 w-2 rounded-full bg-accent" />
-                  Engineered Architecture
+              {/* Right Column: Problem & Bottleneck + Engineered Architecture */}
+              <div className="grid gap-6 lg:col-span-7">
+                {/* The Problem & Bottleneck */}
+                <div className="rounded-2xl border border-rose-500/20 bg-rose-500/[0.03] p-6 sm:p-7">
+                  <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-rose-300">
+                    <span className="h-2 w-2 rounded-full bg-rose-400 animate-pulse" />
+                    The Problem & Bottleneck
+                  </div>
+                  <p className="mt-4 text-[15px] leading-relaxed text-fg/85 sm:text-base">
+                    {current.problem}
+                  </p>
                 </div>
-                <p className="mt-4 text-[15px] leading-relaxed text-fg/85 sm:text-base">
-                  {current.architecture}
-                </p>
-                <div className="mt-6 pt-4 border-t border-white/[0.07]">
-                  <span className="font-mono text-[11px] uppercase tracking-wider text-muted">Stack:</span>
-                  <ul className="mt-2 flex flex-wrap gap-1.5" aria-label="Tech Stack">
-                    {current.stack.map((s) => (
-                      <li key={s}>
-                        <Tag>{s}</Tag>
-                      </li>
-                    ))}
-                  </ul>
+
+                {/* Engineered Architecture */}
+                <div className="rounded-2xl border border-accent/20 bg-accent/[0.03] p-6 sm:p-7">
+                  <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-accent">
+                    <span className="h-2 w-2 rounded-full bg-accent" />
+                    Engineered Architecture
+                  </div>
+                  <p className="mt-4 text-[15px] leading-relaxed text-fg/85 sm:text-base">
+                    {current.architecture}
+                  </p>
+                  <div className="mt-6 border-t border-white/[0.07] pt-4">
+                    <span className="font-mono text-[11px] uppercase tracking-wider text-muted">Stack:</span>
+                    <ul className="mt-2 flex flex-wrap gap-1.5" aria-label="Tech Stack">
+                      {current.stack.map((s) => (
+                        <li key={s}>
+                          <Tag>{s}</Tag>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
