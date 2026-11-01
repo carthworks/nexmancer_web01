@@ -1,30 +1,37 @@
-import { HERO_NODES, type DomainKey } from "../data/content";
+import { PRODUCTS } from "../data/content";
 import { usePrefersReducedMotion } from "../lib/hooks";
 import { cn } from "../utils/cn";
 
-const S = 520;
+const S = 540;
 const C = S / 2;
-const R = 188;
+const R = 192;
 
-const nodes = HERO_NODES.map((n, i) => {
+const nodes = PRODUCTS.map((p, i) => {
   const a = ((-90 + i * 72) * Math.PI) / 180;
-  return { ...n, x: C + R * Math.cos(a), y: C + R * Math.sin(a) };
+  return { ...p, x: C + R * Math.cos(a), y: C + R * Math.sin(a), idx: i };
 });
 
-export default function HeroVisual({ active }: { active: DomainKey }) {
+export default function HeroVisual({
+  activeIdx,
+  onSelect,
+}: {
+  activeIdx: number;
+  onSelect: (idx: number) => void;
+}) {
   const reduced = usePrefersReducedMotion();
+  const active = PRODUCTS[activeIdx] || PRODUCTS[0];
 
   return (
-    <figure className="relative mx-auto aspect-square w-full max-w-[340px] sm:max-w-[420px] lg:max-w-[500px]">
+    <figure className="relative mx-auto flex w-full max-w-[360px] flex-col items-center sm:max-w-[440px] lg:max-w-[520px]">
       <svg
         viewBox={`0 0 ${S} ${S}`}
-        className="h-full w-full overflow-visible"
+        className="aspect-square h-auto w-full overflow-visible"
         role="img"
-        aria-label="NEXMANCER at the centre of a network connecting AI, Data, Software, Security and Cloud."
+        aria-label="Interactive NEXMANCER constellation connecting Sensighty, SigmaSec, LibraDigit, AskMyDocs and Hyperlocal Heat."
       >
         <defs>
           <radialGradient id="hv-core" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="rgba(34,184,207,0.28)" />
+            <stop offset="0%" stopColor="rgba(34,184,207,0.32)" />
             <stop offset="100%" stopColor="rgba(34,184,207,0)" />
           </radialGradient>
           <linearGradient id="hv-stroke" x1="0" y1="0" x2="1" y2="1">
@@ -33,17 +40,18 @@ export default function HeroVisual({ active }: { active: DomainKey }) {
           </linearGradient>
         </defs>
 
-        {/* rings */}
-        <circle cx={C} cy={C} r={R} fill="none" stroke="color-mix(in srgb, var(--color-white) 7%, transparent)" />
-        <circle cx={C} cy={C} r={R + 36} fill="none" stroke="color-mix(in srgb, var(--color-white) 4%, transparent)" />
+        {/* Orbital rings */}
+        <circle cx={C} cy={C} r={R} fill="none" stroke="color-mix(in srgb, var(--color-white) 8%, transparent)" />
+        <circle cx={C} cy={C} r={R + 34} fill="none" stroke="color-mix(in srgb, var(--color-white) 4%, transparent)" />
         <g className="spin-slow" style={{ transformOrigin: `${C}px ${C}px` }}>
-          <circle cx={C} cy={C} r={R - 70} fill="none" stroke="rgba(34,184,207,0.28)" strokeDasharray="2 10" />
+          <circle cx={C} cy={C} r={R - 68} fill="none" stroke="rgba(34,184,207,0.3)" strokeDasharray="2 10" />
         </g>
-        {/* ticks */}
+
+        {/* Precision compass ticks */}
         {Array.from({ length: 60 }).map((_, i) => {
           const a = (i * 6 * Math.PI) / 180;
-          const r1 = R + 30;
-          const r2 = R + (i % 5 === 0 ? 42 : 36);
+          const r1 = R + 28;
+          const r2 = R + (i % 5 === 0 ? 40 : 34);
           return (
             <line
               key={i}
@@ -57,76 +65,149 @@ export default function HeroVisual({ active }: { active: DomainKey }) {
           );
         })}
 
-        {/* polygon between nodes */}
-        <polygon points={nodes.map((n) => `${n.x},${n.y}`).join(" ")} fill="none" stroke="color-mix(in srgb, var(--color-white) 5%, transparent)" />
+        {/* Outer pentagon mesh */}
+        <polygon
+          points={nodes.map((n) => `${n.x},${n.y}`).join(" ")}
+          fill="none"
+          stroke="color-mix(in srgb, var(--color-white) 6%, transparent)"
+        />
 
-        {/* spokes */}
+        {/* Spokes + animated telemetry packets */}
         {nodes.map((n, i) => {
-          const on = n.key === active;
+          const on = i === activeIdx;
           const d = `M${C},${C} L${n.x},${n.y}`;
           return (
-            <g key={n.key}>
-              <path d={d} stroke={on ? "rgba(34,184,207,0.5)" : "color-mix(in srgb, var(--color-white) 8%, transparent)"} strokeWidth="1" style={{ transition: "stroke .6s" }} />
-              <path d={d} stroke="url(#hv-stroke)" strokeWidth="1.3" className="flow-dash" opacity={on ? 0.95 : 0.25} style={{ transition: "opacity .6s" }} />
+            <g key={n.name}>
+              <path
+                d={d}
+                stroke={on ? "rgba(34,184,207,0.55)" : "color-mix(in srgb, var(--color-white) 8%, transparent)"}
+                strokeWidth={on ? "1.5" : "1"}
+                style={{ transition: "stroke .45s" }}
+              />
+              <path
+                d={d}
+                stroke="url(#hv-stroke)"
+                strokeWidth="1.4"
+                className="flow-dash"
+                opacity={on ? 1 : 0.22}
+                style={{ transition: "opacity .45s" }}
+              />
               {!reduced && (
-                <circle r={on ? 3.2 : 2} fill="var(--color-fg)" opacity={on ? 1 : 0.5}>
-                  <animateMotion dur={`${2.6 + i * 0.3}s`} repeatCount="indefinite" path={d} />
+                <circle r={on ? 3.4 : 2} fill={on ? "var(--color-accent)" : "var(--color-fg)"} opacity={on ? 1 : 0.45}>
+                  <animateMotion dur={`${2.4 + i * 0.25}s`} repeatCount="indefinite" path={d} />
                 </circle>
               )}
             </g>
           );
         })}
 
-        {/* core */}
-        <circle cx={C} cy={C} r="120" fill="url(#hv-core)" />
+        {/* Center Brand Core */}
+        <circle cx={C} cy={C} r="122" fill="url(#hv-core)" />
         <circle cx={C} cy={C} r="64" fill="none" stroke="var(--color-accent)" strokeOpacity=".45" className="pulse-ring" />
         <circle cx={C} cy={C} r="64" fill="var(--color-graphite)" stroke="url(#hv-stroke)" strokeWidth="1.5" />
-        <g transform={`translate(${C - 16} ${C - 34})`}>
+        <g transform={`translate(${C - 16} ${C - 36})`}>
           <path d="M16 2 30 10v16L16 34 2 26V10Z" fill="none" stroke="var(--color-fg)" strokeWidth="2.2" strokeLinejoin="round" />
           <path d="m12.5 12 7 6-7 6" fill="none" stroke="var(--color-accent)" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" />
         </g>
-        <text x={C} y={C + 22} textAnchor="middle" fill="var(--color-fg)" fontSize="12.5" fontWeight="700" letterSpacing="2.6" fontFamily="Inter, sans-serif">
+        <text x={C} y={C + 16} textAnchor="middle" fill="var(--color-fg)" fontSize="11.5" fontWeight="700" letterSpacing="2.4" fontFamily="Inter, sans-serif">
           NEXMANCER
         </text>
+        <text x={C} y={C + 32} textAnchor="middle" fill="var(--color-accent)" fontSize="9.5" letterSpacing="2" fontFamily="JetBrains Mono, monospace">
+          {active.code}
+        </text>
 
-        {/* nodes */}
-        {nodes.map((n) => {
-          const on = n.key === active;
-          const w = n.label.length * 9 + 34;
+        {/* Interactive Product Nodes */}
+        {nodes.map((n, i) => {
+          const on = i === activeIdx;
+          const label = n.name.toUpperCase();
+          const w = Math.max(118, label.length * 7.8 + 40);
           return (
-            <g key={`n-${n.key}`} style={{ transition: "opacity .6s" }}>
+            <g
+              key={`n-${n.name}`}
+              role="button"
+              tabIndex={0}
+              aria-label={`Inspect ${n.name} (${n.category})`}
+              onMouseEnter={() => onSelect(i)}
+              onFocus={() => onSelect(i)}
+              onClick={() => onSelect(i)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  onSelect(i);
+                }
+              }}
+              className="cursor-pointer outline-none"
+            >
+              {on && (
+                <rect
+                  x={n.x - w / 2 - 4}
+                  y={n.y - 22}
+                  width={w + 8}
+                  height="44"
+                  rx="22"
+                  fill="none"
+                  stroke="var(--color-accent)"
+                  strokeOpacity="0.3"
+                />
+              )}
               <rect
                 x={n.x - w / 2}
-                y={n.y - 17}
+                y={n.y - 18}
                 width={w}
-                height="34"
-                rx="17"
-                fill="var(--color-ink)"
+                height="36"
+                rx="18"
+                fill={on ? "var(--color-graphite)" : "var(--color-ink)"}
                 stroke={on ? "var(--color-accent)" : "color-mix(in srgb, var(--color-white) 16%, transparent)"}
-                style={{ transition: "stroke .6s" }}
+                strokeWidth={on ? "1.4" : "1"}
+                style={{ transition: "stroke .35s, fill .35s" }}
               />
-              <circle cx={n.x - w / 2 + 15} cy={n.y} r="3" fill={on ? "var(--color-accent)" : "color-mix(in srgb, var(--color-white) 35%, transparent)"} style={{ transition: "fill .6s" }} />
+              <circle
+                cx={n.x - w / 2 + 15}
+                cy={n.y}
+                r="3.2"
+                fill={on ? "var(--color-accent)" : "color-mix(in srgb, var(--color-white) 35%, transparent)"}
+                style={{ transition: "fill .35s" }}
+              />
               <text
-                x={n.x + 7}
-                y={n.y + 4.5}
+                x={n.x + 6}
+                y={n.y + 4}
                 textAnchor="middle"
                 fill={on ? "var(--color-fg)" : "var(--color-muted)"}
-                fontSize="12.5"
-                letterSpacing="1.6"
+                fontSize="11"
+                fontWeight={on ? "700" : "500"}
+                letterSpacing="1.3"
                 fontFamily="JetBrains Mono, monospace"
-                style={{ transition: "fill .6s" }}
+                style={{ transition: "fill .35s" }}
               >
-                {n.label}
+                {label}
               </text>
             </g>
           );
         })}
       </svg>
 
-      <figcaption className="pointer-events-none absolute -bottom-2 left-1/2 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.2em] text-muted/80">
-        <span className={cn("h-1.5 w-1.5 rounded-full bg-accent", !reduced && "animate-pulse")} />
-        system / {active}
-      </figcaption>
+      {/* Live Selected Product Telemetry HUD Card */}
+      <a
+        href={active.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group -mt-2 w-full rounded-2xl border border-white/10 bg-graphite/80 p-4 backdrop-blur-md transition-all duration-300 hover:border-accent/50 hover:shadow-[0_16px_40px_-16px_rgba(34,184,207,0.35)]"
+      >
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <span className={cn("h-2 w-2 rounded-full bg-emerald-400", !reduced && "animate-pulse")} />
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-accent">
+              {active.code} · {active.category}
+            </span>
+          </div>
+          <span className="inline-flex items-center gap-1 font-mono text-[11px] font-medium text-fg group-hover:text-accent">
+            Launch {active.name} <span className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">↗</span>
+          </span>
+        </div>
+        <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-muted sm:text-[13px]">
+          <strong className="font-semibold text-fg/95">{active.name}:</strong> {active.tagline}
+        </p>
+      </a>
     </figure>
   );
 }

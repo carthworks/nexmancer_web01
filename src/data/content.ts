@@ -16,15 +16,17 @@ export const HERO_NODES: { label: string; key: DomainKey }[] = [
 ];
 
 export const ECOSYSTEM_BADGES = [
-  "AWS",
-  "Node.js",
   "Python",
-  "React",
   "TypeScript",
-  "PostgreSQL",
-  "Docker",
-  "Kubernetes",
-  "Linux",
+  "React / Next.js",
+  "Bayesian IRT",
+  "Hybrid RAG (BM25)",
+  "Ollama / LLMs",
+  "Nuclei · Trivy · Nmap",
+  "CISA KEV & EPSS",
+  "OCR & PDF/A",
+  "Geospatial AI",
+  "Docker & Cloud",
 ];
 
 export const DOMAINS: { n: string; key: DomainKey; title: string; desc: string; tags: string[] }[] = [
