@@ -23,6 +23,19 @@ export default function NetworkCanvas({ className }: { className?: string }) {
     let visible = true;
     const mouse = { x: -9999, y: -9999, active: false };
 
+    // Theme-aware palette (canvas can't read CSS variables directly).
+    const PALETTES = {
+      dark: { link: "34,184,207", halo: "rgba(30,127,184,0.18)", hub: "rgba(245,247,250,0.95)", node: "rgba(189,239,247,0.55)" },
+      light: { link: "8,126,148", halo: "rgba(23,103,154,0.14)", hub: "rgba(14,27,51,0.85)", node: "rgba(14,27,51,0.35)" },
+    };
+    const readPal = () => PALETTES[document.documentElement.dataset.theme === "light" ? "light" : "dark"];
+    let pal = readPal();
+    const themeObs = new MutationObserver(() => {
+      pal = readPal();
+      if (reduced) draw();
+    });
+    themeObs.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
     const init = () => {
       const rect = canvas.getBoundingClientRect();
       dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -83,7 +96,7 @@ export default function NetworkCanvas({ className }: { className?: string }) {
               const m = mx * mx + my * my;
               if (m < 32000) alpha += (1 - m / 32000) * 0.35;
             }
-            ctx.strokeStyle = `rgba(120,150,255,${alpha})`;
+            ctx.strokeStyle = `rgba(${pal.link},${alpha})`;
             ctx.lineWidth = 0.7;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -96,12 +109,12 @@ export default function NetworkCanvas({ className }: { className?: string }) {
       // nodes
       for (const p of pts) {
         if (p.hub) {
-          ctx.fillStyle = "rgba(139,92,246,0.18)";
+          ctx.fillStyle = pal.halo;
           ctx.beginPath();
           ctx.arc(p.x, p.y, 6, 0, Math.PI * 2);
           ctx.fill();
         }
-        ctx.fillStyle = p.hub ? "rgba(245,247,250,0.95)" : "rgba(200,210,255,0.55)";
+        ctx.fillStyle = p.hub ? pal.hub : pal.node;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fill();
@@ -154,6 +167,7 @@ export default function NetworkCanvas({ className }: { className?: string }) {
 
     return () => {
       stop();
+      themeObs.disconnect();
       ro.disconnect();
       io.disconnect();
       document.removeEventListener("visibilitychange", onVis);

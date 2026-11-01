@@ -45,7 +45,7 @@ export default function CaseStudies() {
                 className={cn(
                   "group flex items-center gap-3 rounded-xl border px-4 py-3 text-left transition-all duration-300",
                   on
-                    ? "border-accent/40 bg-accent/[0.08] shadow-[0_0_24px_-4px_rgba(91,140,255,0.3)]"
+                    ? "border-accent/40 bg-accent/[0.08] shadow-[0_0_24px_-4px_rgba(34,184,207,0.3)]"
                     : "border-white/[0.08] bg-graphite/40 hover:border-white/20 hover:bg-graphite/80"
                 )}
               >
@@ -103,9 +103,9 @@ export default function CaseStudies() {
               {/* Right Column: Problem & Bottleneck + Engineered Architecture */}
               <div className="grid gap-6 lg:col-span-7">
                 {/* The Problem & Bottleneck */}
-                <div className="rounded-2xl border border-rose-500/20 bg-rose-500/[0.03] p-6 sm:p-7">
-                  <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-rose-300">
-                    <span className="h-2 w-2 rounded-full bg-rose-400 animate-pulse" />
+                <div className="rounded-2xl border border-rose-500/25 bg-rose-500/[0.04] p-6 sm:p-7">
+                  <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-rose-500 light:text-rose-600">
+                    <span className="h-2 w-2 rounded-full bg-rose-500 animate-pulse" />
                     The Problem & Bottleneck
                   </div>
                   <p className="mt-4 text-[15px] leading-relaxed text-fg/85 sm:text-base">

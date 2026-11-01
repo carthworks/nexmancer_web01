@@ -60,6 +60,19 @@ export const IconMail = (p: SVGProps<SVGSVGElement>) => (
 export const IconPin = (p: SVGProps<SVGSVGElement>) => (
   <svg {...base} {...p}><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z" /><circle cx="12" cy="10" r="2.3" /></svg>
 );
+export const IconClimate = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...base} {...p}>
+    <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0Z" />
+    <circle cx="11.5" cy="17.5" r="1.5" />
+    <path d="M17.5 6h2M17.5 10h2" />
+  </svg>
+);
+export const IconArchive = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...base} {...p}>
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+    <path d="M14 2v6h6M8 13h8M8 17h5" />
+  </svg>
+);
 
 export const DOMAIN_ICONS = {
   software: IconCode,
@@ -69,6 +82,8 @@ export const DOMAIN_ICONS = {
   cloud: IconCloud,
   platform: IconApi,
   layers: IconLayers,
+  climate: IconClimate,
+  archive: IconArchive,
 } as const;
 
 export const IconGlobe = (p: SVGProps<SVGSVGElement>) => (

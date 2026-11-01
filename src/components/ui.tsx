@@ -24,7 +24,7 @@ export function Reveal({
 export function Eyebrow({ children, className }: { children: ReactNode; className?: string }) {
   return (
     <p className={cn("inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-muted", className)}>
-      <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_10px_rgba(91,140,255,0.8)]" aria-hidden />
+      <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_10px_rgba(34,184,207,0.8)]" aria-hidden />
       {children}
     </p>
   );
@@ -85,7 +85,7 @@ export function Button({
     "group inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 text-sm font-medium tracking-tight transition-all duration-300 active:scale-[0.98]";
   const styles = {
     primary:
-      "bg-fg text-ink hover:bg-white hover:shadow-[0_0_0_4px_rgba(91,140,255,0.18),0_10px_40px_-10px_rgba(91,140,255,0.6)]",
+      "bg-fg text-ink hover:opacity-90 hover:shadow-[0_0_0_4px_rgba(34,184,207,0.18),0_10px_40px_-10px_rgba(34,184,207,0.6)]",
     secondary: "border border-white/15 bg-white/[0.03] text-fg backdrop-blur hover:border-white/30 hover:bg-white/[0.07]",
     ghost: "text-muted hover:text-fg",
   } as const;
@@ -117,20 +117,23 @@ export function ArrowUpRight({ className }: { className?: string }) {
 
 export function Logo({ className }: { className?: string }) {
   return (
-    <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <svg viewBox="0 0 32 32" className="h-7 w-7" aria-hidden>
-        <defs>
-          <linearGradient id="nx-g" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#5B8CFF" />
-            <stop offset="1" stopColor="#8B5CF6" />
-          </linearGradient>
-        </defs>
-        <rect x="0.5" y="0.5" width="31" height="31" rx="8" fill="#0E121B" stroke="rgba(255,255,255,0.12)" />
-        <path d="M9 23V9l14 14V9" fill="none" stroke="url(#nx-g)" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="9" cy="9" r="2.1" fill="#F5F7FA" />
-        <circle cx="23" cy="23" r="2.1" fill="#F5F7FA" />
-      </svg>
-      <span className="text-[15px] font-bold tracking-[0.18em] text-fg">NEXMANCER</span>
+    <span className={cn("inline-flex items-center", className)}>
+      <img
+        src="/images/nexmancer-logo.png"
+        alt="NEXMANCER"
+        width={640}
+        height={125}
+        decoding="async"
+        className="h-6 w-auto sm:h-7 light:hidden"
+      />
+      <img
+        src="/images/nexmancer-logo-light.png"
+        alt="NEXMANCER"
+        width={640}
+        height={125}
+        decoding="async"
+        className="hidden h-6 w-auto sm:h-7 light:block"
+      />
     </span>
   );
 }

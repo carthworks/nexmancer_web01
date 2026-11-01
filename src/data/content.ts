@@ -77,83 +77,82 @@ export const PIPELINE = [
 export type ProductItem = {
   name: string;
   category: string;
+  tagline: string;
   desc: string;
+  url: string;
   code: string;
-  key: DomainKey | "platform";
+  key: DomainKey | "platform" | "climate" | "archive";
   tags: string[];
   status: string;
 };
 
 export const PRODUCTS: ProductItem[] = [
   {
-    name: "NX AgentForge",
-    category: "AI Systems",
-    desc: "Autonomous agent evaluation runtime and multi-tool orchestration framework for enterprise reasoning.",
-    code: "NX/AI",
+    name: "Sensighty",
+    category: "Adaptive Learning & Assessment",
+    tagline: "Universal adaptive learning and psychometric assessment.",
+    desc: "Generative AI builds the curriculum and questions for any subject — a deterministic Bayesian IRT engine scores every answer, so results are fair, repeatable and verifiable.",
+    url: "https://sensighty.nexmancer.com/",
+    code: "NX/EDU",
     key: "ai",
-    tags: ["LLM Agents", "Python", "Tool Calling"],
-    status: "Active Build",
+    tags: ["Generative AI", "Bayesian IRT", "Psychometrics"],
+    status: "Live",
   },
   {
-    name: "SentryMesh",
+    name: "SigmaSec",
     category: "Cybersecurity",
-    desc: "Automated zero-trust policy validation, identity access verification, and cloud posture intelligence.",
+    tagline: "Vulnerability findings, ranked and explained.",
+    desc: "SigmaSec runs Nuclei, Trivy, Gitleaks, Opengrep, and Nmap against your code and infrastructure, then ranks what they find — matching each CVE against CISA KEV and EPSS, checking whether the vulnerable dependency is used in your code, and explaining each finding in plain English before an engineer ever sees it.",
+    url: "https://sigmasec.vercel.app/",
     code: "NX/SEC",
     key: "security",
-    tags: ["Cloud Security", "Zero-Trust", "Go"],
-    status: "Research / Beta",
+    tags: ["CVE Triage", "CISA KEV", "EPSS", "Reachability"],
+    status: "Live",
   },
   {
-    name: "OmniPulse",
-    category: "Data Platforms",
-    desc: "Distributed event ingestion, real-time stream transformation, and predictive telemetry analytics.",
-    code: "NX/DATA",
+    name: "LibraDigit",
+    category: "Document Digitisation",
+    tagline: "Turn scanned documents into a searchable digital archive on your own computer.",
+    desc: "LibraDigit reads your scans and PDFs with OCR, lets you correct the text and add catalogue details, and saves each document as a preservation-ready PDF/A package. Nothing is uploaded anywhere.",
+    url: "https://libra-digit-ai.vercel.app/",
+    code: "NX/ARCHIVE",
+    key: "archive",
+    tags: ["OCR", "PDF/A", "Offline-First"],
+    status: "Live",
+  },
+  {
+    name: "AskMyDocs",
+    category: "AI Systems",
+    tagline: "Advanced RAG system for your documents.",
+    desc: "Hybrid BM25 + semantic search with automatic indexing. Run fully local for maximum privacy, or connect to Ollama Cloud for larger models — your choice.",
+    url: "https://ask-mydocs.vercel.app/",
+    code: "NX/RAG",
     key: "data",
-    tags: ["Real-Time", "Analytics", "Kafka"],
-    status: "Active Build",
+    tags: ["RAG", "Hybrid Search", "Ollama", "Local-First"],
+    status: "Live",
   },
   {
-    name: "SaaS Foundry",
-    category: "Cloud Software",
-    desc: "Production-ready multi-tenant application foundation with RBAC, billing, audit logging, and modern APIs.",
-    code: "NX/SAAS",
-    key: "cloud",
-    tags: ["Next.js", "PostgreSQL", "Multi-Tenant"],
-    status: "Production Ready",
-  },
-  {
-    name: "Nexus Core",
-    category: "Digital Platforms",
-    desc: "High-performance API gateway, edge routing layer, and distributed microservices infrastructure.",
-    code: "NX/PLATFORM",
-    key: "platform",
-    tags: ["Distributed APIs", "Docker", "gRPC"],
-    status: "Active Build",
+    name: "Hyperlocal Heat",
+    category: "Climate Intelligence",
+    tagline: "Know which streets will be dangerous tomorrow.",
+    desc: "48-hour, 100-metre heat-stress forecasts for the hot, dense cities where 1 in 3 people will live. Built to automate parametric insurance payouts, protect outdoor workforces, and trigger street-level city response.",
+    url: "https://hyperlocal-heat.vercel.app/",
+    code: "NX/CLIMATE",
+    key: "climate",
+    tags: ["Forecasting", "Parametric Insurance", "Geospatial"],
+    status: "Live",
   },
 ];
 
-export const SOLUTIONS = [
-  {
-    title: "Enterprise AI & Automation",
-    desc: "Custom LLM integrations, autonomous task pipelines, document intelligence, and domain-adapted machine learning models grounded in your proprietary data.",
-    tags: ["Agentic AI", "Model Fine-Tuning", "Automated Workflows"],
-  },
-  {
-    title: "Zero-Trust Security & DevSecOps",
-    desc: "Architectural security hardening, automated secret scanning, vulnerability assessments, and defensive engineering across cloud environments and APIs.",
-    tags: ["Application Security", "Cloud Hardening", "Threat Modeling"],
-  },
-  {
-    title: "Cloud-Native Systems & SaaS",
-    desc: "High-concurrency distributed backends, serverless architectures, event-driven microservices, and robust cloud infrastructure designed for 99.99% availability.",
-    tags: ["AWS / Azure", "Kubernetes", "High-Throughput APIs"],
-  },
-  {
-    title: "Intelligent Data Platforms",
-    desc: "High-throughput stream processing, unified analytical warehouses, predictive pipeline engineering, and interactive intelligence dashboards.",
-    tags: ["Stream Processing", "Data Pipelines", "Forecasting"],
-  },
-];
+export const SOLUTIONS = PRODUCTS.map((p) => ({
+  title: p.category,
+  product: p.name,
+  code: p.code,
+  url: p.url,
+  tagline: p.tagline,
+  desc: p.desc,
+  tags: p.tags,
+}));
 
 export const ENGAGEMENT_MODELS = [
   {
@@ -179,22 +178,65 @@ export const SECURITY_OPS = ["Detection", "Analysis", "Automation", "Validation"
 export const ETHOS_PRINCIPLES = [
   {
     num: "01",
+    tag: "Determinism & Rigor",
     title: "Engineering Over Hype",
-    desc: "We focus on verified system reliability, sound architecture, and measurable outcomes rather than chasing speculative technology trends.",
+    desc: "We pair modern generative AI with deterministic math, verification engines, and verifiable architecture — focusing on repeatable outcomes rather than black-box hype.",
+    metric: "Verifiable & Repeatable",
   },
   {
     num: "02",
-    title: "Security by Default",
-    desc: "Every API endpoint, database schema, and deployment pipeline is designed with zero-trust isolation and data privacy from day zero.",
+    tag: "Zero-Trust & Local-First",
+    title: "Security & Privacy by Default",
+    desc: "Every API endpoint, database schema, and document workflow is architected with zero-trust isolation, reachability validation, and local-first privacy from day zero.",
+    metric: "Zero Data Leakage",
   },
   {
     num: "03",
-    title: "Open Standards & Portability",
-    desc: "We prioritize open formats, portable cloud-native tools, and absolute client ownership over proprietary vendor lock-in.",
+    tag: "Open Standards",
+    title: "Portability & Client Ownership",
+    desc: "From preservation-ready PDF/A archives to portable cloud-native containers and open model runtimes, we build for long-term sovereignty without vendor lock-in.",
+    metric: "100% Portable Stack",
+  },
+  {
+    num: "04",
+    tag: "Applied R&D",
+    title: "Research That Ships",
+    desc: "We translate deep-tech domains — Bayesian psychometrics, hybrid retrieval, vulnerability reachability, and micro-climate modeling — into live, production-grade software.",
+    metric: "5 Live Platforms",
   },
 ];
 
-export const ABOUT_FOCUS = ["Artificial Intelligence", "Cybersecurity", "Data", "Cloud", "Application Engineering"];
+export const ABOUT_STATS = [
+  { value: "5", label: "Live Products", detail: "In active deployment" },
+  { value: "5", label: "Core Pillars", detail: "Software · AI · Sec · Data · Cloud" },
+  { value: "100%", label: "First-Principles", detail: "In-house R&D & engineering" },
+  { value: "IN → Global", label: "Reach", detail: "Engineered in Coimbatore" },
+];
+
+export const ABOUT_CAPABILITIES = [
+  {
+    code: "CAP/01",
+    title: "Deterministic & Agentic AI",
+    desc: "Hybrid BM25 + vector RAG, Bayesian IRT scoring engines, and local or cloud LLM orchestration.",
+  },
+  {
+    code: "CAP/02",
+    title: "Offensive & Defensive Security",
+    desc: "Automated multi-scanner orchestration (Nuclei, Trivy, Nmap, Opengrep) with CISA KEV, EPSS, and code reachability triage.",
+  },
+  {
+    code: "CAP/03",
+    title: "Local-First & Archival Software",
+    desc: "Privacy-preserving OCR pipelines, offline-first desktop/web applications, and ISO-compliant PDF/A digital preservation.",
+  },
+  {
+    code: "CAP/04",
+    title: "Spatiotemporal & Cloud Systems",
+    desc: "Street-level 100m environmental forecasting, high-throughput telemetry streams, and multi-tenant cloud infrastructure.",
+  },
+];
+
+export const ABOUT_FOCUS = ["Artificial Intelligence", "Cybersecurity", "Data Platforms", "Cloud Infrastructure", "Application Engineering", "Climate & Archival Tech"];
 
 export type CaseStudy = {
   id: string;

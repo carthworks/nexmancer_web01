@@ -20,24 +20,24 @@ function DesktopDiagram({ activeOp }: { activeOp: number }) {
       </title>
       <defs>
         <radialGradient id="sa-core" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="rgba(139,92,246,0.32)" />
-          <stop offset="100%" stopColor="rgba(139,92,246,0)" />
+          <stop offset="0%" stopColor="rgba(30,127,184,0.32)" />
+          <stop offset="100%" stopColor="rgba(30,127,184,0)" />
         </radialGradient>
         <linearGradient id="sa-l" x1="0" x2="1">
-          <stop offset="0" stopColor="#22D3EE" stopOpacity=".7" />
-          <stop offset="1" stopColor="#5B8CFF" />
+          <stop offset="0" stopColor="var(--color-cyan)" stopOpacity=".7" />
+          <stop offset="1" stopColor="var(--color-accent)" />
         </linearGradient>
         <linearGradient id="sa-r" x1="0" x2="1">
-          <stop offset="0" stopColor="#5B8CFF" />
-          <stop offset="1" stopColor="#8B5CF6" stopOpacity=".8" />
+          <stop offset="0" stopColor="var(--color-accent)" />
+          <stop offset="1" stopColor="var(--color-violet)" stopOpacity=".8" />
         </linearGradient>
       </defs>
 
       {/* column labels */}
-      <text x={LX} y="18" textAnchor="middle" fill="#9CA3AF" fontSize="10.5" letterSpacing="2.4" fontFamily="JetBrains Mono, monospace">
+      <text x={LX} y="18" textAnchor="middle" fill="var(--color-muted)" fontSize="10.5" letterSpacing="2.4" fontFamily="JetBrains Mono, monospace">
         SURFACES
       </text>
-      <text x={RX} y="18" textAnchor="middle" fill="#9CA3AF" fontSize="10.5" letterSpacing="2.4" fontFamily="JetBrains Mono, monospace">
+      <text x={RX} y="18" textAnchor="middle" fill="var(--color-muted)" fontSize="10.5" letterSpacing="2.4" fontFamily="JetBrains Mono, monospace">
         OPERATIONS
       </text>
 
@@ -46,10 +46,10 @@ function DesktopDiagram({ activeOp }: { activeOp: number }) {
         const d = `M${LX + PILL_W / 2},${y} C${LX + PILL_W / 2 + 90},${y} ${CORE.x - 150},${CORE.y} ${CORE.x - 70},${CORE.y}`;
         return (
           <g key={`l${i}`}>
-            <path d={d} fill="none" stroke="rgba(255,255,255,0.07)" />
+            <path d={d} fill="none" stroke="color-mix(in srgb, var(--color-white) 7%, transparent)" />
             <path d={d} fill="none" stroke="url(#sa-l)" strokeWidth="1.2" className="flow-dash" opacity=".55" />
             {!reduced && (
-              <circle r="2.4" fill="#22D3EE">
+              <circle r="2.4" fill="var(--color-cyan)">
                 <animateMotion dur={`${2.2 + i * 0.25}s`} repeatCount="indefinite" path={d} />
               </circle>
             )}
@@ -63,10 +63,10 @@ function DesktopDiagram({ activeOp }: { activeOp: number }) {
         const d = `M${CORE.x + 70},${CORE.y} C${CORE.x + 150},${CORE.y} ${RX - PILL_W / 2 - 90},${y} ${RX - PILL_W / 2},${y}`;
         return (
           <g key={`r${i}`}>
-            <path d={d} fill="none" stroke={on ? "rgba(139,92,246,0.45)" : "rgba(255,255,255,0.07)"} style={{ transition: "stroke .5s" }} />
+            <path d={d} fill="none" stroke={on ? "rgba(30,127,184,0.45)" : "color-mix(in srgb, var(--color-white) 7%, transparent)"} style={{ transition: "stroke .5s" }} />
             <path d={d} fill="none" stroke="url(#sa-r)" strokeWidth="1.2" className="flow-dash" opacity={on ? 1 : 0.3} style={{ transition: "opacity .5s" }} />
             {!reduced && on && (
-              <circle r="3" fill="#F5F7FA">
+              <circle r="3" fill="var(--color-fg)">
                 <animateMotion dur="1.4s" repeatCount="indefinite" path={d} />
               </circle>
             )}
@@ -76,22 +76,22 @@ function DesktopDiagram({ activeOp }: { activeOp: number }) {
 
       {/* core */}
       <circle cx={CORE.x} cy={CORE.y} r="130" fill="url(#sa-core)" />
-      <circle cx={CORE.x} cy={CORE.y} r="92" fill="none" stroke="rgba(255,255,255,0.06)" strokeDasharray="2 6" />
-      <circle cx={CORE.x} cy={CORE.y} r="70" fill="none" stroke="#8B5CF6" strokeOpacity=".45" className="pulse-ring" />
-      <circle cx={CORE.x} cy={CORE.y} r="70" fill="#0E121B" stroke="url(#sa-r)" strokeWidth="1.5" />
-      <text x={CORE.x} y={CORE.y - 4} textAnchor="middle" fill="#F5F7FA" fontSize="14" fontWeight="700" letterSpacing="2.4" fontFamily="Inter, sans-serif">
+      <circle cx={CORE.x} cy={CORE.y} r="92" fill="none" stroke="color-mix(in srgb, var(--color-white) 6%, transparent)" strokeDasharray="2 6" />
+      <circle cx={CORE.x} cy={CORE.y} r="70" fill="none" stroke="var(--color-violet)" strokeOpacity=".45" className="pulse-ring" />
+      <circle cx={CORE.x} cy={CORE.y} r="70" fill="var(--color-graphite)" stroke="url(#sa-r)" strokeWidth="1.5" />
+      <text x={CORE.x} y={CORE.y - 4} textAnchor="middle" fill="var(--color-fg)" fontSize="14" fontWeight="700" letterSpacing="2.4" fontFamily="Inter, sans-serif">
         NEXMANCER
       </text>
-      <text x={CORE.x} y={CORE.y + 18} textAnchor="middle" fill="#8B5CF6" fontSize="13" letterSpacing="4" fontFamily="JetBrains Mono, monospace">
+      <text x={CORE.x} y={CORE.y + 18} textAnchor="middle" fill="var(--color-violet)" fontSize="13" letterSpacing="4" fontFamily="JetBrains Mono, monospace">
         AI
       </text>
 
       {/* surfaces */}
       {SECURITY_SURFACES.map((s, i) => (
         <g key={s}>
-          <rect x={LX - PILL_W / 2} y={ys[i] - 17} width={PILL_W} height="34" rx="8" fill="#07090E" stroke="rgba(255,255,255,0.14)" />
-          <circle cx={LX - PILL_W / 2 + 16} cy={ys[i]} r="3" fill="#22D3EE" />
-          <text x={LX + 8} y={ys[i] + 4.5} textAnchor="middle" fill="#F5F7FA" fontSize="12" letterSpacing="1.6" fontFamily="JetBrains Mono, monospace">
+          <rect x={LX - PILL_W / 2} y={ys[i] - 17} width={PILL_W} height="34" rx="8" fill="var(--color-ink)" stroke="color-mix(in srgb, var(--color-white) 14%, transparent)" />
+          <circle cx={LX - PILL_W / 2 + 16} cy={ys[i]} r="3" fill="var(--color-cyan)" />
+          <text x={LX + 8} y={ys[i] + 4.5} textAnchor="middle" fill="var(--color-fg)" fontSize="12" letterSpacing="1.6" fontFamily="JetBrains Mono, monospace">
             {s.toUpperCase()}
           </text>
         </g>
@@ -108,18 +108,18 @@ function DesktopDiagram({ activeOp }: { activeOp: number }) {
               width={PILL_W}
               height="34"
               rx="8"
-              fill={on ? "#141A26" : "#07090E"}
-              stroke={on ? "#8B5CF6" : "rgba(255,255,255,0.14)"}
+              fill={on ? "var(--color-surface)" : "var(--color-ink)"}
+              stroke={on ? "var(--color-violet)" : "color-mix(in srgb, var(--color-white) 14%, transparent)"}
               style={{ transition: "stroke .5s, fill .5s" }}
             />
-            <text x={RX - PILL_W / 2 + 16} y={ys[i] + 4} fill={on ? "#8B5CF6" : "#9CA3AF"} fontSize="10" fontFamily="JetBrains Mono, monospace">
+            <text x={RX - PILL_W / 2 + 16} y={ys[i] + 4} fill={on ? "var(--color-violet)" : "var(--color-muted)"} fontSize="10" fontFamily="JetBrains Mono, monospace">
               0{i + 1}
             </text>
             <text
               x={RX + 10}
               y={ys[i] + 4.5}
               textAnchor="middle"
-              fill={on ? "#F5F7FA" : "#9CA3AF"}
+              fill={on ? "var(--color-fg)" : "var(--color-muted)"}
               fontSize="12"
               letterSpacing="1.6"
               fontFamily="JetBrains Mono, monospace"
@@ -151,7 +151,7 @@ function MobileDiagram({ activeOp }: { activeOp: number }) {
       <div className="mx-auto h-10 w-px overflow-hidden bg-white/10">
         <span className="block h-4 w-px animate-[drop_1.6s_linear_infinite] bg-gradient-to-b from-transparent to-cyan" />
       </div>
-      <div className="relative mx-auto flex w-48 flex-col items-center rounded-2xl border border-violet/40 bg-graphite px-6 py-5 shadow-[0_0_60px_-10px_rgba(139,92,246,0.35)]">
+      <div className="relative mx-auto flex w-48 flex-col items-center rounded-2xl border border-violet/40 bg-graphite px-6 py-5 shadow-[0_0_60px_-10px_rgba(30,127,184,0.35)]">
         <span className="text-sm font-bold tracking-[0.2em] text-fg">NEXMANCER</span>
         <span className="mt-1 font-mono text-xs tracking-[0.3em] text-violet">AI</span>
       </div>
@@ -186,7 +186,7 @@ export default function SecurityAI() {
     <section id="security" aria-labelledby="security-title" className="relative overflow-hidden py-24 sm:py-32">
       <div
         className="absolute left-1/2 top-1/2 -z-10 h-[700px] w-[min(1000px,100%)] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-50 blur-3xl"
-        style={{ background: "radial-gradient(ellipse, rgba(139,92,246,0.12), transparent 65%)" }}
+        style={{ background: "radial-gradient(ellipse, rgba(30,127,184,0.12), transparent 65%)" }}
         aria-hidden
       />
       <Container>

@@ -35,15 +35,15 @@ function Visual({ kind }: { kind: DomainKey }) {
                   y1={10 + r * 20}
                   x2={110 + c * 80}
                   y2={10 + r2 * 20}
-                  stroke="rgba(91,140,255,.18)"
+                  stroke="rgba(34,184,207,.18)"
                   strokeWidth=".6"
-                  className="transition-all duration-500 group-hover:stroke-[rgba(139,92,246,.45)]"
+                  className="transition-all duration-500 group-hover:stroke-[rgba(30,127,184,.45)]"
                 />
               ))
             )
           )}
           {[0, 1, 2].map((c) =>
-            [0, 1, 2, 3].map((r) => <circle key={`n${c}${r}`} cx={30 + c * 80} cy={10 + r * 20} r="3" fill="#0E121B" stroke="rgba(245,247,250,.6)" strokeWidth="1" />)
+            [0, 1, 2, 3].map((r) => <circle key={`n${c}${r}`} cx={30 + c * 80} cy={10 + r * 20} r="3" fill="var(--color-graphite)" stroke="color-mix(in srgb, var(--color-fg) 60%, transparent)" strokeWidth="1" />)
           )}
         </svg>
       );
@@ -108,7 +108,7 @@ export default function TechnologyGrid() {
                 <article
                   onPointerMove={spotlightHandler}
                   aria-labelledby={`domain-${dm.key}`}
-                  className="spotlight group flex h-full flex-col rounded-2xl border border-white/[0.08] bg-graphite/60 p-6 transition-all duration-500 hover:-translate-y-1 hover:border-white/[0.14] hover:shadow-[0_30px_60px_-30px_rgba(91,140,255,0.35)] sm:p-8"
+                  className="spotlight group flex h-full flex-col rounded-2xl border border-white/[0.08] bg-graphite/60 p-6 transition-all duration-500 hover:-translate-y-1 hover:border-white/[0.14] hover:shadow-[0_30px_60px_-30px_rgba(34,184,207,0.35)] sm:p-8"
                 >
                   <div className="flex items-start justify-between">
                     <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-fg transition-colors group-hover:border-accent/40 group-hover:text-accent">

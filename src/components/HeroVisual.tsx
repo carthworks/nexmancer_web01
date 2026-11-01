@@ -24,20 +24,20 @@ export default function HeroVisual({ active }: { active: DomainKey }) {
       >
         <defs>
           <radialGradient id="hv-core" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="rgba(91,140,255,0.28)" />
-            <stop offset="100%" stopColor="rgba(91,140,255,0)" />
+            <stop offset="0%" stopColor="rgba(34,184,207,0.28)" />
+            <stop offset="100%" stopColor="rgba(34,184,207,0)" />
           </radialGradient>
           <linearGradient id="hv-stroke" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#5B8CFF" />
-            <stop offset="1" stopColor="#8B5CF6" />
+            <stop offset="0" stopColor="var(--color-accent)" />
+            <stop offset="1" stopColor="var(--color-violet)" />
           </linearGradient>
         </defs>
 
         {/* rings */}
-        <circle cx={C} cy={C} r={R} fill="none" stroke="rgba(255,255,255,0.07)" />
-        <circle cx={C} cy={C} r={R + 36} fill="none" stroke="rgba(255,255,255,0.04)" />
+        <circle cx={C} cy={C} r={R} fill="none" stroke="color-mix(in srgb, var(--color-white) 7%, transparent)" />
+        <circle cx={C} cy={C} r={R + 36} fill="none" stroke="color-mix(in srgb, var(--color-white) 4%, transparent)" />
         <g className="spin-slow" style={{ transformOrigin: `${C}px ${C}px` }}>
-          <circle cx={C} cy={C} r={R - 70} fill="none" stroke="rgba(91,140,255,0.28)" strokeDasharray="2 10" />
+          <circle cx={C} cy={C} r={R - 70} fill="none" stroke="rgba(34,184,207,0.28)" strokeDasharray="2 10" />
         </g>
         {/* ticks */}
         {Array.from({ length: 60 }).map((_, i) => {
@@ -51,14 +51,14 @@ export default function HeroVisual({ active }: { active: DomainKey }) {
               y1={C + r1 * Math.sin(a)}
               x2={C + r2 * Math.cos(a)}
               y2={C + r2 * Math.sin(a)}
-              stroke="rgba(255,255,255,0.12)"
+              stroke="color-mix(in srgb, var(--color-white) 12%, transparent)"
               strokeWidth="1"
             />
           );
         })}
 
         {/* polygon between nodes */}
-        <polygon points={nodes.map((n) => `${n.x},${n.y}`).join(" ")} fill="none" stroke="rgba(255,255,255,0.05)" />
+        <polygon points={nodes.map((n) => `${n.x},${n.y}`).join(" ")} fill="none" stroke="color-mix(in srgb, var(--color-white) 5%, transparent)" />
 
         {/* spokes */}
         {nodes.map((n, i) => {
@@ -66,10 +66,10 @@ export default function HeroVisual({ active }: { active: DomainKey }) {
           const d = `M${C},${C} L${n.x},${n.y}`;
           return (
             <g key={n.key}>
-              <path d={d} stroke={on ? "rgba(91,140,255,0.5)" : "rgba(255,255,255,0.08)"} strokeWidth="1" style={{ transition: "stroke .6s" }} />
+              <path d={d} stroke={on ? "rgba(34,184,207,0.5)" : "color-mix(in srgb, var(--color-white) 8%, transparent)"} strokeWidth="1" style={{ transition: "stroke .6s" }} />
               <path d={d} stroke="url(#hv-stroke)" strokeWidth="1.3" className="flow-dash" opacity={on ? 0.95 : 0.25} style={{ transition: "opacity .6s" }} />
               {!reduced && (
-                <circle r={on ? 3.2 : 2} fill="#F5F7FA" opacity={on ? 1 : 0.5}>
+                <circle r={on ? 3.2 : 2} fill="var(--color-fg)" opacity={on ? 1 : 0.5}>
                   <animateMotion dur={`${2.6 + i * 0.3}s`} repeatCount="indefinite" path={d} />
                 </circle>
               )}
@@ -79,14 +79,13 @@ export default function HeroVisual({ active }: { active: DomainKey }) {
 
         {/* core */}
         <circle cx={C} cy={C} r="120" fill="url(#hv-core)" />
-        <circle cx={C} cy={C} r="64" fill="none" stroke="#5B8CFF" strokeOpacity=".45" className="pulse-ring" />
-        <circle cx={C} cy={C} r="64" fill="#0E121B" stroke="url(#hv-stroke)" strokeWidth="1.5" />
-        <g transform={`translate(${C - 13} ${C - 32})`}>
-          <path d="M3 23V3l20 20V3" fill="none" stroke="url(#hv-stroke)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-          <circle cx="3" cy="3" r="2.4" fill="#F5F7FA" />
-          <circle cx="23" cy="23" r="2.4" fill="#F5F7FA" />
+        <circle cx={C} cy={C} r="64" fill="none" stroke="var(--color-accent)" strokeOpacity=".45" className="pulse-ring" />
+        <circle cx={C} cy={C} r="64" fill="var(--color-graphite)" stroke="url(#hv-stroke)" strokeWidth="1.5" />
+        <g transform={`translate(${C - 16} ${C - 34})`}>
+          <path d="M16 2 30 10v16L16 34 2 26V10Z" fill="none" stroke="var(--color-fg)" strokeWidth="2.2" strokeLinejoin="round" />
+          <path d="m12.5 12 7 6-7 6" fill="none" stroke="var(--color-accent)" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" />
         </g>
-        <text x={C} y={C + 20} textAnchor="middle" fill="#F5F7FA" fontSize="12.5" fontWeight="700" letterSpacing="2.6" fontFamily="Inter, sans-serif">
+        <text x={C} y={C + 22} textAnchor="middle" fill="var(--color-fg)" fontSize="12.5" fontWeight="700" letterSpacing="2.6" fontFamily="Inter, sans-serif">
           NEXMANCER
         </text>
 
@@ -102,16 +101,16 @@ export default function HeroVisual({ active }: { active: DomainKey }) {
                 width={w}
                 height="34"
                 rx="17"
-                fill="#07090E"
-                stroke={on ? "#5B8CFF" : "rgba(255,255,255,0.16)"}
+                fill="var(--color-ink)"
+                stroke={on ? "var(--color-accent)" : "color-mix(in srgb, var(--color-white) 16%, transparent)"}
                 style={{ transition: "stroke .6s" }}
               />
-              <circle cx={n.x - w / 2 + 15} cy={n.y} r="3" fill={on ? "#5B8CFF" : "rgba(255,255,255,0.35)"} style={{ transition: "fill .6s" }} />
+              <circle cx={n.x - w / 2 + 15} cy={n.y} r="3" fill={on ? "var(--color-accent)" : "color-mix(in srgb, var(--color-white) 35%, transparent)"} style={{ transition: "fill .6s" }} />
               <text
                 x={n.x + 7}
                 y={n.y + 4.5}
                 textAnchor="middle"
-                fill={on ? "#F5F7FA" : "#9CA3AF"}
+                fill={on ? "var(--color-fg)" : "var(--color-muted)"}
                 fontSize="12.5"
                 letterSpacing="1.6"
                 fontFamily="JetBrains Mono, monospace"

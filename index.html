@@ -14,8 +14,17 @@
     />
     <meta name="author" content="NEXMANCER PRIVATE LIMITED" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="theme-color" content="#07090E" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0A1426" />
+    <meta name="color-scheme" content="dark light" />
+    <script>
+      (function () {
+        var t;
+        try { t = localStorage.getItem("nx-theme"); } catch (e) {}
+        if (t !== "light" && t !== "dark") t = matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        document.documentElement.dataset.theme = t;
+        if (t === "light") document.querySelector('meta[name="theme-color"]').setAttribute("content", "#F4F7FB");
+      })();
+    </script>
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="format-detection" content="telephone=no" />
     <link rel="canonical" href="https://nexmancer.com/" />
@@ -85,6 +94,13 @@
               "contactType": "business enquiries"
             },
             "knowsAbout": ["Software products", "SaaS", "Artificial intelligence", "Machine learning", "Cybersecurity", "Data platforms", "Cloud technology"],
+            "makesOffer": [
+              { "@type": "SoftwareApplication", "name": "Sensighty", "url": "https://sensighty.nexmancer.com/", "applicationCategory": "EducationalApplication" },
+              { "@type": "SoftwareApplication", "name": "SigmaSec", "url": "https://sigmasec.vercel.app/", "applicationCategory": "SecurityApplication" },
+              { "@type": "SoftwareApplication", "name": "LibraDigit", "url": "https://libra-digit-ai.vercel.app/", "applicationCategory": "BusinessApplication" },
+              { "@type": "SoftwareApplication", "name": "AskMyDocs", "url": "https://ask-mydocs.vercel.app/", "applicationCategory": "BusinessApplication" },
+              { "@type": "SoftwareApplication", "name": "Hyperlocal Heat", "url": "https://hyperlocal-heat.vercel.app/", "applicationCategory": "ScientificApplication" }
+            ],
             "sameAs": ["https://github.com/NEXMANCER", "https://x.com/nexmancer", "https://github.com/carthworks/nexmancer_web01"]
           },
           {
@@ -98,12 +114,12 @@
       }
     </script>
   </head>
-  <body class="bg-[#07090E]">
+  <body class="bg-ink text-fg">
     <noscript>
       <div style="color:#F5F7FA;font-family:system-ui,sans-serif;padding:2rem;max-width:40rem">
         <h1>NEXMANCER — Building what's next.</h1>
         <p>NEXMANCER builds intelligent software, AI systems, cybersecurity technologies and digital platforms.</p>
-        <p>Contact: <a style="color:#5B8CFF" href="mailto:business@nexmancer.com">business@nexmancer.com</a></p>
+        <p>Contact: <a style="color:#22B8CF" href="mailto:business@nexmancer.com">business@nexmancer.com</a></p>
       </div>
     </noscript>
     <div id="root"></div>

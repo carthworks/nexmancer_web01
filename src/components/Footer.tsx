@@ -19,13 +19,13 @@ const COLS: { h: string; links: LinkItem[] }[] = [
     ],
   },
   {
-    h: "Technology",
+    h: "Products",
     links: [
-      { l: "Software", href: "#technology" },
-      { l: "AI & Intelligence", href: "#technology" },
-      { l: "Cybersecurity", href: "#security" },
-      { l: "Data Platforms", href: "#technology" },
-      { l: "Cloud Native", href: "#technology" },
+      { l: "Sensighty", href: "https://sensighty.nexmancer.com/" },
+      { l: "SigmaSec", href: "https://sigmasec.vercel.app/" },
+      { l: "LibraDigit", href: "https://libra-digit-ai.vercel.app/" },
+      { l: "AskMyDocs", href: "https://ask-mydocs.vercel.app/" },
+      { l: "Hyperlocal Heat", href: "https://hyperlocal-heat.vercel.app/" },
     ],
   },
   {
@@ -91,7 +91,7 @@ export default function Footer() {
   }, [doc]);
 
   return (
-    <footer className="relative overflow-hidden border-t border-white/[0.07] bg-[#0B0E17]/80 pt-20" aria-labelledby="footer-title">
+    <footer className="relative overflow-hidden border-t border-white/[0.07] bg-ink/80 pt-20" aria-labelledby="footer-title">
       <h2 id="footer-title" className="sr-only">
         Site footer
       </h2>
@@ -152,7 +152,7 @@ export default function Footer() {
       </Container>
 
       <div aria-hidden className="pointer-events-none select-none overflow-hidden">
-        <p className="translate-y-[18%] text-center text-[19vw] font-extrabold leading-none tracking-[-0.06em] text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.09)]">
+        <p className="translate-y-[18%] text-center text-[19vw] font-extrabold leading-none tracking-[-0.06em] text-transparent [-webkit-text-stroke:1px_color-mix(in_srgb,var(--color-white)_9%,transparent)]">
           NEXMANCER
         </p>
       </div>

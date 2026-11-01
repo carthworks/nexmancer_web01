@@ -50,7 +50,7 @@ function Field({
         {hint}
       </div>
       <div className="mt-2">{children}</div>
-      <p id={`${id}-error`} className={cn("mt-1.5 min-h-[1.1rem] text-[13px] text-rose-300", !error && "invisible")} role={error ? "alert" : undefined}>
+      <p id={`${id}-error`} className={cn("mt-1.5 min-h-[1.1rem] text-[13px] text-rose-500 dark:text-rose-300", !error && "invisible")} role={error ? "alert" : undefined}>
         {error || "\u00a0"}
       </p>
     </div>
@@ -232,7 +232,7 @@ function ContactForm() {
             required
             error={errors.message}
             hint={
-              <span className={cn("font-mono text-[11px]", msgLen > LIMITS.message.max ? "text-rose-300" : "text-muted/70")} aria-live="off">
+              <span className={cn("font-mono text-[11px]", msgLen > LIMITS.message.max ? "text-rose-500" : "text-muted/70")} aria-live="off">
                 {msgLen}/{LIMITS.message.max}
               </span>
             }
@@ -265,7 +265,7 @@ function ContactForm() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-fg px-7 text-sm font-semibold uppercase tracking-[0.08em] text-ink transition-all hover:shadow-[0_0_0_4px_rgba(91,140,255,0.2)] disabled:cursor-wait disabled:opacity-70"
+          className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-fg px-7 text-sm font-semibold uppercase tracking-[0.08em] text-ink transition-all hover:shadow-[0_0_0_4px_rgba(34,184,207,0.2)] disabled:cursor-wait disabled:opacity-70"
         >
           {status === "submitting" ? (
             <>
@@ -283,10 +283,10 @@ function ContactForm() {
       {/* Status region */}
       <div role="status" aria-live="polite" className="mt-5 empty:hidden">
         {status === "sent" && (
-          <div className="rounded-xl border border-emerald-400/30 bg-emerald-400/[0.06] p-4 text-sm text-emerald-200">{feedback}</div>
+          <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/[0.08] p-4 text-sm text-fg">{feedback}</div>
         )}
         {(status === "error" || status === "blocked") && (
-          <div className="rounded-xl border border-rose-400/30 bg-rose-400/[0.06] p-4 text-sm text-rose-200">
+          <div className="rounded-xl border border-rose-500/30 bg-rose-500/[0.08] p-4 text-sm text-fg">
             {feedback}{" "}
             <a href={buildMailto(SITE.email, values)} className="font-medium text-fg underline underline-offset-4">
               Email {SITE.email}
@@ -331,7 +331,7 @@ export default function ContactSection() {
       <div className="grid-bg grid-fade absolute inset-0 -z-10" aria-hidden />
       <div
         className="absolute left-1/2 top-0 -z-10 h-[600px] w-[min(1000px,100%)] -translate-x-1/2 -translate-y-1/3 rounded-full opacity-60 blur-3xl"
-        style={{ background: "radial-gradient(ellipse, rgba(91,140,255,0.16), rgba(139,92,246,0.07) 45%, transparent 70%)" }}
+        style={{ background: "radial-gradient(ellipse, rgba(34,184,207,0.16), rgba(30,127,184,0.07) 45%, transparent 70%)" }}
         aria-hidden
       />
       <Container>

@@ -10,13 +10,13 @@ export function initConsoleSignature() {
   initialized = true;
 
   const titleStyle =
-    "font-size: 14px; font-weight: 800; color: #F8FAFC; background: linear-gradient(135deg, #07090E, #0E121B); padding: 8px 14px; border-radius: 6px; border: 1px solid rgba(91,140,255,0.4); text-shadow: 0 0 10px rgba(91,140,255,0.5);";
-  const labelStyle = "font-weight: 700; color: #22D3EE; font-family: monospace;";
-  const valStyle = "color: #94A3B8; font-family: sans-serif;";
-  const linkStyle = "color: #5B8CFF; font-weight: 600; text-decoration: underline; font-family: monospace;";
-  const quoteStyle = "font-style: italic; color: #8B5CF6; font-family: sans-serif;";
+    "font-size: 14px; font-weight: 800; color: #F8FAFC; background: linear-gradient(135deg, #0A1426, #0E1B33); padding: 8px 14px; border-radius: 6px; border: 1px solid rgba(34,184,207,0.4); text-shadow: 0 0 10px rgba(34,184,207,0.5);";
+  const labelStyle = "font-weight: 700; color: #67E0F0; font-family: monospace;";
+  const valStyle = "color: #8DA2C0; font-family: sans-serif;";
+  const linkStyle = "color: #22B8CF; font-weight: 600; text-decoration: underline; font-family: monospace;";
+  const quoteStyle = "font-style: italic; color: #1E7FB8; font-family: sans-serif;";
   const tipLabel = "font-weight: bold; color: #F59E0B; font-family: monospace;";
-  const codeStyle = "font-family: monospace; color: #22D3EE; background: rgba(34,211,238,0.1); padding: 2px 6px; border-radius: 4px;";
+  const codeStyle = "font-family: monospace; color: #67E0F0; background: rgba(103,224,240,0.1); padding: 2px 6px; border-radius: 4px;";
 
   console.log("%c🚀 NEXMANCER — Building What's Next", titleStyle);
   console.log(
@@ -39,9 +39,9 @@ export function initConsoleSignature() {
   console.log(
     `%c💡 Interactive Console:%c Type %cwindow.NX.help()%c to inspect tools, case studies, and engineering architecture.`,
     tipLabel,
-    "color: #94A3B8;",
+    "color: #8DA2C0;",
     codeStyle,
-    "color: #94A3B8;"
+    "color: #8DA2C0;"
   );
 
   const nxTools = {
@@ -50,6 +50,13 @@ export function initConsoleSignature() {
     developer: "Karthikeyan T (@carthworks)",
     location: "Coimbatore, Tamil Nadu, India",
     domains: ["Software", "AI", "Cybersecurity", "Data", "Cloud"],
+    products: [
+      { name: "Sensighty", url: "https://sensighty.nexmancer.com/", focus: "Adaptive Learning & Bayesian IRT Assessment" },
+      { name: "SigmaSec", url: "https://sigmasec.vercel.app/", focus: "Multi-scanner CVE Triage, CISA KEV & EPSS" },
+      { name: "LibraDigit", url: "https://libra-digit-ai.vercel.app/", focus: "Offline OCR & PDF/A Digital Archiving" },
+      { name: "AskMyDocs", url: "https://ask-mydocs.vercel.app/", focus: "Hybrid BM25 + Semantic RAG System" },
+      { name: "Hyperlocal Heat", url: "https://hyperlocal-heat.vercel.app/", focus: "48h 100m Urban Heat-Stress Forecasting" },
+    ],
     caseStudies: [
       {
         title: "High-Throughput Security Telemetry & Event Ingestion",
@@ -73,6 +80,7 @@ export function initConsoleSignature() {
         "NX.version": "Current production release version",
         "NX.company": "Corporate entity and legal identity",
         "NX.domains": "Core technical capability areas",
+        "NX.products": "Live NEXMANCER platforms and URLs",
         "NX.caseStudies": "Verifiable proof-of-work benchmarks",
         "NX.contact()": "Initiate an inquiry to business@nexmancer.com",
       });

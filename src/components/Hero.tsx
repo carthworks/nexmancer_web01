@@ -20,7 +20,7 @@ export default function Hero() {
       <div className="grid-bg grid-fade absolute inset-0 -z-20" aria-hidden />
       <div
         className="absolute -right-40 -top-40 -z-20 h-[640px] w-[640px] rounded-full opacity-60 blur-3xl"
-        style={{ background: "radial-gradient(circle, rgba(91,140,255,0.2), rgba(139,92,246,0.08) 45%, transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, rgba(34,184,207,0.2), rgba(30,127,184,0.08) 45%, transparent 70%)" }}
         aria-hidden
       />
       <NetworkCanvas className="absolute inset-0 -z-10 h-full w-full opacity-50 [mask-image:linear-gradient(to_bottom,#000_40%,transparent)]" />
@@ -81,7 +81,7 @@ export default function Hero() {
       </Container>
 
       {/* Ecosystem strip replacing duplicate marquee */}
-      <div className="relative border-t border-white/[0.07] bg-black/40 backdrop-blur-md">
+      <div className="relative border-t border-white/[0.07] bg-graphite/70 backdrop-blur-md">
         <Container className="flex flex-col gap-4 py-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
             <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-accent">Tech Stack:</span>

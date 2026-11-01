@@ -1,7 +1,7 @@
-import { Arrow, Button, Container, Eyebrow, Reveal, Tag } from "./ui";
-import { DOMAIN_ICONS } from "./icons";
 import { PRODUCTS } from "../data/content";
 import { spotlightHandler } from "../lib/hooks";
+import { DOMAIN_ICONS } from "./icons";
+import { Arrow, Button, Container, Eyebrow, Reveal, Tag } from "./ui";
 
 export default function ProductStudio() {
   return (
@@ -43,7 +43,10 @@ export default function ProductStudio() {
             return (
               <Reveal as="li" key={p.name} delay={i * 60}>
                 <a
-                  href="#contact"
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${p.name} — open live product (new tab)`}
                   onPointerMove={spotlightHandler}
                   className="spotlight group block rounded-2xl border border-white/[0.08] bg-graphite/50 p-6 transition-all duration-500 hover:border-white/20 hover:bg-graphite/70 sm:p-7"
                 >
@@ -70,12 +73,16 @@ export default function ProductStudio() {
                         aria-hidden
                         className="hidden h-9 w-9 items-center justify-center rounded-full border border-white/10 text-muted transition-all duration-300 group-hover:border-accent/50 group-hover:bg-accent/10 group-hover:text-fg sm:flex"
                       >
-                        <span className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
+                        <span className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">↗</span>
                       </span>
                     </div>
                   </div>
 
-                  <p className="mt-4 text-[15px] leading-relaxed text-muted">{p.desc}</p>
+                  <p className="mt-4 text-[15px] font-medium leading-snug text-fg/90">{p.tagline}</p>
+                  <p className="mt-2 text-[15px] leading-relaxed text-muted">{p.desc}</p>
+                  <p className="mt-3 font-mono text-[11.5px] text-accent/80 group-hover:text-accent">
+                    {p.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                  </p>
 
                   <ul className="mt-5 flex flex-wrap gap-2 pt-2 border-t border-white/[0.06]" aria-label="Tags">
                     {p.tags.map((t) => (

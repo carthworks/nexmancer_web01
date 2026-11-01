@@ -3,6 +3,7 @@ import { NAV, SITE } from "../lib/site";
 import { cn } from "../utils/cn";
 import { Logo, ArrowUpRight, Arrow } from "./ui";
 import { IconGithub } from "./icons";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -52,7 +53,7 @@ export default function Navbar() {
         className={cn(
           "fixed inset-x-0 top-0 z-40 transition-all duration-300",
           scrolled
-            ? "border-b border-white/[0.07] bg-[#07090E]/90 backdrop-blur-xl backdrop-saturate-150"
+            ? "border-b border-white/[0.07] bg-ink/90 backdrop-blur-xl backdrop-saturate-150"
             : "border-b border-transparent bg-transparent"
         )}
       >
@@ -87,6 +88,7 @@ export default function Navbar() {
 
           {/* Desktop Actions */}
           <div className="hidden items-center gap-2 lg:flex">
+            <ThemeToggle />
             <a
               href={SITE.github}
               target="_blank"
@@ -97,13 +99,15 @@ export default function Navbar() {
             </a>
             <a
               href="#contact"
-              className="group inline-flex items-center gap-1.5 rounded-full bg-fg px-4 py-2 text-[13px] font-semibold text-ink transition-all hover:shadow-[0_0_0_4px_rgba(91,140,255,0.2)]"
+              className="group inline-flex items-center gap-1.5 rounded-full bg-fg px-4 py-2 text-[13px] font-semibold text-ink transition-all hover:shadow-[0_0_0_4px_rgba(34,184,207,0.2)]"
             >
               Contact Us <Arrow />
             </a>
           </div>
 
-          {/* Mobile Hamburger Trigger */}
+          {/* Mobile Theme + Hamburger Trigger */}
+          <div className="flex items-center gap-1 lg:hidden">
+          <ThemeToggle />
           <button
             type="button"
             className="relative -mr-2 flex h-10 w-10 items-center justify-center rounded-xl text-fg hover:bg-white/[0.06] transition-colors lg:hidden"
@@ -118,6 +122,7 @@ export default function Navbar() {
               <span className="h-[1.5px] w-5 bg-current rounded-full" />
             </div>
           </button>
+          </div>
         </nav>
       </header>
 
@@ -125,7 +130,7 @@ export default function Navbar() {
       <div
         id="mobile-menu"
         aria-hidden={!open}
-        style={{ backgroundColor: "#07090E" }}
+        style={{ backgroundColor: "var(--color-ink)" }}
         className={cn(
           "fixed inset-0 z-50 flex flex-col transition-all duration-300 ease-out lg:hidden",
           open
@@ -177,7 +182,7 @@ export default function Navbar() {
                       <span
                         className={cn(
                           "h-2 w-2 rounded-full transition-all",
-                          isActive ? "bg-accent scale-125 shadow-[0_0_8px_rgba(91,140,255,0.8)]" : "bg-white/20 group-hover:bg-accent"
+                          isActive ? "bg-accent scale-125 shadow-[0_0_8px_rgba(34,184,207,0.8)]" : "bg-white/20 group-hover:bg-accent"
                         )}
                       />
                       {item.label}
@@ -209,7 +214,7 @@ export default function Navbar() {
                 <IconGithub className="h-4 w-4" /> GitHub <ArrowUpRight />
               </a>
               <a
-                href="mailto:contact@nexmancer.com"
+                href={`mailto:${SITE.email}`}
                 className="flex h-11 items-center justify-center gap-2 rounded-xl border border-white/10 bg-graphite text-xs font-medium text-muted hover:text-fg transition-colors"
               >
                 Direct Email ↗

@@ -64,12 +64,12 @@ function WorldMap() {
     <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-label="Minimal world map with connection lines from India to international regions.">
       <defs>
         <linearGradient id="arc-g" x1="0" x2="1">
-          <stop offset="0" stopColor="#5B8CFF" stopOpacity=".9" />
-          <stop offset="1" stopColor="#8B5CF6" stopOpacity=".5" />
+          <stop offset="0" stopColor="var(--color-accent)" stopOpacity=".9" />
+          <stop offset="1" stopColor="var(--color-violet)" stopOpacity=".5" />
         </linearGradient>
       </defs>
       {dots.map((d, i) => (
-        <circle key={i} cx={d.x} cy={d.y} r="0.62" fill="rgba(245,247,250,0.22)" />
+        <circle key={i} cx={d.x} cy={d.y} r="0.62" fill="color-mix(in srgb, var(--color-fg) 22%, transparent)" />
       ))}
       {LINKS.map((l) => {
         const mx = (HUB.x + l.x) / 2;
@@ -78,14 +78,14 @@ function WorldMap() {
         return (
           <g key={l.name}>
             <path d={d} fill="none" stroke="url(#arc-g)" strokeWidth="0.5" className="flow-dash-slow" />
-            <circle cx={l.x} cy={l.y} r="1.1" fill="#22D3EE" />
-            <circle cx={l.x} cy={l.y} r="1.1" fill="none" stroke="#22D3EE" strokeWidth=".4" className="pulse-ring" />
+            <circle cx={l.x} cy={l.y} r="1.1" fill="var(--color-cyan)" />
+            <circle cx={l.x} cy={l.y} r="1.1" fill="none" stroke="var(--color-cyan)" strokeWidth=".4" className="pulse-ring" />
           </g>
         );
       })}
-      <circle cx={HUB.x} cy={HUB.y} r="2" fill="#F5F7FA" />
-      <circle cx={HUB.x} cy={HUB.y} r="2" fill="none" stroke="#5B8CFF" strokeWidth=".6" className="pulse-ring" />
-      <text x={HUB.x + 4} y={HUB.y + 7} fill="#F5F7FA" fontSize="4" fontFamily="JetBrains Mono, monospace" letterSpacing=".4">
+      <circle cx={HUB.x} cy={HUB.y} r="2" fill="var(--color-fg)" />
+      <circle cx={HUB.x} cy={HUB.y} r="2" fill="none" stroke="var(--color-accent)" strokeWidth=".6" className="pulse-ring" />
+      <text x={HUB.x + 4} y={HUB.y + 7} fill="var(--color-fg)" fontSize="4" fontFamily="JetBrains Mono, monospace" letterSpacing=".4">
         IN
       </text>
     </svg>

@@ -61,6 +61,9 @@ export default function ObjectivesSection() {
                         )}
                       >
                         {it.title}
+                        <span className="ml-3 inline-flex items-center rounded-full border border-accent/25 bg-accent/10 px-2.5 py-0.5 align-middle font-mono text-[10.5px] font-medium uppercase tracking-wider text-accent">
+                          {it.product}
+                        </span>
                       </span>
                       <span
                         aria-hidden
@@ -85,14 +88,25 @@ export default function ObjectivesSection() {
                   >
                     <div className="overflow-hidden">
                       <div className="pb-7 pl-10 sm:pl-14">
-                        <p className="max-w-2xl text-[15px] leading-relaxed text-muted sm:text-base">{it.desc}</p>
-                        <ul className="mt-4 flex flex-wrap gap-2" aria-label="Capabilities">
-                          {it.tags.map((t) => (
-                            <li key={t}>
-                              <Tag>{t}</Tag>
-                            </li>
-                          ))}
-                        </ul>
+                        <p className="max-w-2xl text-[15px] font-medium leading-snug text-fg/90">{it.tagline}</p>
+                        <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-muted sm:text-base">{it.desc}</p>
+                        <div className="mt-4 flex flex-wrap items-center justify-between gap-4">
+                          <ul className="flex flex-wrap gap-2" aria-label="Capabilities">
+                            {it.tags.map((t) => (
+                              <li key={t}>
+                                <Tag>{t}</Tag>
+                              </li>
+                            ))}
+                          </ul>
+                          <a
+                            href={it.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 font-mono text-xs font-medium text-accent transition-colors hover:text-fg"
+                          >
+                            Launch {it.product} <span aria-hidden>↗</span>
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
