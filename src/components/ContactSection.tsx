@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent, type ReactNode } from "react";
 import { Arrow, ArrowUpRight, Container, Eyebrow, Reveal } from "./ui";
-import { IconGithub, IconGlobe, IconMail, IconPin, IconX } from "./icons";
+import { IconGlobe, IconMail, IconPin, IconX } from "./icons";
 import { SITE, scheduleMailto } from "../lib/site";
 import { PRODUCTS } from "../data/content";
 import { spotlightHandler } from "../lib/hooks";
@@ -385,7 +385,6 @@ export default function ContactSection() {
   };
 
   const channels = [
-    { label: "GitHub", value: SITE.githubLabel, href: SITE.github, Icon: IconGithub },
     { label: "X / Twitter", value: SITE.xLabel, href: SITE.x, Icon: IconX },
     { label: "Domain", value: SITE.domain, href: SITE.url, Icon: IconGlobe },
   ];
@@ -479,7 +478,7 @@ export default function ContactSection() {
                     <p className="mt-0.5 truncate sm:whitespace-normal">{SITE.address.join(" ")}</p>
                   </div>
                 </address>
-                <ul className="grid grid-cols-3 divide-x divide-white/[0.07]">
+                <ul className="grid grid-cols-2 divide-x divide-white/[0.07]">
                   {channels.map((c) => (
                     <li key={c.label}>
                       <a

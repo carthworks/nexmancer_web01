@@ -2,8 +2,7 @@ import { useEffect, useState, type CSSProperties } from "react";
 import NetworkCanvas from "./NetworkCanvas";
 import HeroVisual from "./HeroVisual";
 import { Arrow, ArrowUpRight, Button, Container } from "./ui";
-import { IconGithub } from "./icons";
-import { SITE, scheduleMailto } from "../lib/site";
+import { scheduleMailto } from "../lib/site";
 import { ECOSYSTEM_BADGES, HERO_PILLARS, PRODUCTS } from "../data/content";
 import { usePrefersReducedMotion } from "../lib/hooks";
 import { cn } from "../utils/cn";
@@ -110,9 +109,6 @@ export default function Hero() {
             </Button>
             <Button href={scheduleMailto("Hero Discovery Call")} variant="secondary">
               Book Discovery Call <ArrowUpRight />
-            </Button>
-            <Button href={SITE.github} variant="secondary" external>
-              <IconGithub className="h-4 w-4" /> GitHub <ArrowUpRight />
             </Button>
           </div>
 

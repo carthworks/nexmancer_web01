@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { NAV, SITE } from "../lib/site";
 import { cn } from "../utils/cn";
-import { Logo, ArrowUpRight, Arrow } from "./ui";
-import { IconGithub } from "./icons";
+import { Logo, Arrow } from "./ui";
 import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
@@ -87,16 +86,8 @@ export default function Navbar() {
           </ul>
 
           {/* Desktop Actions */}
-          <div className="hidden items-center gap-2 lg:flex">
+          <div className="hidden items-center gap-2.5 lg:flex">
             <ThemeToggle />
-            <a
-              href={SITE.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 rounded-full px-3 py-2 text-[13px] font-medium text-muted transition-colors hover:text-fg"
-            >
-              <IconGithub className="h-4 w-4" /> GitHub <ArrowUpRight />
-            </a>
             <a
               href="#contact"
               className="group inline-flex items-center gap-1.5 rounded-full bg-fg px-4 py-2 text-[13px] font-semibold text-ink transition-all hover:shadow-[0_0_0_4px_rgba(34,184,207,0.2)]"
@@ -204,22 +195,12 @@ export default function Navbar() {
               Contact Us <Arrow />
             </a>
 
-            <div className="grid grid-cols-2 gap-2.5">
-              <a
-                href={SITE.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-11 items-center justify-center gap-2 rounded-xl border border-white/10 bg-graphite text-xs font-medium text-muted hover:text-fg transition-colors"
-              >
-                <IconGithub className="h-4 w-4" /> GitHub <ArrowUpRight />
-              </a>
-              <a
-                href={`mailto:${SITE.email}`}
-                className="flex h-11 items-center justify-center gap-2 rounded-xl border border-white/10 bg-graphite text-xs font-medium text-muted hover:text-fg transition-colors"
-              >
-                Direct Email ↗
-              </a>
-            </div>
+            <a
+              href={`mailto:${SITE.email}`}
+              className="flex h-11 items-center justify-center gap-2 rounded-xl border border-white/10 bg-graphite text-xs font-medium text-muted hover:text-fg transition-colors"
+            >
+              Direct Email ({SITE.email}) ↗
+            </a>
 
             <div className="mt-3 text-center">
               <p className="font-mono text-[11px] text-muted/50">

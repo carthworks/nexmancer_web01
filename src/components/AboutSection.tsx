@@ -1,5 +1,5 @@
 import { Arrow, ArrowUpRight, Button, Container, Eyebrow, Reveal, Tag } from "./ui";
-import { IconGithub, IconGlobe, IconPin } from "./icons";
+import { IconGlobe, IconPin } from "./icons";
 import { SITE, scheduleMailto } from "../lib/site";
 import { ABOUT_CAPABILITIES, ABOUT_FOCUS, ABOUT_STATS, ETHOS_PRINCIPLES, PRODUCTS } from "../data/content";
 import { spotlightHandler } from "../lib/hooks";
@@ -138,14 +138,7 @@ export default function AboutSection() {
                   >
                     {SITE.email}
                   </a>
-                  <a
-                    href={SITE.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 font-mono text-muted transition-colors hover:text-fg"
-                  >
-                    <IconGithub className="h-3.5 w-3.5" /> {SITE.githubLabel} ↗
-                  </a>
+                  <span className="font-mono text-muted/80">{SITE.domain}</span>
                 </div>
               </dl>
             </div>
