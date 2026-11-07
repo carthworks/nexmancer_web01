@@ -38,6 +38,12 @@ export default function ObjectivesSection() {
             <p className="mt-3 text-sm leading-relaxed text-muted">
               Select a service track to inspect the buyer problem we address, our engineering approach, and what your team receives at handover.
             </p>
+            <a
+              href="/services"
+              className="mt-4 inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-accent transition-colors hover:text-fg"
+            >
+              Explore dedicated service pages (/services) <span aria-hidden>→</span>
+            </a>
           </div>
 
           <ul className="border-t border-white/10 lg:col-span-8">
@@ -102,12 +108,20 @@ export default function ObjectivesSection() {
                               </li>
                             ))}
                           </ul>
-                          <a
-                            href={scheduleMailto(it.title)}
-                            className="inline-flex items-center gap-1.5 font-mono text-xs font-medium text-accent transition-colors hover:text-fg"
-                          >
-                            Scope this track <span aria-hidden>→</span>
-                          </a>
+                          <div className="flex flex-wrap items-center gap-4">
+                            <a
+                              href={`/services/${it.slug}`}
+                              className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-fg transition-colors hover:text-accent"
+                            >
+                              Full service page <span aria-hidden>→</span>
+                            </a>
+                            <a
+                              href={scheduleMailto(it.title)}
+                              className="inline-flex items-center gap-1.5 font-mono text-xs font-medium text-accent transition-colors hover:text-fg"
+                            >
+                              Scope this track <span aria-hidden>→</span>
+                            </a>
+                          </div>
                         </div>
                       </div>
                     </div>

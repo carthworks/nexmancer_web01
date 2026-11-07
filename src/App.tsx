@@ -13,6 +13,14 @@ import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 import ProductsPage from "./pages/ProductsPage";
 import LegalPage from "./pages/LegalPage";
+import ServicesPage from "./pages/ServicesPage";
+import WorkPage from "./pages/WorkPage";
+import TrustPage from "./pages/TrustPage";
+import InsightsPage from "./pages/InsightsPage";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
+import NotFoundPage from "./pages/NotFoundPage";
+import type { ServiceSlug, CaseStudySlug, InsightSlug } from "./data/content";
 import { useRoute, type RoutePath } from "./lib/router";
 
 function ScrollProgress() {
@@ -44,6 +52,66 @@ function ScrollProgress() {
   );
 }
 
+function renderRoute(route: RoutePath) {
+  if (route === "/services") return <ServicesPage />;
+  if (route.startsWith("/services/")) {
+    const slug = route.slice("/services/".length) as ServiceSlug;
+    return <ServicesPage slug={slug} />;
+  }
+  if (route === "/work") return <WorkPage />;
+  if (route.startsWith("/work/")) {
+    const slug = route.slice("/work/".length) as CaseStudySlug;
+    return <WorkPage slug={slug} />;
+  }
+  if (route === "/products") return <ProductsPage />;
+  if (route === "/trust") return <TrustPage />;
+  if (route === "/insights") return <InsightsPage />;
+  if (route.startsWith("/insights/")) {
+    const slug = route.slice("/insights/".length) as InsightSlug;
+    return <InsightsPage slug={slug} />;
+  }
+  if (route === "/about") return <AboutPage />;
+  if (route === "/contact") return <ContactPage />;
+  if (route === "/privacy") return <LegalPage docKey="privacy" />;
+  if (route === "/terms") return <LegalPage docKey="terms" />;
+  if (route === "/engagement") return <LegalPage docKey="engagement" />;
+  if (route === "/404") return <NotFoundPage />;
+
+  return (
+    <>
+      {/* 1. HERO */}
+      <Hero />
+
+      {/* 2. PROBLEMS WE SOLVE */}
+      <ProblemsSection />
+
+      {/* 3. CAPABILITIES & METHODS */}
+      <TechnologyGrid />
+
+      {/* 4. SERVICES & ENGAGEMENT MODELS */}
+      <ObjectivesSection />
+
+      {/* 5. PROOF OF WORK: CASE STUDIES */}
+      <CaseStudies />
+
+      {/* 6. ENGINEERING METHODOLOGY */}
+      <ProductPipeline />
+
+      {/* 7. DEEP-TECH ARCHITECTURE: AI x SECURITY */}
+      <SecurityAI />
+
+      {/* 8. GLOBAL CONNECTIVITY & PRESENCE */}
+      <GlobalSection />
+
+      {/* 9. COMPANY FOUNDATIONS, LEADERSHIP & ENGINEERING ETHOS */}
+      <AboutSection />
+
+      {/* 10. CONTACT & DISCOVERY */}
+      <ContactSection />
+    </>
+  );
+}
+
 export default function App({ initialRoute }: { initialRoute?: RoutePath } = {}) {
   const route = useRoute(initialRoute);
 
@@ -51,49 +119,7 @@ export default function App({ initialRoute }: { initialRoute?: RoutePath } = {})
     <div className="relative min-h-screen overflow-x-clip bg-ink text-fg">
       <ScrollProgress />
       <Navbar currentRoute={route} />
-      <main id="main">
-        {route === "/products" ? (
-          <ProductsPage />
-        ) : route === "/privacy" ? (
-          <LegalPage docKey="privacy" />
-        ) : route === "/terms" ? (
-          <LegalPage docKey="terms" />
-        ) : route === "/engagement" ? (
-          <LegalPage docKey="engagement" />
-        ) : (
-          <>
-            {/* 1. HERO */}
-            <Hero />
-
-            {/* 2. PROBLEMS WE SOLVE */}
-            <ProblemsSection />
-
-            {/* 3. CAPABILITIES & METHODS */}
-            <TechnologyGrid />
-
-            {/* 4. SERVICES & ENGAGEMENT MODELS */}
-            <ObjectivesSection />
-
-            {/* 5. PROOF OF WORK: CASE STUDIES */}
-            <CaseStudies />
-
-            {/* 6. ENGINEERING METHODOLOGY */}
-            <ProductPipeline />
-
-            {/* 7. DEEP-TECH ARCHITECTURE: AI x SECURITY */}
-            <SecurityAI />
-
-            {/* 8. GLOBAL CONNECTIVITY & PRESENCE */}
-            <GlobalSection />
-
-            {/* 9. COMPANY FOUNDATIONS, LEADERSHIP & ENGINEERING ETHOS */}
-            <AboutSection />
-
-            {/* 10. CONTACT & DISCOVERY */}
-            <ContactSection />
-          </>
-        )}
-      </main>
+      <main id="main">{renderRoute(route)}</main>
       <Footer />
     </div>
   );
