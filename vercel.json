@@ -24,10 +24,18 @@
     }
   ],
   "rewrites": [
+    { "source": "/services", "destination": "/services/index.html" },
+    { "source": "/services/:slug", "destination": "/services/:slug/index.html" },
+    { "source": "/work", "destination": "/work/index.html" },
+    { "source": "/work/:slug", "destination": "/work/:slug/index.html" },
     { "source": "/products", "destination": "/products/index.html" },
+    { "source": "/trust", "destination": "/trust/index.html" },
+    { "source": "/insights", "destination": "/insights/index.html" },
+    { "source": "/insights/:slug", "destination": "/insights/:slug/index.html" },
+    { "source": "/about", "destination": "/about/index.html" },
+    { "source": "/contact", "destination": "/contact/index.html" },
     { "source": "/privacy", "destination": "/privacy/index.html" },
     { "source": "/terms", "destination": "/terms/index.html" },
     { "source": "/engagement", "destination": "/engagement/index.html" }
   ]
 }
-

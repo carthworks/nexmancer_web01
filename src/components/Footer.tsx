@@ -5,24 +5,25 @@ type LinkItem = { l: string; href: string };
 
 const COLS: { h: string; links: LinkItem[] }[] = [
   {
-    h: "Navigation",
+    h: "Services & Work",
     links: [
-      { l: "Problems We Solve", href: "/#problems" },
-      { l: "Capabilities", href: "/#technology" },
-      { l: "Services & Sprints", href: "/#solutions" },
-      { l: "Proof of Work", href: "/#case-studies" },
-      { l: "Methodology", href: "/#pipeline" },
-      { l: "About & Leadership", href: "/#about" },
-      { l: "Contact", href: "/#contact" },
+      { l: "All Services (/services)", href: "/services" },
+      { l: "Custom Software", href: "/services/custom-software" },
+      { l: "Private AI & Scoring", href: "/services/ai-and-automation" },
+      { l: "AppSec & CVE Triage", href: "/services/security-architecture" },
+      { l: "Offline OCR & PDF/A", href: "/services/document-digitisation" },
+      { l: "Cloud & Telemetry", href: "/services/cloud-infrastructure" },
+      { l: "Case Studies (/work)", href: "/work" },
     ],
   },
   {
-    h: "Engagements & Products",
+    h: "Company & Insights",
     links: [
-      { l: "2-Week Discovery Sprint", href: "/#solutions" },
-      { l: "Architecture & Security Audit", href: "/#solutions" },
-      { l: "Turnkey Engineering Build", href: "/#solutions" },
-      { l: "Our Products (/products)", href: "/products" },
+      { l: "Products (/products)", href: "/products" },
+      { l: "Engineering Notes (/insights)", href: "/insights" },
+      { l: "About & Leadership (/about)", href: "/about" },
+      { l: "Trust & Security (/trust)", href: "/trust" },
+      { l: "Book a Call (/contact)", href: "/contact" },
     ],
   },
   {
@@ -35,11 +36,12 @@ const COLS: { h: string; links: LinkItem[] }[] = [
     ],
   },
   {
-    h: "Legal & Trust",
+    h: "Legal & Governance",
     links: [
-      { l: "Privacy Policy", href: "/privacy" },
+      { l: "Trust & Procurement", href: "/trust" },
+      { l: "Privacy Policy (DPDP)", href: "/privacy" },
       { l: "Terms of Use", href: "/terms" },
-      { l: "Engagement & Cancellation", href: "/engagement" },
+      { l: "Engagement & IP Policy", href: "/engagement" },
     ],
   },
 ];

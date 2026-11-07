@@ -72,7 +72,9 @@ export default function Navbar({ currentRoute = "/" }: { currentRoute?: RoutePat
           {/* Desktop Nav Links */}
           <ul className="hidden items-center gap-1 rounded-full border border-white/[0.07] bg-white/[0.02] p-1 lg:flex">
             {NAV.map((item) => {
-              const isActive = item.href.startsWith("#") ? active === item.href.slice(1) : currentRoute === item.href;
+              const isActive = item.href.startsWith("#")
+                ? currentRoute === "/" && active === item.href.slice(1)
+                : currentRoute === item.href || currentRoute.startsWith(`${item.href}/`);
               return (
                 <li key={item.href}>
                   <a
@@ -162,7 +164,9 @@ export default function Navbar({ currentRoute = "/" }: { currentRoute?: RoutePat
 
           <ul className="mt-3 divide-y divide-white/[0.06]">
             {NAV.map((item, i) => {
-              const isActive = item.href.startsWith("#") ? active === item.href.slice(1) : currentRoute === item.href;
+              const isActive = item.href.startsWith("#")
+                ? currentRoute === "/" && active === item.href.slice(1)
+                : currentRoute === item.href || currentRoute.startsWith(`${item.href}/`);
               return (
                 <li key={item.href}>
                   <a

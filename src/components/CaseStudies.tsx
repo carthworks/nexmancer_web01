@@ -89,7 +89,13 @@ export default function CaseStudies() {
                   {current.summary}
                 </p>
 
-                <div className="mt-6 sm:mt-8">
+                <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
+                  <Button
+                    href={`/work/${current.id}`}
+                    className="!min-h-10 !px-5 !text-xs"
+                  >
+                    Read Full Case Study <Arrow />
+                  </Button>
                   <Button
                     href={scheduleMailto(`Architecture Review — ${current.title}`)}
                     variant="secondary"
