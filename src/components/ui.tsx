@@ -89,11 +89,12 @@ export function Button({
     secondary: "border border-white/15 bg-white/[0.03] text-fg backdrop-blur hover:border-white/30 hover:bg-white/[0.07]",
     ghost: "text-muted hover:text-fg",
   } as const;
+  const isExt = external ?? /^https?:\/\//i.test(href);
   return (
     <a
       href={href}
       className={cn(base, styles[variant], className)}
-      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      {...(isExt ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >
       {children}
     </a>

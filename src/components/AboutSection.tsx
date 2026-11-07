@@ -113,7 +113,7 @@ export default function AboutSection() {
                   <dd className="mt-2 text-sm leading-relaxed text-muted">
                     Alongside client engineering, we also build and maintain our own software platforms —{" "}
                     <a
-                      href="#products"
+                      href="/products"
                       className="font-medium text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:text-fg"
                     >
                       explore our products →

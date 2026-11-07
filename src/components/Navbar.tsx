@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { NAV, SITE } from "../lib/site";
+import type { RoutePath } from "../lib/router";
 import { cn } from "../utils/cn";
 import { Logo, Arrow } from "./ui";
 import ThemeToggle from "./ThemeToggle";
 
-export default function Navbar() {
+export default function Navbar({ currentRoute = "/" }: { currentRoute?: RoutePath }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>("");
@@ -17,7 +18,11 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const ids = NAV.map((n) => n.href.slice(1));
+    if (currentRoute !== "/") {
+      setActive(currentRoute);
+      return;
+    }
+    const ids = NAV.filter((n) => n.href.startsWith("#")).map((n) => n.href.slice(1));
     const els = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
     const io = new IntersectionObserver(
       (entries) => {
@@ -29,7 +34,7 @@ export default function Navbar() {
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
-  }, []);
+  }, [currentRoute]);
 
   useEffect(() => {
     if (open) {
@@ -60,14 +65,14 @@ export default function Navbar() {
           Skip to content
         </a>
         <nav aria-label="Primary" className="mx-auto flex h-16 max-w-[1320px] items-center justify-between px-5 sm:px-8 lg:h-[72px] lg:px-10">
-          <a href="#top" aria-label="NEXMANCER home">
+          <a href="/" aria-label="NEXMANCER home">
             <Logo />
           </a>
 
           {/* Desktop Nav Links */}
           <ul className="hidden items-center gap-1 rounded-full border border-white/[0.07] bg-white/[0.02] p-1 lg:flex">
             {NAV.map((item) => {
-              const isActive = active === item.href.slice(1);
+              const isActive = item.href.startsWith("#") ? active === item.href.slice(1) : currentRoute === item.href;
               return (
                 <li key={item.href}>
                   <a
@@ -131,7 +136,7 @@ export default function Navbar() {
       >
         {/* Mobile Header Bar */}
         <div className="flex h-16 shrink-0 items-center justify-between border-b border-white/[0.08] px-5 sm:px-8">
-          <a href="#top" aria-label="NEXMANCER home" onClick={() => setOpen(false)}>
+          <a href="/" aria-label="NEXMANCER home" onClick={() => setOpen(false)}>
             <Logo />
           </a>
           <button
@@ -157,7 +162,7 @@ export default function Navbar() {
 
           <ul className="mt-3 divide-y divide-white/[0.06]">
             {NAV.map((item, i) => {
-              const isActive = active === item.href.slice(1);
+              const isActive = item.href.startsWith("#") ? active === item.href.slice(1) : currentRoute === item.href;
               return (
                 <li key={item.href}>
                   <a

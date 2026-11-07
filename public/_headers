@@ -1,9 +1,8 @@
-# Security headers (honoured by Netlify / Cloudflare Pages; adapt for other hosts).
-# If you set VITE_CONTACT_ENDPOINT, add its origin to connect-src.
+# Security headers (honoured by Netlify / Cloudflare Pages; mirrored in vercel.json for Vercel).
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto:
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://vitals.vercel-insights.com https://api.web3forms.com https://formspree.io https://cal.com https://calendly.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto:

@@ -1,3 +1,8 @@
+const envScheduler =
+  typeof import.meta !== "undefined" && import.meta.env
+    ? (import.meta.env.VITE_SCHEDULER_URL || "").trim()
+    : "";
+
 export const SITE = {
   name: "NEXMANCER",
   legal: "NEXMANCER PRIVATE LIMITED",
@@ -5,6 +10,9 @@ export const SITE = {
   url: "https://nexmancer.com/",
   domain: "nexmancer.com",
   email: "business@nexmancer.com",
+  legalEmail: "legal@nexmancer.com",
+  responseSla: "Within 1 business day (Mon–Fri, 09:00–18:00 IST)",
+  schedulerUrl: envScheduler,
   github: "https://github.com/NEXMANCER",
   githubLabel: "github.com/NEXMANCER",
   x: "https://x.com/nexmancer",
@@ -20,17 +28,31 @@ export const NAV = [
   { label: "Capabilities", href: "#technology" },
   { label: "Services", href: "#solutions" },
   { label: "Work", href: "#case-studies" },
-  { label: "Products", href: "#products" },
+  { label: "Products", href: "/products" },
   { label: "About", href: "#about" },
 ] as const;
 
 export const mailto = (subject = "Problem Discovery — NEXMANCER", body = "") =>
   `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}${body ? `&body=${encodeURIComponent(body)}` : ""}`;
 
-export const scheduleMailto = (topic = "30-Min Discovery Call") =>
+/**
+ * Returns the external scheduler URL (Cal.com / Calendly) when `VITE_SCHEDULER_URL` is set;
+ * otherwise routes smoothly to the on-page `#contact` console with the topic pre-filled
+ * (avoiding broken desktop `mailto:` popups).
+ */
+export const scheduleMailto = (topic = "Discovery Call") => {
+  if (SITE.schedulerUrl) {
+    const sep = SITE.schedulerUrl.includes("?") ? "&" : "?";
+    return `${SITE.schedulerUrl}${sep}topic=${encodeURIComponent(topic)}`;
+  }
+  return `/#contact?topic=${encodeURIComponent(`Discovery Call — ${topic}`)}`;
+};
+
+/** Direct mailto link for users who explicitly click "Email App" inside the Contact section. */
+export const directScheduleMailto = (topic = "30-Min Discovery Call") =>
   mailto(
-    `Book a 30-min call — ${topic}`,
-    "Hi NEXMANCER team,\n\nI'd like to book a 30-minute call to discuss:\n- Problem we're trying to solve:\n- Current bottleneck or system:\n- Target timeline:\n\nThank you!"
+    `Book a Discovery Call — ${topic}`,
+    "Hi NEXMANCER team,\n\nI'd like to schedule a discovery call to discuss:\n- Problem we're trying to solve:\n- Current bottleneck or system:\n- Target timeline:\n\nThank you!"
   );
 
 export const isExternal = (href: string) => /^https?:\/\//.test(href);

@@ -3,10 +3,11 @@ import NetworkCanvas from "./NetworkCanvas";
 import HeroVisual from "./HeroVisual";
 import { Arrow, ArrowUpRight, Button, Container } from "./ui";
 import { scheduleMailto } from "../lib/site";
-import { ECOSYSTEM_BADGES, PRODUCTS } from "../data/content";
+import { ECOSYSTEM_BADGES, HERO_METHODS } from "../data/content";
 import { usePrefersReducedMotion } from "../lib/hooks";
 
 const d = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
+const CYCLE_MS = 6500; // long enough to read one problem → outcome
 
 export default function Hero() {
   const [activeIdx, setActiveIdx] = useState(1);
@@ -16,8 +17,8 @@ export default function Hero() {
   useEffect(() => {
     if (paused || reduced) return;
     const t = window.setInterval(() => {
-      setActiveIdx((i) => (i + 1) % PRODUCTS.length);
-    }, 3200);
+      setActiveIdx((i) => (i + 1) % HERO_METHODS.length);
+    }, CYCLE_MS);
     return () => window.clearInterval(t);
   }, [paused, reduced]);
 
@@ -103,7 +104,7 @@ export default function Hero() {
 
         {/* Right Column: Interactive Problem -> Outcome Showcase Card */}
         <div className="fade-up lg:col-span-5" style={d(220)}>
-          <HeroVisual activeIdx={activeIdx} onSelect={selectNode} />
+          <HeroVisual activeIdx={activeIdx} onSelect={selectNode} cycleMs={CYCLE_MS} playing={!paused && !reduced} />
         </div>
       </Container>
 

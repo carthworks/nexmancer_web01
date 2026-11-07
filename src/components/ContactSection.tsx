@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent, type ReactNode } from "react";
 import { Arrow, ArrowUpRight, Container, Eyebrow, Reveal } from "./ui";
 import { IconGlobe, IconLinkedin, IconMail, IconPin, IconX } from "./icons";
-import { SITE, scheduleMailto } from "../lib/site";
+import { SITE, directScheduleMailto, scheduleMailto } from "../lib/site";
 import { spotlightHandler } from "../lib/hooks";
 import {
   LIMITS,
@@ -89,6 +89,15 @@ function ContactForm() {
 
   useEffect(() => {
     startedAt.current = Date.now();
+    const onTopic = (e: Event) => {
+      const topic = (e as CustomEvent<string>).detail;
+      if (topic) {
+        setValues((prev) => ({ ...prev, subject: topic }));
+        setStatus("idle");
+      }
+    };
+    window.addEventListener("nx:select-topic", onTopic);
+    return () => window.removeEventListener("nx:select-topic", onTopic);
   }, []);
 
   const onChange = (k: keyof ContactFields) => (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -127,7 +136,9 @@ function ContactForm() {
     const res = await submitContact(values, { honeypot, startedAt: startedAt.current });
     setStatus(res.status);
     if (res.status === "sent") {
-      setFeedback(`Thank you — your message has been sent. We'll reply to ${values.email.trim()}.`);
+      setFeedback(
+        `Thank you — your brief has been received. An engineering lead will reply to ${values.email.trim()} within 1 business day (Mon–Fri, 09:00–18:00 IST).`
+      );
       setValues(EMPTY);
       setTouched({});
       startedAt.current = Date.now();
@@ -458,12 +469,23 @@ export default function ContactSection() {
                       >
                         {copiedEmail ? "Copied ✓" : "Copy"}
                       </button>
-                      <a
-                        href={scheduleMailto("30-Min Problem Discovery Call")}
-                        className="inline-flex items-center gap-1 rounded-lg border border-accent/30 bg-accent/10 px-2.5 py-1 font-mono text-[11px] font-medium text-accent transition-colors hover:bg-accent/20"
-                      >
-                        Book 30m Call <ArrowUpRight />
-                      </a>
+                      {SITE.schedulerUrl ? (
+                        <a
+                          href={scheduleMailto("30-Min Discovery Call")}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 rounded-lg border border-accent/30 bg-accent/10 px-2.5 py-1 font-mono text-[11px] font-medium text-accent transition-colors hover:bg-accent/20"
+                        >
+                          Open Scheduler <ArrowUpRight />
+                        </a>
+                      ) : (
+                        <a
+                          href={directScheduleMailto("30-Min Discovery Call")}
+                          className="inline-flex items-center gap-1 rounded-lg border border-accent/30 bg-accent/10 px-2.5 py-1 font-mono text-[11px] font-medium text-accent transition-colors hover:bg-accent/20"
+                        >
+                          Email App <ArrowUpRight />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>

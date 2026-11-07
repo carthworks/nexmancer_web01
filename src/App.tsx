@@ -7,11 +7,13 @@ import ObjectivesSection from "./components/ObjectivesSection";
 import CaseStudies from "./components/CaseStudies";
 import ProductPipeline from "./components/ProductPipeline";
 import SecurityAI from "./components/SecurityAI";
-import ProductStudio from "./components/ProductStudio";
 import GlobalSection from "./components/GlobalSection";
 import AboutSection from "./components/AboutSection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
+import ProductsPage from "./pages/ProductsPage";
+import LegalPage from "./pages/LegalPage";
+import { useRoute, type RoutePath } from "./lib/router";
 
 function ScrollProgress() {
   const bar = useRef<HTMLDivElement>(null);
@@ -42,44 +44,55 @@ function ScrollProgress() {
   );
 }
 
-export default function App() {
+export default function App({ initialRoute }: { initialRoute?: RoutePath } = {}) {
+  const route = useRoute(initialRoute);
+
   return (
     <div className="relative min-h-screen overflow-x-clip bg-ink text-fg">
       <ScrollProgress />
-      <Navbar />
+      <Navbar currentRoute={route} />
       <main id="main">
-        {/* 1. HERO (Problem-First Value Proposition & Outcome Showcase) */}
-        <Hero />
+        {route === "/products" ? (
+          <ProductsPage />
+        ) : route === "/privacy" ? (
+          <LegalPage docKey="privacy" />
+        ) : route === "/terms" ? (
+          <LegalPage docKey="terms" />
+        ) : route === "/engagement" ? (
+          <LegalPage docKey="engagement" />
+        ) : (
+          <>
+            {/* 1. HERO */}
+            <Hero />
 
-        {/* 2. PROBLEMS WE SOLVE (Plain-language buyer symptoms & outcomes) */}
-        <ProblemsSection />
+            {/* 2. PROBLEMS WE SOLVE */}
+            <ProblemsSection />
 
-        {/* 3. CAPABILITIES & METHODS (How we solve client problems) */}
-        <TechnologyGrid />
+            {/* 3. CAPABILITIES & METHODS */}
+            <TechnologyGrid />
 
-        {/* 4. SERVICES & ENGAGEMENT MODELS (Fixed-scope sprints, audits & builds) */}
-        <ObjectivesSection />
+            {/* 4. SERVICES & ENGAGEMENT MODELS */}
+            <ObjectivesSection />
 
-        {/* 5. PROOF OF WORK: CASE STUDIES (Problem -> Approach -> Result) */}
-        <CaseStudies />
+            {/* 5. PROOF OF WORK: CASE STUDIES */}
+            <CaseStudies />
 
-        {/* 6. ENGINEERING METHODOLOGY */}
-        <ProductPipeline />
+            {/* 6. ENGINEERING METHODOLOGY */}
+            <ProductPipeline />
 
-        {/* 7. DEEP-TECH ARCHITECTURE: AI x SECURITY */}
-        <SecurityAI />
+            {/* 7. DEEP-TECH ARCHITECTURE: AI x SECURITY */}
+            <SecurityAI />
 
-        {/* 8. CONTAINED PRODUCTS SECTION */}
-        <ProductStudio />
+            {/* 8. GLOBAL CONNECTIVITY & PRESENCE */}
+            <GlobalSection />
 
-        {/* 9. GLOBAL CONNECTIVITY & PRESENCE */}
-        <GlobalSection />
+            {/* 9. COMPANY FOUNDATIONS, LEADERSHIP & ENGINEERING ETHOS */}
+            <AboutSection />
 
-        {/* 10. COMPANY FOUNDATIONS, LEADERSHIP & ENGINEERING ETHOS */}
-        <AboutSection />
-
-        {/* 11. CONTACT & DISCOVERY */}
-        <ContactSection />
+            {/* 10. CONTACT & DISCOVERY */}
+            <ContactSection />
+          </>
+        )}
       </main>
       <Footer />
     </div>
