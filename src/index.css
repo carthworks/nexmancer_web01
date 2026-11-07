@@ -250,6 +250,32 @@
   to { transform: scaleX(1); }
 }
 
+
+/* Hero method dial (HeroVisual) */
+.nx-spin-rev { animation: spin 48s linear infinite reverse; }
+.nx-shoot { opacity: 0; animation: nx-shoot 1.08s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+@keyframes nx-shoot {
+  0% { transform: translateX(54px); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateX(134px); opacity: 0; }
+}
+.nx-burst { animation: nx-burst 0.9s ease-out forwards; }
+@keyframes nx-burst {
+  from { stroke-width: 10; stroke-opacity: 0.9; }
+  to { stroke-width: 38; stroke-opacity: 0; }
+}
+.nx-swap { animation: nx-swap 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@keyframes nx-swap {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.nx-breathe { animation: nx-breathe 3.2s ease-in-out infinite; }
+@keyframes nx-breathe {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.nx-dial[data-paused] * { animation-play-state: paused !important; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
