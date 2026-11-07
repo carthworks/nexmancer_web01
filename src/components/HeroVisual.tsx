@@ -1,6 +1,5 @@
 import { PRODUCTS } from "../data/content";
 import { usePrefersReducedMotion } from "../lib/hooks";
-import { cn } from "../utils/cn";
 
 const S = 540;
 const C = S / 2;
@@ -185,29 +184,6 @@ export default function HeroVisual({
           );
         })}
       </svg>
-
-      {/* Live Selected Product Telemetry HUD Card */}
-      <a
-        href={active.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group -mt-2 w-full rounded-2xl border border-white/10 bg-graphite/80 p-4 backdrop-blur-md transition-all duration-300 hover:border-accent/50 hover:shadow-[0_16px_40px_-16px_rgba(34,184,207,0.35)]"
-      >
-        <div className="flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
-            <span className={cn("h-2 w-2 rounded-full bg-emerald-400", !reduced && "animate-pulse")} />
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-accent">
-              {active.code} · {active.category}
-            </span>
-          </div>
-          <span className="inline-flex items-center gap-1 font-mono text-[11px] font-medium text-fg group-hover:text-accent">
-            Launch {active.name} <span className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">↗</span>
-          </span>
-        </div>
-        <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-muted sm:text-[13px]">
-          <strong className="font-semibold text-fg/95">{active.name}:</strong> {active.tagline}
-        </p>
-      </a>
     </figure>
   );
 }

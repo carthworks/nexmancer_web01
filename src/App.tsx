@@ -1,12 +1,13 @@
 import { useEffect, useRef } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import ProblemsSection from "./components/ProblemsSection";
 import TechnologyGrid from "./components/TechnologyGrid";
-import ProductPipeline from "./components/ProductPipeline";
-import ProductStudio from "./components/ProductStudio";
-import CaseStudies from "./components/CaseStudies";
-import SecurityAI from "./components/SecurityAI";
 import ObjectivesSection from "./components/ObjectivesSection";
+import CaseStudies from "./components/CaseStudies";
+import ProductPipeline from "./components/ProductPipeline";
+import SecurityAI from "./components/SecurityAI";
+import ProductStudio from "./components/ProductStudio";
 import GlobalSection from "./components/GlobalSection";
 import AboutSection from "./components/AboutSection";
 import ContactSection from "./components/ContactSection";
@@ -47,34 +48,37 @@ export default function App() {
       <ScrollProgress />
       <Navbar />
       <main id="main">
-        {/* 1. HERO (with integrated tech stack badges) */}
+        {/* 1. HERO (Problem-First Value Proposition & Outcome Showcase) */}
         <Hero />
 
-        {/* 2. CORE TECHNOLOGY PILLARS */}
+        {/* 2. PROBLEMS WE SOLVE (Plain-language buyer symptoms & outcomes) */}
+        <ProblemsSection />
+
+        {/* 3. CAPABILITIES & METHODS (How we solve client problems) */}
         <TechnologyGrid />
 
-        {/* 3. ENGINEERING METHODOLOGY */}
-        <ProductPipeline />
-
-        {/* 4. FEATURED PRODUCTS & PLATFORMS */}
-        <ProductStudio />
-
-        {/* 5. PROOF OF WORK: CASE STUDIES */}
-        <CaseStudies />
-
-        {/* 6. DEEP-TECH SPOTLIGHT: AI × CYBERSECURITY */}
-        <SecurityAI />
-
-        {/* 6. SOLUTIONS & ENGAGEMENT MODELS */}
+        {/* 4. SERVICES & ENGAGEMENT MODELS (Fixed-scope sprints, audits & builds) */}
         <ObjectivesSection />
 
-        {/* 7. GLOBAL CONNECTIVITY & PRESENCE */}
+        {/* 5. PROOF OF WORK: CASE STUDIES (Problem -> Approach -> Result) */}
+        <CaseStudies />
+
+        {/* 6. ENGINEERING METHODOLOGY */}
+        <ProductPipeline />
+
+        {/* 7. DEEP-TECH ARCHITECTURE: AI x SECURITY */}
+        <SecurityAI />
+
+        {/* 8. CONTAINED PRODUCTS SECTION */}
+        <ProductStudio />
+
+        {/* 9. GLOBAL CONNECTIVITY & PRESENCE */}
         <GlobalSection />
 
-        {/* 8. COMPANY FOUNDATIONS & ENGINEERING ETHOS */}
+        {/* 10. COMPANY FOUNDATIONS, LEADERSHIP & ENGINEERING ETHOS */}
         <AboutSection />
 
-        {/* 9. CONTACT & DISCOVERY */}
+        {/* 11. CONTACT & DISCOVERY */}
         <ContactSection />
       </main>
       <Footer />

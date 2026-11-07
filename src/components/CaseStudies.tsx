@@ -19,10 +19,10 @@ export default function CaseStudies() {
               <Eyebrow>Proof of Work · Case Studies</Eyebrow>
             </Reveal>
             <Reveal delay={80}>
-              <h2 id="case-studies-title" className="mt-5 text-4xl font-bold uppercase leading-[1.02] tracking-[-0.035em] text-fg sm:text-5xl lg:text-6xl">
-                Engineered. Tested.
+              <h2 id="case-studies-title" className="mt-5 text-4xl font-bold leading-[1.06] tracking-[-0.035em] text-fg sm:text-5xl lg:text-6xl">
+                Real bottlenecks solved,
                 <br />
-                <span className="text-gradient">Measurably proven.</span>
+                <span className="text-gradient">from problem to result.</span>
               </h2>
             </Reveal>
           </div>

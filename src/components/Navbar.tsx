@@ -92,7 +92,7 @@ export default function Navbar() {
               href="#contact"
               className="group inline-flex items-center gap-1.5 rounded-full bg-fg px-4 py-2 text-[13px] font-semibold text-ink transition-all hover:shadow-[0_0_0_4px_rgba(34,184,207,0.2)]"
             >
-              Contact Us <Arrow />
+              Book a Discovery Call <Arrow />
             </a>
           </div>
 
@@ -192,7 +192,7 @@ export default function Navbar() {
               onClick={() => setOpen(false)}
               className="flex h-12 items-center justify-center gap-2 rounded-xl bg-fg px-5 text-sm font-semibold text-ink transition-transform active:scale-[0.98]"
             >
-              Contact Us <Arrow />
+              Book a Discovery Call <Arrow />
             </a>
 
             <a

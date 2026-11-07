@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Container, Eyebrow, Reveal, Tag } from "./ui";
 import { SOLUTIONS, ENGAGEMENT_MODELS } from "../data/content";
+import { scheduleMailto } from "../lib/site";
 import { cn } from "../utils/cn";
 
 export default function ObjectivesSection() {
@@ -13,29 +14,29 @@ export default function ObjectivesSection() {
         <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
             <Reveal>
-              <Eyebrow>Solutions & Engagement</Eyebrow>
+              <Eyebrow>Services &amp; Engagement</Eyebrow>
             </Reveal>
             <Reveal delay={80}>
-              <h2 id="solutions-title" className="mt-5 text-4xl font-bold uppercase leading-[1.02] tracking-[-0.035em] text-fg sm:text-5xl lg:text-6xl">
-                Engineered for
+              <h2 id="solutions-title" className="mt-5 text-4xl font-bold leading-[1.06] tracking-[-0.035em] text-fg sm:text-5xl lg:text-6xl">
+                Clear service tracks,
                 <br />
-                <span className="text-gradient">real-world impact.</span>
+                <span className="text-gradient">built around outcomes.</span>
               </h2>
             </Reveal>
           </div>
           <Reveal delay={160} className="lg:col-span-5">
             <p className="text-base leading-relaxed text-muted sm:text-lg">
-              We translate modern AI, cloud security, and software capabilities into tangible operational systems and tailored engagement models.
+              Whether you need a 2-week discovery sprint, an independent security and architecture review, or a full production build, every engagement has clear deliverables and 100% client IP ownership.
             </p>
           </Reveal>
         </div>
 
-        {/* Industry Solutions Accordion */}
+        {/* Service Tracks Accordion */}
         <div className="mt-16 grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">Core Solutions</p>
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">Service Tracks</p>
             <p className="mt-3 text-sm leading-relaxed text-muted">
-              Select a solution domain to explore how we engineer practical outcomes for high-concurrency systems.
+              Select a service track to inspect the buyer problem we address, our engineering approach, and what your team receives at handover.
             </p>
           </div>
 
@@ -56,13 +57,13 @@ export default function ObjectivesSection() {
                       <span className={cn("font-mono text-xs transition-colors", on ? "text-accent" : "text-muted")}>0{i + 1}</span>
                       <span
                         className={cn(
-                          "flex-1 text-lg font-semibold uppercase tracking-[-0.01em] transition-colors sm:text-xl",
+                          "flex-1 text-lg font-semibold tracking-[-0.01em] transition-colors sm:text-xl",
                           on ? "text-fg" : "text-fg/80 group-hover:text-fg"
                         )}
                       >
                         {it.title}
                         <span className="ml-3 inline-flex items-center rounded-full border border-accent/25 bg-accent/10 px-2.5 py-0.5 align-middle font-mono text-[10.5px] font-medium uppercase tracking-wider text-accent">
-                          {it.product}
+                          {it.code}
                         </span>
                       </span>
                       <span
@@ -88,23 +89,24 @@ export default function ObjectivesSection() {
                   >
                     <div className="overflow-hidden">
                       <div className="pb-7 pl-10 sm:pl-14">
-                        <p className="max-w-2xl text-[15px] font-medium leading-snug text-fg/90">{it.tagline}</p>
+                        <p className="font-mono text-xs text-muted/80">
+                          Built for: <strong className="font-medium text-fg/90">{it.buyer}</strong>
+                        </p>
+                        <p className="mt-2 max-w-2xl text-[15px] font-medium leading-snug text-fg/90">{it.tagline}</p>
                         <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-muted sm:text-base">{it.desc}</p>
                         <div className="mt-4 flex flex-wrap items-center justify-between gap-4">
-                          <ul className="flex flex-wrap gap-2" aria-label="Capabilities">
-                            {it.tags.map((t) => (
+                          <ul className="flex flex-wrap gap-2" aria-label="Deliverables">
+                            {it.deliverables.map((t) => (
                               <li key={t}>
                                 <Tag>{t}</Tag>
                               </li>
                             ))}
                           </ul>
                           <a
-                            href={it.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            href={scheduleMailto(it.title)}
                             className="inline-flex items-center gap-1.5 font-mono text-xs font-medium text-accent transition-colors hover:text-fg"
                           >
-                            Launch {it.product} <span aria-hidden>↗</span>
+                            Scope this track <span aria-hidden>→</span>
                           </a>
                         </div>
                       </div>
@@ -122,10 +124,10 @@ export default function ObjectivesSection() {
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">How We Collaborate</p>
-                <h3 className="mt-2 text-2xl font-bold uppercase tracking-tight text-fg">Engagement Models</h3>
+                <h3 className="mt-2 text-2xl font-bold tracking-tight text-fg">Fixed-scope &amp; turnkey engagement models</h3>
               </div>
               <p className="max-w-md text-sm text-muted">
-                Transparent collaboration frameworks adapted to your team's technical readiness and project scope.
+                Start small with a 2-week discovery sprint or audit, then scale into full engineering delivery when the ROI is proven.
               </p>
             </div>
           </Reveal>
@@ -151,7 +153,7 @@ export default function ObjectivesSection() {
                       href="#contact"
                       className="inline-flex items-center gap-1.5 font-mono text-xs text-fg/80 group-hover:text-fg"
                     >
-                      Inquire engagement <span className="transition-transform group-hover:translate-x-1">→</span>
+                      Scope this engagement <span className="transition-transform group-hover:translate-x-1">→</span>
                     </a>
                   </div>
                 </div>

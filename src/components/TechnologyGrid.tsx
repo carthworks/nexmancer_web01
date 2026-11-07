@@ -17,9 +17,9 @@ function Visual({ kind }: { kind: DomainKey }) {
     case "software":
       return (
         <div className="overflow-hidden font-mono text-[11px] leading-6 text-muted/80">
-          <p className="whitespace-nowrap"><span className="text-violet">const</span> platform = <span className="text-accent">await</span> nx.build({"{"}</p>
-          <p className="whitespace-nowrap pl-4">api: <span className="text-cyan">"v1"</span>, tenancy: <span className="text-cyan">"multi"</span>,</p>
-          <p className="whitespace-nowrap pl-4">deploy: <span className="text-cyan">"cloud"</span></p>
+          <p className="whitespace-nowrap"><span className="text-violet">const</span> workflow = <span className="text-accent">await</span> nx.automate({"{"}</p>
+          <p className="whitespace-nowrap pl-4">api: <span className="text-cyan">"v1"</span>, tenancy: <span className="text-cyan">"isolated"</span>,</p>
+          <p className="whitespace-nowrap pl-4">auditTrail: <span className="text-cyan">true</span></p>
           <p>{"});"} <span className="blink text-fg">▍</span></p>
         </div>
       );
@@ -50,9 +50,9 @@ function Visual({ kind }: { kind: DomainKey }) {
     case "security":
       return (
         <div className="relative h-20 overflow-hidden rounded-lg border border-white/[0.07] bg-ink/60 p-3 font-mono text-[10.5px] leading-5 text-muted">
-          <p><span className="text-cyan">✓</span> policy.validate()</p>
-          <p><span className="text-cyan">✓</span> secrets.scan()</p>
-          <p><span className="text-accent">●</span> threat.model → review</p>
+          <p><span className="text-cyan">✓</span> reachability.verify()</p>
+          <p><span className="text-cyan">✓</span> kev_epss.correlate()</p>
+          <p><span className="text-accent">●</span> zero_trust.enforce()</p>
           <span className="absolute inset-x-0 top-0 h-6 -translate-y-8 bg-gradient-to-b from-transparent via-accent/20 to-transparent transition-transform duration-[1.4s] ease-in-out group-hover:translate-y-20" />
         </div>
       );
@@ -91,11 +91,20 @@ export default function TechnologyGrid() {
     <section id="technology" aria-labelledby="technology-title" className="relative py-24 sm:py-32">
       <Container>
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-          <SectionHeading id="technology-title" eyebrow="Technology" title={<>Technology,<br /> engineered.</>} />
+          <SectionHeading
+            id="technology-title"
+            eyebrow="Capabilities & Methods"
+            title={
+              <>
+                Five engineering disciplines,
+                <br />
+                <span className="text-gradient">chosen to fit the problem.</span>
+              </>
+            }
+          />
           <Reveal delay={200} className="max-w-md">
             <p className="text-base leading-relaxed text-muted sm:text-lg">
-              We build across the technology stack — from intelligent software and data systems to cybersecurity, cloud infrastructure and digital
-              platforms.
+              Technology is our toolkit, not our pitch. Whether your bottleneck calls for a clean PostgreSQL workflow, a local-first RAG system, reachability-based AppSec, or multi-tenant cloud infrastructure, we pick the simplest architecture that works.
             </p>
           </Reveal>
         </div>
@@ -119,7 +128,7 @@ export default function TechnologyGrid() {
                   <div className="mt-8 min-h-20">
                     <Visual kind={dm.key} />
                   </div>
-                  <h3 id={`domain-${dm.key}`} className="mt-8 text-2xl font-semibold uppercase tracking-[-0.02em] text-fg">
+                  <h3 id={`domain-${dm.key}`} className="mt-8 text-xl font-semibold tracking-[-0.02em] text-fg sm:text-2xl">
                     {dm.title}
                   </h3>
                   <p className="mt-3 max-w-md text-[15px] leading-relaxed text-muted">{dm.desc}</p>

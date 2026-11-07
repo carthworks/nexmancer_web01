@@ -102,10 +102,10 @@ export default function GlobalSection() {
               <Eyebrow>Global Technology</Eyebrow>
             </Reveal>
             <Reveal delay={80}>
-              <h2 id="global-title" className="mt-5 text-4xl font-bold uppercase leading-[1.02] tracking-[-0.035em] text-fg sm:text-5xl lg:text-6xl">
-                Built in India.
+              <h2 id="global-title" className="mt-5 text-4xl font-bold leading-[1.06] tracking-[-0.035em] text-fg sm:text-5xl lg:text-6xl">
+                Engineered in India,
                 <br />
-                <span className="text-muted">Designed for the world.</span>
+                <span className="text-muted">trusted across borders.</span>
               </h2>
             </Reveal>
           </div>

@@ -22,9 +22,9 @@ export default function ProductPipeline() {
       <Container>
         <SectionHeading
           id="pipeline-title"
-          eyebrow="Product Engineering"
-          title="From idea to product."
-          lead="We transform technical ideas into production-ready software, platforms and intelligent systems."
+          eyebrow="Engineering Methodology"
+          title="From problem diagnosis to production handover."
+          lead="We work in transparent milestones — diagnosing the bottleneck first, architecting verifiable boundaries, and transferring 100% of the code and runbooks to your team."
         />
 
         <Reveal delay={120} className="mt-14">

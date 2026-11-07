@@ -4,7 +4,7 @@ Based on `Nexmancer Website Audit & Modernization Plan-generic.md`, this plan tr
 
 > [!IMPORTANT]
 > **Core Strategic Shift in This Plan**
-> 1. **Problem-First Positioning:** Every homepage section starts with the client's problem and desired business outcome; technologies (*Custom Software, AI, Security, Data, Cloud, Quantum Readiness*) are presented as **methods we choose to fit the problem**.
+> 1. **Problem-First Positioning:** Every homepage section starts with the client's problem and desired business outcome; technologies (*Custom Software, AI, Security, Data, Cloud*) are presented as **methods we choose to fit the problem**.
 > 2. **Strict Product Containment:** Individual product names (`Sensighty`, `SigmaSec`, `LibraDigit`, `AskMyDocs`, `Hyperlocal Heat`) are removed from the Hero, main navigation, Solutions, Contact, Case Study summaries, and homepage Organization schema. They live exclusively on `/products` (with its own `ItemList` schema).
 > 3. **Crawlable Multi-Page Architecture:** Remove `vite-plugin-singlefile` and add build-time static pre-rendering so every route (`/`, `/services/*`, `/work/*`, `/products`, `/about`, `/contact`, `/privacy`, `/terms`) serves full HTML to search engines, AI crawlers, and LinkedIn/WhatsApp link previews.
 
@@ -32,11 +32,11 @@ flowchart TD
   1. *"Manual operations and disconnected tools slow our team down"* → Custom software & workflow automation
   2. *"We want to use AI on our internal documents without leaking data or hallucinating"* → Private RAG & deterministic evaluation
   3. *"Security scanners flood us with thousands of alerts, and we don't know what's actually exploitable"* → Reachability-based AppSec & zero-trust hardening
-  4. *"Our critical data and archives must stay secure and readable for decades"* → Post-quantum cryptography (PQC) readiness & ISO archival standards
+  4. *"Decades of scanned records and compliance PDFs are locked in unsearchable folders"* → Offline-first OCR & ISO PDF/A digital preservation
   5. *"Our cloud infrastructure struggles with latency spikes, tenant isolation, or rising costs"* → Cloud-native architecture & database RLS
   6. *"We need high-stakes assessments or risk forecasts we can mathematically defend"* → Deterministic statistical & geospatial modeling
 - **Reframe `CAPABILITIES` (formerly `DOMAINS`) as Methods:**
-  - Present *Custom Software*, *AI & Automation*, *Secure Architecture*, *Data & Analytics*, *Cloud Infrastructure*, and *Quantum Readiness* as the methods we select to solve your problem.
+  - Present *Custom Software*, *AI & Automation*, *Secure Architecture*, *Data & Analytics*, and *Cloud Infrastructure* as the methods we select to solve your problem.
 - **Refactor `CASE_STUDIES` to `Problem → Approach → Result`:**
   - Remove product names from homepage case study titles and summaries (e.g., *"Eliminating CVE alert fatigue with call-graph reachability"*, *"Deterministic psychometric grading for high-stakes assessments"*, *"Air-gapped document search and ISO archival for regulated teams"*).
 - **Add `TEAM` & Factual `ABOUT_STATS`:**
@@ -50,7 +50,7 @@ flowchart TD
 - **Strict CTA Hierarchy:**
   - **Primary CTA:** `Book a 30-Min Discovery Call` (scheduler link)
   - **Secondary CTA:** `See Problems We Solve` (`#problems`)
-- **Update `HeroVisual`:** Replace product names on the orbital nodes with the core problem-solving methods (`SOFTWARE`, `AI & RAG`, `SECURITY`, `DATA`, `CLOUD & PQC`) and show the `problem → outcome` mapping in the HUD card.
+- **Update `HeroVisual`:** Replace product names on the orbital nodes with the core problem-solving methods (`SOFTWARE`, `AI & RAG`, `SECURITY`, `DATA`, `CLOUD`) and show the `problem → outcome` mapping in the HUD card.
 
 ### 1.3 New "Problems We Solve" Section (`src/components/ProblemsSection.tsx`)
 - Create a dedicated section immediately after the Hero displaying the 6 buyer problems in the client's own words, showing:
@@ -61,12 +61,12 @@ flowchart TD
 ### 1.4 Clean Up Solutions, About & Contact (Remove Product Bleed)
 - **`src/components/ObjectivesSection.tsx`:**
   - Remove product badges and `Launch <Product>` links from the accordion.
-  - Present the 3 core service tracks + engagement models (*2-Week Problem Discovery Sprint*, *Fixed-Scope Architecture / PQC Review*, *Turnkey Engineering Build / Retainer*).
+  - Present the core service tracks + engagement models (*2-Week Problem Discovery Sprint*, *Architecture & Security Audit*, *Turnkey Engineering Build*).
 - **`src/components/AboutSection.tsx`:**
   - Remove the 5-product grid from the Corporate Dossier card; replace with a single line: *"We also engineer our own software platforms — [explore our products →](/products)"*.
   - Add the **Founders & Leadership** section with LinkedIn profile links and credentials.
 - **`src/components/ContactSection.tsx`:**
-  - Remove product names from the quick-select topic chips; replace with problem-oriented chips (`Automate a workflow`, `Build a private AI / RAG system`, `Security / PQC audit`, `Custom software build`, `2-week discovery sprint`).
+  - Remove product names from the quick-select topic chips; replace with problem-oriented chips (`Automate a workflow`, `Build a private AI / RAG system`, `Security & CVE audit`, `Offline OCR & archival`, `Cloud & scale bottleneck`, `2-week discovery sprint`).
   - Change the primary textarea label to **"What problem are you trying to solve?"**.
 
 ---

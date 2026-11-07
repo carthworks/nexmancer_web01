@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent, type ReactNode } from "react";
 import { Arrow, ArrowUpRight, Container, Eyebrow, Reveal } from "./ui";
-import { IconGlobe, IconMail, IconPin, IconX } from "./icons";
+import { IconGlobe, IconLinkedin, IconMail, IconPin, IconX } from "./icons";
 import { SITE, scheduleMailto } from "../lib/site";
-import { PRODUCTS } from "../data/content";
 import { spotlightHandler } from "../lib/hooks";
 import {
   LIMITS,
@@ -20,10 +19,12 @@ const EMPTY: ContactFields = { name: "", email: "", company: "", subject: "", me
 const ORDER: (keyof ContactFields)[] = ["name", "email", "company", "subject", "message"];
 
 const TOPICS = [
-  ...PRODUCTS.map((p) => ({ label: p.name, subject: `Product Inquiry — ${p.name} (${p.code})` })),
-  { label: "Custom AI / R&D", subject: "Enterprise AI & Applied R&D Inquiry" },
-  { label: "Security Audit", subject: "Architecture & Security Audit Inquiry" },
-  { label: "Partnership", subject: "Strategic Partnership & Commercial Inquiry" },
+  { label: "Automate a workflow", subject: "Workflow & Custom Software Automation Inquiry" },
+  { label: "Build a private AI / RAG system", subject: "Private AI & Hybrid RAG Inquiry" },
+  { label: "Security & CVE audit", subject: "AppSec & Vulnerability Reachability Audit" },
+  { label: "Offline OCR & archival", subject: "Offline Document OCR & ISO Archival Inquiry" },
+  { label: "Cloud & scale bottleneck", subject: "Multi-Tenant Cloud & Telemetry Modernization" },
+  { label: "2-week discovery sprint", subject: "2-Week Problem Discovery Sprint Inquiry" },
 ];
 
 type Status = "idle" | "submitting" | SubmitResult["status"];
@@ -166,7 +167,7 @@ function ContactForm() {
           <div className="flex items-center gap-2.5">
             <span className="h-2 w-2 rounded-full bg-accent shadow-[0_0_8px_rgba(34,184,207,0.8)]" aria-hidden />
             <h3 id="contact-form-title" className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-fg">
-              Direct Dispatch // Initiate Scope
+              Scope a Problem or Discovery Sprint
             </h3>
           </div>
           <span className="font-mono text-[10.5px] text-muted">
@@ -182,8 +183,8 @@ function ContactForm() {
 
         {/* Quick Topic Selector Chips */}
         <div className="mt-4">
-          <p className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-muted">Quick-Select Topic</p>
-          <div className="mt-2 flex flex-wrap gap-1.5" role="group" aria-label="Quick topic presets">
+          <p className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-muted">What do you want to solve?</p>
+          <div className="mt-2 flex flex-wrap gap-1.5" role="group" aria-label="Problem topic presets">
             {TOPICS.map((t) => {
               const active = values.subject === t.subject;
               return (
@@ -255,10 +256,10 @@ function ContactForm() {
               aria-invalid={!!errors.company}
               aria-describedby={errors.company ? "cf-company-error" : undefined}
               className={cn(inputCls(!!errors.company), "h-10")}
-              placeholder="Company or team"
+              placeholder="Company, university, or team"
             />
           </Field>
-          <Field id="cf-subject" label="Subject" required error={errors.subject}>
+          <Field id="cf-subject" label="Topic / Subject" required error={errors.subject}>
             <input
               id="cf-subject"
               name="subject"
@@ -271,13 +272,13 @@ function ContactForm() {
               aria-invalid={!!errors.subject}
               aria-describedby={errors.subject ? "cf-subject-error" : undefined}
               className={cn(inputCls(!!errors.subject), "h-10")}
-              placeholder="Select a chip or type subject"
+              placeholder="Select a chip above or type subject"
             />
           </Field>
           <div className="sm:col-span-2">
             <Field
               id="cf-message"
-              label="Technical Brief / Message"
+              label="What problem are you trying to solve?"
               required
               error={errors.message}
               hint={
@@ -297,7 +298,7 @@ function ContactForm() {
                 aria-invalid={!!errors.message}
                 aria-describedby={errors.message ? "cf-message-error cf-message-help" : "cf-message-help"}
                 className={cn(inputCls(!!errors.message), "resize-y py-2.5 leading-relaxed")}
-                placeholder="Share your architecture goals, product interest, or timeline..."
+                placeholder="Tell us what's slowing your team down, what constraints you have (privacy, on-prem, timeline), and what a good outcome looks like..."
               />
             </Field>
             <p id="cf-message-help" className="sr-only">
@@ -311,22 +312,22 @@ function ContactForm() {
       <div className="mt-4 border-t border-white/[0.07] pt-4">
         <div className="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[11.5px] leading-snug text-muted">
-            Zero tracking. Used solely to respond to your inquiry.
+            Zero tracking. Reviewed directly by our engineering leads.
             {!endpointReady && " Direct email fallback ready."}
           </p>
           <button
             type="submit"
             disabled={status === "submitting"}
-            className="group inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-fg px-6 text-xs font-semibold uppercase tracking-[0.1em] text-ink transition-all hover:opacity-90 hover:shadow-[0_0_0_4px_rgba(34,184,207,0.2)] disabled:cursor-wait disabled:opacity-70"
+            className="group inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-fg px-6 text-xs font-semibold tracking-tight text-ink transition-all hover:opacity-90 hover:shadow-[0_0_0_4px_rgba(34,184,207,0.2)] disabled:cursor-wait disabled:opacity-70"
           >
             {status === "submitting" ? (
               <>
                 <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-ink/30 border-t-ink" aria-hidden />
-                Dispatching…
+                Sending…
               </>
             ) : (
               <>
-                Transmit Message <Arrow />
+                Send Problem Brief <Arrow />
               </>
             )}
           </button>
@@ -385,6 +386,7 @@ export default function ContactSection() {
   };
 
   const channels = [
+    { label: "LinkedIn", value: SITE.linkedinLabel, href: SITE.linkedin, Icon: IconLinkedin },
     { label: "X / Twitter", value: SITE.xLabel, href: SITE.x, Icon: IconX },
     { label: "Domain", value: SITE.domain, href: SITE.url, Icon: IconGlobe },
   ];
@@ -419,17 +421,17 @@ export default function ContactSection() {
               <Reveal delay={60}>
                 <h2
                   id="contact-title"
-                  className="mt-4 text-4xl font-extrabold uppercase leading-[0.95] tracking-[-0.04em] text-fg sm:text-5xl"
+                  className="mt-4 text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] text-fg sm:text-5xl"
                 >
                   Have a hard
                   <br />
-                  <span className="text-gradient">tech problem?</span>
+                  <span className="text-gradient">engineering problem?</span>
                 </h2>
               </Reveal>
 
               <Reveal delay={120}>
                 <p className="mt-3 max-w-md text-sm leading-relaxed text-muted sm:text-[15px]">
-                  Initiate a technical discovery call, request a product demo, or scope an engineering engagement directly with our team.
+                  Book a 30-minute discovery call with an architect or send us your problem brief. We'll tell you honestly whether and how we can solve it.
                 </p>
               </Reveal>
 
@@ -437,7 +439,7 @@ export default function ContactSection() {
               <Reveal delay={160}>
                 <div className="mt-5 rounded-2xl border border-white/[0.08] bg-graphite/60 p-4">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">Direct Dispatch</span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">Direct Engineering Desk</span>
                     <span className="font-mono text-[10px] text-muted">Mon–Fri · 09:00–18:00 IST</span>
                   </div>
                   <div className="mt-2.5 flex flex-wrap items-center justify-between gap-2">
@@ -457,10 +459,10 @@ export default function ContactSection() {
                         {copiedEmail ? "Copied ✓" : "Copy"}
                       </button>
                       <a
-                        href={scheduleMailto("15-Min Discovery Call")}
+                        href={scheduleMailto("30-Min Problem Discovery Call")}
                         className="inline-flex items-center gap-1 rounded-lg border border-accent/30 bg-accent/10 px-2.5 py-1 font-mono text-[11px] font-medium text-accent transition-colors hover:bg-accent/20"
                       >
-                        Book 15m Call <ArrowUpRight />
+                        Book 30m Call <ArrowUpRight />
                       </a>
                     </div>
                   </div>
@@ -478,14 +480,14 @@ export default function ContactSection() {
                     <p className="mt-0.5 truncate sm:whitespace-normal">{SITE.address.join(" ")}</p>
                   </div>
                 </address>
-                <ul className="grid grid-cols-2 divide-x divide-white/[0.07]">
+                <ul className="grid grid-cols-3 divide-x divide-white/[0.07]">
                   {channels.map((c) => (
                     <li key={c.label}>
                       <a
                         href={c.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex items-center justify-between gap-2 px-3.5 py-3 transition-colors hover:bg-graphite"
+                        className="group flex items-center justify-between gap-2 px-3 py-3 transition-colors hover:bg-graphite"
                       >
                         <span className="flex items-center gap-2 min-w-0">
                           <c.Icon className="h-3.5 w-3.5 shrink-0 text-muted group-hover:text-accent transition-colors" />

@@ -1,7 +1,7 @@
 import { Arrow, ArrowUpRight, Button, Container, Eyebrow, Reveal, Tag } from "./ui";
-import { IconGlobe, IconPin } from "./icons";
+import { IconGlobe, IconLinkedin, IconPin } from "./icons";
 import { SITE, scheduleMailto } from "../lib/site";
-import { ABOUT_CAPABILITIES, ABOUT_FOCUS, ABOUT_STATS, ETHOS_PRINCIPLES, PRODUCTS } from "../data/content";
+import { ABOUT_CAPABILITIES, ABOUT_FOCUS, ABOUT_STATS, ETHOS_PRINCIPLES, TEAM } from "../data/content";
 import { spotlightHandler } from "../lib/hooks";
 
 export default function AboutSection() {
@@ -16,23 +16,23 @@ export default function AboutSection() {
               <Eyebrow>About NEXMANCER</Eyebrow>
             </Reveal>
             <Reveal delay={80}>
-              <h2 id="about-title" className="mt-5 text-4xl font-bold uppercase leading-[1.02] tracking-[-0.035em] text-fg sm:text-5xl lg:text-6xl">
-                A deep-tech studio
+              <h2 id="about-title" className="mt-5 text-4xl font-bold leading-[1.06] tracking-[-0.035em] text-fg sm:text-5xl lg:text-6xl">
+                An engineering partner
                 <br className="hidden sm:block" /> built on <span className="text-gradient">first principles.</span>
               </h2>
             </Reveal>
             <Reveal delay={140}>
               <p className="mt-7 max-w-2xl text-lg leading-relaxed text-fg/90 sm:text-xl">
-                <strong className="font-semibold text-fg">NEXMANCER PRIVATE LIMITED</strong> is an independent software and applied R&amp;D company building proprietary platforms and mission-critical systems across AI, cybersecurity, data intelligence, and cloud infrastructure.
+                <strong className="font-semibold text-fg">NEXMANCER PRIVATE LIMITED</strong> is an independent software engineering and applied R&amp;D partner helping organizations solve high-consequence operational, AI, security, and data problems.
               </p>
             </Reveal>
             <Reveal delay={200}>
               <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-                Headquartered in Coimbatore, India, we operate at the intersection of rigorous mathematical modeling and production software engineering. Whether we are scoring psychometric assessments with Bayesian Item Response Theory, triaging CVEs against live exploit telemetry, preserving archival records in offline PDF/A packages, or forecasting street-level urban heat stress, our work is defined by verifiability, privacy, and resilience.
+                Headquartered in Coimbatore, India, we work directly with founders, CTOs, universities, and enterprise teams. Instead of selling generic hours or black-box AI hype, we diagnose the root bottleneck and engineer verifiable, production-ready systems — from deterministic psychometric engines and reachability-based vulnerability triage to offline ISO PDF/A archival pipelines.
               </p>
             </Reveal>
 
-            {/* Key Metrics Strip */}
+            {/* Factual Checkable Metrics Strip */}
             <Reveal delay={260}>
               <dl className="mt-9 grid grid-cols-2 gap-3 sm:grid-cols-4">
                 {ABOUT_STATS.map((s) => (
@@ -52,11 +52,11 @@ export default function AboutSection() {
 
             <Reveal delay={320}>
               <div className="mt-9 flex flex-wrap items-center gap-3">
-                <Button href="#products">
-                  Explore Live Products <Arrow />
+                <Button href={scheduleMailto("30-Min Discovery Call")}>
+                  Book a 30-min call <ArrowUpRight />
                 </Button>
-                <Button href={scheduleMailto("Company & R&D Inquiry")} variant="secondary">
-                  Partner With Us <ArrowUpRight />
+                <Button href="#problems" variant="secondary">
+                  See problems we solve <Arrow />
                 </Button>
               </div>
             </Reveal>
@@ -94,32 +94,9 @@ export default function AboutSection() {
                     <dt className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted">Operating Model</dt>
                     <dd className="mt-1.5 flex items-start gap-2 text-sm font-medium text-fg">
                       <IconGlobe className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-                      <span>Product Studio &amp; Enterprise R&amp;D</span>
+                      <span>Problem-First Engineering &amp; R&amp;D</span>
                     </dd>
                   </div>
-                </div>
-
-                <div className="p-6">
-                  <dt className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted">Live Product Portfolio</dt>
-                  <dd className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
-                    {PRODUCTS.map((p) => (
-                      <a
-                        key={p.name}
-                        href={p.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-center justify-between rounded-xl border border-white/[0.08] bg-ink/60 px-3.5 py-2.5 text-xs transition-all hover:border-accent/40 hover:bg-ink"
-                      >
-                        <span>
-                          <strong className="font-semibold text-fg group-hover:text-accent">{p.name}</strong>
-                          <span className="ml-2 font-mono text-[10px] text-muted">{p.code}</span>
-                        </span>
-                        <span className="text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent">
-                          ↗
-                        </span>
-                      </a>
-                    ))}
-                  </dd>
                 </div>
 
                 <div className="p-6">
@@ -128,6 +105,19 @@ export default function AboutSection() {
                     {ABOUT_FOCUS.map((f) => (
                       <Tag key={f}>{f}</Tag>
                     ))}
+                  </dd>
+                </div>
+
+                <div className="p-6">
+                  <dt className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted">Proprietary Platforms</dt>
+                  <dd className="mt-2 text-sm leading-relaxed text-muted">
+                    Alongside client engineering, we also build and maintain our own software platforms —{" "}
+                    <a
+                      href="#products"
+                      className="font-medium text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:text-fg"
+                    >
+                      explore our products →
+                    </a>
                   </dd>
                 </div>
 
@@ -145,18 +135,84 @@ export default function AboutSection() {
           </Reveal>
         </div>
 
+        {/* Founders & Leadership */}
+        <div className="mt-20 border-t border-white/[0.07] pt-16">
+          <Reveal>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">Leadership &amp; Accountability</p>
+                <h3 className="mt-2 text-2xl font-bold tracking-tight text-fg sm:text-3xl">
+                  Led by practicing systems architects
+                </h3>
+              </div>
+              <p className="max-w-md text-sm leading-relaxed text-muted">
+                Every discovery sprint and architecture review is led directly by senior engineering leadership — never handed off to junior account managers.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="mt-8 grid gap-6">
+            {TEAM.map((member) => (
+              <Reveal key={member.name} delay={100}>
+                <div
+                  onPointerMove={spotlightHandler}
+                  className="spotlight rounded-3xl border border-white/[0.09] bg-graphite/50 p-6 sm:p-8"
+                >
+                  <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-center">
+                    <div className="max-w-3xl">
+                      <div className="flex flex-wrap items-center gap-3">
+                        <h4 className="text-xl font-bold tracking-tight text-fg sm:text-2xl">{member.name}</h4>
+                        <span className="rounded-full border border-accent/30 bg-accent/10 px-3 py-0.5 font-mono text-xs font-medium text-accent">
+                          {member.role}
+                        </span>
+                      </div>
+                      <p className="mt-1.5 font-mono text-xs text-muted/80">{member.credentials}</p>
+                      <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">{member.bio}</p>
+                      <ul className="mt-4 flex flex-wrap gap-2" aria-label="Areas of expertise">
+                        {member.focus.map((f) => (
+                          <li key={f}>
+                            <Tag>{f}</Tag>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="flex shrink-0 flex-wrap items-center gap-3 lg:flex-col lg:items-end">
+                      <a
+                        href={member.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-4 py-2.5 text-xs font-semibold text-fg transition-colors hover:border-accent/50 hover:text-accent"
+                      >
+                        <IconLinkedin className="h-4 w-4 text-accent" />
+                        LinkedIn Profile <ArrowUpRight />
+                      </a>
+                      <a
+                        href={scheduleMailto(`Direct Architecture Call with ${member.name}`)}
+                        className="font-mono text-xs text-muted transition-colors hover:text-accent"
+                      >
+                        Schedule intro call →
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
         {/* Applied R&D Capabilities */}
         <div className="mt-20 border-t border-white/[0.07] pt-16">
           <Reveal>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">What Sets Us Apart</p>
-                <h3 className="mt-2 text-2xl font-bold uppercase tracking-tight text-fg sm:text-3xl">
-                  Applied R&amp;D &amp; Domain Depth
+                <h3 className="mt-2 text-2xl font-bold tracking-tight text-fg sm:text-3xl">
+                  Applied R&amp;D &amp; domain depth
                 </h3>
               </div>
               <p className="max-w-md text-sm leading-relaxed text-muted">
-                Every platform we ship is backed by specialized domain engineering — combining deterministic algorithms with modern cloud and AI runtimes.
+                Every system we deliver combines deterministic mathematical foundations with modern cloud and AI engineering.
               </p>
             </div>
           </Reveal>
@@ -188,12 +244,12 @@ export default function AboutSection() {
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">Our Engineering Ethos</p>
-                <h3 className="mt-2 text-2xl font-bold uppercase tracking-tight text-fg sm:text-3xl">
+                <h3 className="mt-2 text-2xl font-bold tracking-tight text-fg sm:text-3xl">
                   Principles that govern our code
                 </h3>
               </div>
               <p className="max-w-md text-sm leading-relaxed text-muted">
-                Non-negotiable architectural standards applied across every client system and internal product we build.
+                Non-negotiable architectural standards applied across every client system we build.
               </p>
             </div>
           </Reveal>

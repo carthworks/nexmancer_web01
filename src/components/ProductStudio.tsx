@@ -5,33 +5,33 @@ import { Arrow, Button, Container, Eyebrow, Reveal, Tag } from "./ui";
 
 export default function ProductStudio() {
   return (
-    <section id="products" aria-labelledby="products-title" className="relative py-24 sm:py-32">
+    <section id="products" aria-labelledby="products-title" className="relative border-t border-white/[0.07] py-24 sm:py-32">
       <Container className="grid gap-14 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <div className="lg:sticky lg:top-32">
             <Reveal>
-              <Eyebrow>Product Studio</Eyebrow>
+              <Eyebrow>Our Products</Eyebrow>
             </Reveal>
             <Reveal delay={80}>
-              <h2 id="products-title" className="mt-5 text-4xl font-bold uppercase leading-[1.02] tracking-[-0.035em] text-fg sm:text-5xl lg:text-[3.5rem]">
-                We build products,
+              <h2 id="products-title" className="mt-5 text-4xl font-bold leading-[1.06] tracking-[-0.035em] text-fg sm:text-5xl lg:text-[3.5rem]">
+                Software platforms we
                 <br />
-                <span className="text-muted">not just projects.</span>
+                <span className="text-muted">build and run in-house.</span>
               </h2>
             </Reveal>
             <Reveal delay={160}>
               <p className="mt-6 max-w-md text-base leading-relaxed text-muted sm:text-lg">
-                NEXMANCER develops proprietary technology tools and platforms designed to solve hard problems in AI, cloud security, and distributed data systems.
+                Alongside client engagements, NEXMANCER builds and maintains its own software tools in adaptive learning, security triage, offline document digitisation, cited document search, and urban heat forecasting.
               </p>
             </Reveal>
             <Reveal delay={240}>
               <div className="mt-10">
-                <Button href="#contact">
-                  Inquire About Products <Arrow />
+                <Button href="#contact" variant="secondary">
+                  Book a 30-min call <Arrow />
                 </Button>
               </div>
-              <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-muted/70">
-                Proprietary & Open Initiatives
+              <p className="mt-6 font-mono text-xs text-muted">
+                Proprietary platforms · Engineered in Coimbatore
               </p>
             </Reveal>
           </div>
@@ -46,7 +46,7 @@ export default function ProductStudio() {
                   href={p.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`${p.name} — open live product (new tab)`}
+                  aria-label={`${p.name} — open product (new tab)`}
                   onPointerMove={spotlightHandler}
                   className="spotlight group block rounded-2xl border border-white/[0.08] bg-graphite/50 p-6 transition-all duration-500 hover:border-white/20 hover:bg-graphite/70 sm:p-7"
                 >
@@ -57,16 +57,16 @@ export default function ProductStudio() {
                       </span>
                       <div>
                         <div className="flex flex-wrap items-center gap-2.5">
-                          <h3 className="text-xl font-semibold uppercase tracking-[-0.01em] text-fg group-hover:text-accent transition-colors">
+                          <h3 className="text-xl font-semibold tracking-[-0.01em] text-fg group-hover:text-accent transition-colors">
                             {p.name}
                           </h3>
-                          <span className="font-mono text-[10.5px] tracking-[0.14em] text-muted/70">{p.code}</span>
+                          <span className="font-mono text-xs text-muted">{p.code}</span>
                         </div>
-                        <p className="font-mono text-xs uppercase tracking-wider text-muted/60">{p.category}</p>
+                        <p className="font-mono text-xs text-muted">{p.category}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="rounded-full border border-accent/20 bg-accent/10 px-2.5 py-0.5 font-mono text-[10.5px] uppercase tracking-wider text-accent">
+                      <span className="rounded-full border border-accent/25 bg-accent/10 px-2.5 py-0.5 font-mono text-[11px] font-medium text-accent">
                         {p.status}
                       </span>
                       <span
@@ -78,13 +78,13 @@ export default function ProductStudio() {
                     </div>
                   </div>
 
-                  <p className="mt-4 text-[15px] font-medium leading-snug text-fg/90">{p.tagline}</p>
+                  <p className="mt-4 text-[15px] font-medium leading-snug text-fg/95">{p.tagline}</p>
                   <p className="mt-2 text-[15px] leading-relaxed text-muted">{p.desc}</p>
-                  <p className="mt-3 font-mono text-[11.5px] text-accent/80 group-hover:text-accent">
+                  <p className="mt-3 font-mono text-xs text-accent group-hover:underline">
                     {p.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
                   </p>
 
-                  <ul className="mt-5 flex flex-wrap gap-2 pt-2 border-t border-white/[0.06]" aria-label="Tags">
+                  <ul className="mt-5 flex flex-wrap gap-2 border-t border-white/[0.06] pt-3" aria-label="Tags">
                     {p.tags.map((t) => (
                       <li key={t}>
                         <Tag>{t}</Tag>

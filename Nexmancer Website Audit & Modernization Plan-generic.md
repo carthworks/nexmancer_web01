@@ -46,7 +46,6 @@ The biggest gaps are in positioning, proof and the contact path, not in visual d
 - **The headline says nothing about the client.** "Building what's next" could belong to any company. It should name a problem and an outcome, for example faster operations, fewer missed leads, systems you can trust.
 - **No defined customer or problem list.** The page never says who it's for (Indian SMEs, funded startups, institutions, regulated enterprises) or which problems you're best at solving.
 - **Products crowd the general messaging.** They appear in the hero, Solutions and Contact, pulling attention away from the partnership offer. They belong in one dedicated section ([see Products](#mnhexj383yn.21768)).
-- **Charter pillars are missing.** Quantum readiness and secure architecture, two of the charter's three pillars, don't appear at all. They fit naturally as capability areas.
 - **Headings are all-caps slogans,** for example "ENGINEERED. TESTED. MEASURABLY PROVEN." Ten of them in a row make the page feel loud and hard to scan.
 
 ### Proof and trust
@@ -81,15 +80,15 @@ Buyers now shortlist on evidence and specificity: named outcomes, real people, a
 | --- | --- | --- |
 | Problem-led hero | "We solve hard business and technology problems with custom software, AI, automation and security engineering" + who it's for + one button: "Book a 30-min call" | Visitors decide in seconds whether you understand their problem |
 | "Problems we solve" section | 4–6 problems in the buyer's own words, e.g. "Leads slip through the cracks", "Manual work slows us down", "We're not sure our systems are secure", "We want to use AI but don't know where". Each links to how you'd approach it | Buyers recognise their situation; the method follows the problem |
-| Capabilities as methods | Custom software, AI and machine learning, data and automation, security architecture, cloud, quantum readiness, framed as "how we solve it" | Shows range without making any one technology the pitch |
-| Service pages (one URL each) | e.g. `/services/custom-software`, `/services/ai-and-automation`, `/services/security-architecture`, `/services/quantum-readiness`, each with scope, deliverables, timeline and a starting price or range | Ranks for buyer searches; answers "what exactly do I get?" |
+| Capabilities as methods | Custom software, AI and machine learning, data and automation, security architecture, cloud, framed as "how we solve it" | Shows range without making any one technology the pitch |
+| Service pages (one URL each) | e.g. `/services/custom-software`, `/services/ai-and-automation`, `/services/security-architecture`, `/services/cloud-infrastructure`, each with scope, deliverables, timeline and a starting price or range | Ranks for buyer searches; answers "what exactly do I get?" |
 | Verifiable case studies | Client problems you solved, written as problem → approach → result, with screenshots, dates and client names where permitted | Proof a buyer can check, not numbers they must trust |
-| Founders & team | Photos, roles, LinkedIn, one-line credentials (e.g. IIT Madras, security and cryptography background) | People hire partners they can see |
+| Founders & team | Photos, roles, LinkedIn, one-line credentials (e.g. systems architecture, AI and security background) | People hire partners they can see |
 | Fixed-scope entry offer | e.g. "2-week problem discovery sprint" or "Security architecture review, fixed fee" | Lowers the risk of a first engagement; the most common consultancy converter |
 | Real booking + form | Cal.com/Calendly embed; a form that posts to email or CRM, with a confirmation and "we reply within 1 business day" | Removes mailto friction; sets expectations |
 | Engagement models + pricing signal | Sprint / retainer / team extension, with "from ₹…" or typical ranges | Qualifies leads and saves both sides time |
-| Insights / blog | 1–2 practical posts a month on problems clients face: securing AI systems, automating operations, preparing for post-quantum cryptography | Search traffic, LinkedIn content, shows how you think |
-| Lead magnet | Free checklist, e.g. "Post-quantum readiness checklist for Indian enterprises" | Captures visitors who aren't ready to talk yet |
+| Insights / blog | 1–2 practical posts a month on problems clients face: securing AI systems, automating operations, hardening cloud infrastructure | Search traffic, LinkedIn content, shows how you think |
+| Lead magnet | Free checklist, e.g. "AI & security readiness checklist for Indian enterprises" | Captures visitors who aren't ready to talk yet |
 | Trust & compliance page | Security practices, data handling, NDA-first, company registration, DPDP Act stance | Required by enterprise and regulated buyers |
 | Analytics & tracking | Privacy-friendly analytics (Plausible or Umami) + events for booking, form and outbound clicks | You can't improve what you don't measure |
 

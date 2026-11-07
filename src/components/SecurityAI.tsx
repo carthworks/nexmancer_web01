@@ -196,10 +196,10 @@ export default function SecurityAI() {
               <Eyebrow>AI × Cybersecurity</Eyebrow>
             </Reveal>
             <Reveal delay={80}>
-              <h2 id="security-title" className="mt-5 text-4xl font-bold uppercase leading-[1.02] tracking-[-0.035em] text-fg sm:text-5xl lg:text-6xl">
-                Intelligence
+              <h2 id="security-title" className="mt-5 text-4xl font-bold leading-[1.06] tracking-[-0.035em] text-fg sm:text-5xl lg:text-6xl">
+                Intelligence that respects
                 <br />
-                meets <span className="text-gradient">security.</span>
+                <span className="text-gradient">your security boundary.</span>
               </h2>
             </Reveal>
           </div>

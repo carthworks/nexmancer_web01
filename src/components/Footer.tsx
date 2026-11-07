@@ -7,30 +7,30 @@ type LinkItem = { l: string; href?: string; doc?: Doc };
 
 const COLS: { h: string; links: LinkItem[] }[] = [
   {
-    h: "Company",
+    h: "Navigation",
     links: [
-      { l: "About", href: "#about" },
-      { l: "Technology", href: "#technology" },
-      { l: "Methodology", href: "#pipeline" },
-      { l: "Products", href: "#products" },
+      { l: "Problems We Solve", href: "#problems" },
+      { l: "Capabilities", href: "#technology" },
+      { l: "Services & Sprints", href: "#solutions" },
       { l: "Proof of Work", href: "#case-studies" },
-      { l: "Solutions", href: "#solutions" },
+      { l: "Methodology", href: "#pipeline" },
+      { l: "About & Leadership", href: "#about" },
       { l: "Contact", href: "#contact" },
     ],
   },
   {
-    h: "Products",
+    h: "Engagements",
     links: [
-      { l: "Sensighty", href: "https://sensighty.nexmancer.com/" },
-      { l: "SigmaSec", href: "https://sigmasec.vercel.app/" },
-      { l: "LibraDigit", href: "https://libra-digit-ai.vercel.app/" },
-      { l: "AskMyDocs", href: "https://ask-mydocs.vercel.app/" },
-      { l: "Hyperlocal Heat", href: "https://hyperlocal-heat.vercel.app/" },
+      { l: "2-Week Discovery Sprint", href: "#solutions" },
+      { l: "Architecture & Security Audit", href: "#solutions" },
+      { l: "Turnkey Engineering Build", href: "#solutions" },
+      { l: "Our Products", href: "#products" },
     ],
   },
   {
     h: "Connect",
     links: [
+      { l: "LinkedIn", href: SITE.linkedin },
       { l: "GitHub", href: SITE.github },
       { l: "X (Twitter)", href: SITE.x },
       { l: "Email Enquiries", href: `mailto:${SITE.email}` },
@@ -71,7 +71,7 @@ const DOCS: Record<Doc, { t: string; body: string[] }> = {
   engagement: {
     t: "Engagement & Cancellation Policy",
     body: [
-      "1. Commercial Agreements: Website content does not constitute a binding unilateral offer. All commercial software development, R&D squad provisioning, and architecture audits are governed by mutually executed Master Services Agreements (MSA) and Statements of Work (SOW).",
+      "1. Commercial Agreements: Website content does not constitute a binding unilateral offer. All commercial software development, discovery sprints, and architecture audits are governed by mutually executed Master Services Agreements (MSA) and Statements of Work (SOW).",
       "2. Milestones & Delivery: Work is structured around transparent milestone cycles with explicit technical acceptance criteria and a standard 10-business-day client review period.",
       "3. Cancellation & Termination: Either party may cancel active advisory or sprint services pursuant to the written termination notice provisions defined in the applicable SOW (typically 30 calendar days).",
       "4. Response SLA: We are committed to prompt communication. Inquiries received via business@nexmancer.com are acknowledged within one business day (Monday through Friday, 09:00 - 18:00 IST).",
@@ -101,9 +101,9 @@ export default function Footer() {
             <a href="#top" aria-label="NEXMANCER — back to top">
               <Logo />
             </a>
-            <p className="mt-5 font-mono text-xs uppercase tracking-[0.24em] text-fg/90">Building what's next.</p>
+            <p className="mt-5 font-mono text-xs uppercase tracking-[0.2em] text-fg/90">{SITE.tagline}</p>
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-muted">
-              Software, AI, cybersecurity, data and cloud technology — researched, engineered and commercialized in India.
+              Custom software, verifiable private AI, application security, and data engineering — built in Coimbatore, India for teams worldwide.
             </p>
           </div>
           <nav aria-label="Footer" className="grid grid-cols-2 gap-10 sm:grid-cols-4 lg:col-span-8">
