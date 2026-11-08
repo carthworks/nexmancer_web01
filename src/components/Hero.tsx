@@ -1,26 +1,79 @@
 import { useEffect, useState, type CSSProperties } from "react";
-import NetworkCanvas from "./NetworkCanvas";
-import HeroVisual from "./HeroVisual";
-import { Arrow, ArrowUpRight, Button, Container } from "./ui";
-import { scheduleMailto } from "../lib/site";
 import { ECOSYSTEM_BADGES, HERO_METHODS } from "../data/content";
 import { usePrefersReducedMotion } from "../lib/hooks";
+import { scheduleMailto } from "../lib/site";
+import HeroVisual from "./HeroVisual";
+import NetworkCanvas from "./NetworkCanvas";
+import { Arrow, ArrowUpRight, Button, Container } from "./ui";
 
 const d = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
 const CYCLE_MS = 6500; // long enough to read one problem → outcome
+const HEADLINE_DISPLAY_MS = 6500;
+const HEADLINE_TRANSITION_MS = 680;
+
+// export const HERO_ROTATING_PHRASES = [
+//   "intelligent technology.",
+//   "AI-powered solutions.",
+//   "business innovation.",
+//   "secure digital platforms.",
+//   "scalable software.",
+//   "measurable outcomes.",
+// ] as const;
+export const HERO_ROTATING_PHRASES = [
+  "intelligent technology.",
+  "AI-powered solutions.",
+  "custom software.",
+  "secure digital platforms.",
+  "data-driven automation.",
+  "scalable cloud systems.",
+] as const;
 
 export default function Hero() {
   const [activeIdx, setActiveIdx] = useState(1);
   const [paused, setPaused] = useState(false);
+  const [phraseState, setPhraseState] = useState<{ current: number; exiting: number | null }>({
+    current: 0,
+    exiting: null,
+  });
+  const [tabHidden, setTabHidden] = useState(false);
   const reduced = usePrefersReducedMotion();
 
   useEffect(() => {
-    if (paused || reduced) return;
+    const onVisibilityChange = () => {
+      setTabHidden(document.visibilityState === "hidden");
+    };
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", onVisibilityChange);
+  }, []);
+
+  useEffect(() => {
+    if (reduced || tabHidden) return;
+    let clearExitTimeout: number | undefined;
+
+    const intervalId = window.setInterval(() => {
+      setPhraseState((prev) => {
+        const next = (prev.current + 1) % HERO_ROTATING_PHRASES.length;
+        return { current: next, exiting: prev.current };
+      });
+      window.clearTimeout(clearExitTimeout);
+      clearExitTimeout = window.setTimeout(() => {
+        setPhraseState((prev) => ({ ...prev, exiting: null }));
+      }, HEADLINE_TRANSITION_MS);
+    }, HEADLINE_DISPLAY_MS);
+
+    return () => {
+      window.clearInterval(intervalId);
+      window.clearTimeout(clearExitTimeout);
+    };
+  }, [reduced, tabHidden]);
+
+  useEffect(() => {
+    if (paused || reduced || tabHidden) return;
     const t = window.setInterval(() => {
       setActiveIdx((i) => (i + 1) % HERO_METHODS.length);
     }, CYCLE_MS);
     return () => window.clearInterval(t);
-  }, [paused, reduced]);
+  }, [paused, reduced, tabHidden]);
 
   const selectNode = (idx: number) => {
     setPaused(true);
@@ -56,15 +109,34 @@ export default function Hero() {
           {/* H1 */}
           <h1
             id="hero-title"
-            className="mt-5 max-w-2xl font-extrabold leading-[1.06] tracking-[-0.035em] text-fg text-[clamp(2.15rem,4.4vw,3.65rem)]"
+            className="mt-5 max-w-2xl font-extrabold leading-[1.08] tracking-[-0.035em] text-fg text-[clamp(2.15rem,4.4vw,3.65rem)]"
           >
             <span className="line-mask">
-              <span style={d(80)}>We turn complex business</span>
+              <span style={d(80)}>We help businesses</span>
             </span>
             <span className="line-mask">
-              <span style={d(150)}>challenges into{" "}</span>
-              <span className="text-gradient" style={d(200)}>
-                intelligent technology.
+              <span style={d(150)}>achieve more with</span>
+            </span>
+            <span className="fade-up block pt-0.5" style={d(210)}>
+              <span className="hero-rotator" aria-live="polite" aria-atomic="true">
+                {HERO_ROTATING_PHRASES.map((phrase, idx) => {
+                  const isActive = idx === phraseState.current;
+                  const isExiting = idx === phraseState.exiting;
+                  const stateClass = isActive
+                    ? "hero-phrase--active"
+                    : isExiting
+                      ? "hero-phrase--exit"
+                      : "hero-phrase--idle";
+                  return (
+                    <span
+                      key={phrase}
+                      aria-hidden={!isActive}
+                      className={`hero-phrase text-gradient ${stateClass}`}
+                    >
+                      {phrase}
+                    </span>
+                  );
+                })}
               </span>
             </span>
           </h1>

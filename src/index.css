@@ -176,6 +176,42 @@
   animation-delay: var(--d, 0ms);
 }
 
+/* Hero rotating headline phrase stack (zero layout shift) */
+.hero-rotator {
+  display: inline-grid;
+  vertical-align: bottom;
+  position: relative;
+}
+.hero-phrase {
+  grid-area: 1 / 1;
+  display: inline-block;
+  padding-bottom: 0.08em;
+  will-change: transform, opacity;
+}
+.hero-phrase--active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition:
+    opacity 680ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 680ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero-phrase--exit {
+  opacity: 0;
+  transform: translate3d(0, -0.32em, 0);
+  pointer-events: none;
+  user-select: none;
+  transition:
+    opacity 680ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 680ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero-phrase--idle {
+  opacity: 0;
+  transform: translate3d(0, 0.32em, 0);
+  pointer-events: none;
+  user-select: none;
+  transition: none;
+}
+
 /* SVG flowing lines */
 .flow-dash {
   stroke-dasharray: 4 8;
@@ -287,4 +323,7 @@
   .fade-up { opacity: 1; animation: none; }
   .line-mask > span { animation: none; }
   .line-mask > span { transform: none; }
+  .hero-phrase--active { opacity: 1; transform: none; transition: none; }
+  .hero-phrase--exit,
+  .hero-phrase--idle { opacity: 0; transform: none; transition: none; }
 }
