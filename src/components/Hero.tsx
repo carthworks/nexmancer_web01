@@ -1,7 +1,7 @@
 import { useEffect, useState, type CSSProperties } from "react";
-import { ECOSYSTEM_BADGES, HERO_METHODS } from "../data/content";
+import { HERO_BUYER_BADGES, HERO_METHODS } from "../data/content";
 import { usePrefersReducedMotion } from "../lib/hooks";
-import { scheduleMailto } from "../lib/site";
+import { SITE, scheduleMailto } from "../lib/site";
 import HeroVisual from "./HeroVisual";
 import NetworkCanvas from "./NetworkCanvas";
 import { Arrow, ArrowUpRight, Button, Container } from "./ui";
@@ -109,7 +109,7 @@ export default function Hero() {
           {/* H1 */}
           <h1
             id="hero-title"
-            className="mt-5 max-w-2xl font-extrabold leading-[1.08] tracking-[-0.035em] text-fg text-[clamp(2.15rem,4.4vw,3.65rem)]"
+            className="mt-5 max-w-2xl font-extrabold leading-[1.08] tracking-[-0.035em] text-fg text-[clamp(2rem,3.6vw,3.25rem)] min-h-[3.35em]"
           >
             <span className="line-mask">
               <span style={d(80)}>We help businesses</span>
@@ -141,36 +141,31 @@ export default function Hero() {
             </span>
           </h1>
 
-          {/* Sub */}
-          <p className="fade-up mt-4 max-w-xl text-lg font-medium leading-snug text-fg/95 sm:text-xl" style={d(260)}>
-            We build custom software, deploy practical AI, and engineer secure digital platforms that help businesses move faster, operate smarter, and scale with confidence.
-          </p>
-
-          {/* Support line */}
-          <p className="fade-up mt-3 max-w-xl text-[15px] leading-relaxed text-muted sm:text-base" style={d(330)}>
-            From AI-powered automation and enterprise applications to cybersecurity and cloud engineering, we turn ambitious ideas into production-ready solutions.
+          {/* Single concise buyer + outcome sentence */}
+          <p className="fade-up mt-4 max-w-xl text-base font-medium leading-relaxed text-fg/90 sm:text-lg" style={d(260)}>
+            We work with Indian SMEs, startups, universities and regulated enterprises to automate operations, put AI to work on their own data, and fix real security risks.
           </p>
 
           {/* Primary & Secondary CTAs */}
-          <div className="fade-up mt-6 flex flex-wrap items-center gap-3" style={d(400)}>
+          <div className="fade-up mt-6 flex flex-wrap items-center gap-3" style={d(340)}>
             <Button href={scheduleMailto("Discovery Call")}>
-              Book a Discovery Call <ArrowUpRight />
+              Book a Discovery Call {SITE.schedulerUrl ? <ArrowUpRight /> : <Arrow />}
             </Button>
-            <Button href="#solutions" variant="secondary">
-              Explore Our Solutions <Arrow />
+            <Button href="#problems" variant="secondary">
+              See problems we solve <Arrow />
             </Button>
           </div>
 
-          {/* Trust / Signature Line */}
-          <p className="fade-up mt-4 flex flex-wrap items-center gap-x-2.5 gap-y-1 font-mono text-xs italic text-muted" style={d(460)}>
-            <span className="inline-flex items-center gap-1.5 not-italic text-fg/90">
+          {/* Concrete, checkable trust promises */}
+          <p className="fade-up mt-4 flex flex-wrap items-center gap-x-2.5 gap-y-1 font-mono text-xs text-muted" style={d(410)}>
+            <span className="inline-flex items-center gap-1.5 text-fg/90">
               <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
-              Engineering excellence
+              2-week discovery sprints
             </span>
-            <span aria-hidden className="not-italic text-white/25">·</span>
-            <span className="not-italic">AI-driven innovation</span>
-            <span aria-hidden className="not-italic text-white/25">·</span>
-            <span className="not-italic">Security by design</span>
+            <span aria-hidden className="text-white/25">·</span>
+            <span>NDA on request</span>
+            <span aria-hidden className="text-white/25">·</span>
+            <span>Reply within 1 business day</span>
           </p>
         </div>
 
@@ -180,13 +175,13 @@ export default function Hero() {
         </div>
       </Container>
 
-      {/* Bottom Ecosystem Bar */}
+      {/* Bottom Buyer & Governance Strip */}
       <div className="relative border-t border-white/[0.08] bg-graphite/75 backdrop-blur-md">
         <Container className="flex flex-col gap-3 py-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5">
-            <span className="font-mono text-xs font-medium text-accent">Production Stack:</span>
+            <span className="font-mono text-xs font-medium text-accent">Built For:</span>
             <div className="flex flex-wrap items-center gap-1.5">
-              {ECOSYSTEM_BADGES.map((b) => (
+              {HERO_BUYER_BADGES.map((b) => (
                 <span
                   key={b}
                   className="rounded-full border border-white/12 bg-white/[0.04] px-2.5 py-0.5 font-mono text-[11px] text-fg/90"
@@ -197,7 +192,7 @@ export default function Hero() {
             </div>
           </div>
           <a href="#problems" className="group hidden items-center gap-2 font-mono text-xs text-muted hover:text-fg sm:flex">
-            Problems we solve
+            See problems we solve
             <span className="inline-block transition-transform group-hover:translate-y-0.5" aria-hidden>
               ↓
             </span>

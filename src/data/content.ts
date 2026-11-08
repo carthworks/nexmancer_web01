@@ -28,7 +28,7 @@ export const HERO_METHODS: HeroMethodNode[] = [
   {
     code: "NX/SW",
     name: "Custom Software",
-    category: "Workflow & SaaS Engineering",
+    category: "Workflow & Custom Apps",
     problem: "“Our team wastes hours copying data between spreadsheets, PDFs, and disconnected tools.”",
     outcome: "Your operations run in one place, manual re-entry drops sharply, and every change has a clear audit trail.",
     method: "Custom web applications, internal portals, and API integrations built around how your team actually works.",
@@ -41,14 +41,14 @@ export const HERO_METHODS: HeroMethodNode[] = [
     category: "AI With Cited Sources",
     problem: "“We want to use AI on our internal documents and assessments, but generic chatbots guess or leak data.”",
     outcome: "Your team gets answers they can trust, with the exact source page cited and zero data leaving your control.",
-    method: "Private document search and deterministic grading engines running on your own cloud or local hardware.",
+    method: "Private document search and repeatable grading engines running on your own cloud or local hardware.",
     timeline: "2-week sprint · 6-week rollout",
     key: "ai",
   },
   {
     code: "NX/SEC",
     name: "Secure Architecture",
-    category: "AppSec & Vulnerability Triage",
+    category: "Security & Alert Triage",
     problem: "“Security scanners dump thousands of alerts a week and engineers don’t know what’s actually exploitable.”",
     outcome: "Your developers fix the real security risks first and spend far less time chasing false alarms before audits.",
     method: "Automated vulnerability triage that checks whether a flagged dependency is actually used in your code.",
@@ -58,23 +58,32 @@ export const HERO_METHODS: HeroMethodNode[] = [
   {
     code: "NX/DATA",
     name: "Data & Forecasting",
-    category: "Archival OCR & Risk Telemetry",
+    category: "Document Digitisation & Early Alerts",
     problem: "“Important records are locked in scanned PDFs, or operational data arrives too late to act on.”",
     outcome: "Scanned files become searchable archives on your own machines, and field teams get early risk alerts.",
-    method: "Offline OCR digitisation into ISO PDF/A packages and real-time operational or environmental forecasting.",
+    method: "Offline document digitisation into searchable PDF/A files and early operational or street-level risk alerts.",
     timeline: "3–6 week deployment",
     key: "data",
   },
   {
     code: "NX/CLOUD",
     name: "Cloud Systems",
-    category: "Multi-Tenant Cloud Infrastructure",
+    category: "Reliable Multi-Tenant Cloud",
     problem: "“Our platform slows down during traffic spikes, and enterprise buyers ask for strict tenant isolation.”",
     outcome: "Your product stays fast under peak load with provable separation between every customer’s data.",
-    method: "PostgreSQL row-level tenant isolation, event queues, and autoscaling containers on AWS and Kubernetes.",
+    method: "Strict customer data separation, background queues, and autoscaling cloud infrastructure.",
     timeline: "4–8 week modernization",
     key: "cloud",
   },
+];
+
+export const HERO_BUYER_BADGES = [
+  "Indian SMEs",
+  "Funded Startups",
+  "Universities & Archives",
+  "Regulated Enterprises",
+  "100% Client IP Ownership",
+  "Local-First & On-Prem Ready",
 ];
 
 export const ECOSYSTEM_BADGES = [

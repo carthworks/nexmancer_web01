@@ -27,9 +27,8 @@ export const NAV = [
   { label: "Problems", href: "#problems" },
   { label: "Services", href: "/services" },
   { label: "Work", href: "/work" },
-  { label: "Products", href: "/products" },
-  { label: "Insights", href: "/insights" },
   { label: "About", href: "/about" },
+  { label: "Labs", href: "/products" },
 ] as const;
 
 export const mailto = (subject = "Problem Discovery — NEXMANCER", body = "") =>
