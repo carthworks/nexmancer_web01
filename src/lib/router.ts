@@ -44,6 +44,64 @@ export const ROUTE_TITLES: Record<RoutePath, string> = {
   "/404": "404 · Route Not Found — NEXMANCER",
 };
 
+export const ROUTE_PAGE_NAMES: Record<RoutePath, string> = {
+  "/": "Overview & Core Systems",
+  "/services": "Services & Engagement",
+  "/services/custom-software": "Custom Software & Automation",
+  "/services/ai-and-automation": "Private Document AI & Scoring",
+  "/services/security-architecture": "AppSec & Vulnerability Triage",
+  "/services/document-digitisation": "Offline Document OCR & Archival",
+  "/services/cloud-infrastructure": "Cloud Systems & Telemetry",
+  "/work": "Proof of Work & Case Studies",
+  "/work/reachability-triage": "Case Study · Reachability Triage",
+  "/work/deterministic-grading": "Case Study · Deterministic Grading",
+  "/work/airgapped-rag": "Case Study · Air-Gapped RAG",
+  "/products": "Labs & Proprietary Platforms",
+  "/trust": "Trust, Security & Compliance",
+  "/insights": "Engineering Notes & Insights",
+  "/insights/cited-private-rag": "Engineering Note · Cited Private RAG",
+  "/insights/reachability-cve-triage": "Engineering Note · Reachability CVE Triage",
+  "/insights/offline-ocr-pdfa-archival": "Engineering Note · Offline OCR Archival",
+  "/about": "About, Leadership & Ethos",
+  "/contact": "Discovery & Contact",
+  "/privacy": "Legal · Privacy Policy",
+  "/terms": "Legal · Terms of Use",
+  "/engagement": "Legal · Engagement & IP Policy",
+  "/404": "Route Not Found",
+};
+
+export const HASH_PAGE_NAMES: Record<string, string> = {
+  "#top": "Overview",
+  "#problems": "Problems We Solve",
+  "#technology": "Capabilities & Methods",
+  "#solutions": "Services & Engagement",
+  "#case-studies": "Proof of Work",
+  "#pipeline": "Delivery Methodology",
+  "#security": "Deep-Tech Architecture",
+  "#about": "About NEXMANCER",
+  "#contact": "Discovery & Contact",
+};
+
+export type NavigationEvent = {
+  isLoading: boolean;
+  pageName: string;
+  route: RoutePath;
+};
+
+type NavigationListener = (evt: NavigationEvent) => void;
+const navListeners = new Set<NavigationListener>();
+
+export function subscribeNavigation(listener: NavigationListener) {
+  navListeners.add(listener);
+  return () => {
+    navListeners.delete(listener);
+  };
+}
+
+export function notifyNavigation(evt: NavigationEvent) {
+  navListeners.forEach((fn) => fn(evt));
+}
+
 const KNOWN_ROUTES = new Set<string>(Object.keys(ROUTE_TITLES));
 
 export function normalizePath(pathname: string): RoutePath {
@@ -89,12 +147,15 @@ export function navigateTo(href: string) {
     };
 
     if (currentPath !== "/" && !(currentPath === "/contact" && cleanHash === "#contact")) {
+      const hashName = HASH_PAGE_NAMES[cleanHash] || "Home";
+      notifyNavigation({ isLoading: true, pageName: hashName, route: "/" });
       window.history.pushState({}, "", `/${cleanHash}`);
       window.dispatchEvent(new PopStateEvent("popstate"));
       window.setTimeout(() => {
         if (topic) window.dispatchEvent(new CustomEvent("nx:select-topic", { detail: topic }));
         scrollTarget();
-      }, 80);
+        notifyNavigation({ isLoading: false, pageName: hashName, route: "/" });
+      }, 220);
     } else {
       window.history.pushState({}, "", cleanHash);
       scrollTarget();
@@ -104,11 +165,19 @@ export function navigateTo(href: string) {
 
   // Handle route paths
   const targetPath = normalizePath(href);
-  if (normalizePath(window.location.pathname) !== targetPath) {
+  const currentPath = normalizePath(window.location.pathname);
+  if (currentPath !== targetPath) {
+    const pageName = ROUTE_PAGE_NAMES[targetPath] || "Overview & Core Systems";
+    notifyNavigation({ isLoading: true, pageName, route: targetPath });
     window.history.pushState({}, "", targetPath === "/404" ? href : targetPath);
     window.dispatchEvent(new PopStateEvent("popstate"));
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.setTimeout(() => {
+      notifyNavigation({ isLoading: false, pageName, route: targetPath });
+    }, 280);
+  } else {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
-  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 export function useRoute(initialRoute?: RoutePath): RoutePath {
@@ -122,6 +191,12 @@ export function useRoute(initialRoute?: RoutePath): RoutePath {
       const next = normalizePath(window.location.pathname);
       setRoute(next);
       document.title = ROUTE_TITLES[next] || ROUTE_TITLES["/404"];
+      const nextName = ROUTE_PAGE_NAMES[next] || "Overview & Core Systems";
+      notifyNavigation({ isLoading: true, pageName: nextName, route: next });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.setTimeout(() => {
+        notifyNavigation({ isLoading: false, pageName: nextName, route: next });
+      }, 240);
     };
 
     document.title = ROUTE_TITLES[route] || ROUTE_TITLES["/404"];

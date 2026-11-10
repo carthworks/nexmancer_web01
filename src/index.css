@@ -45,13 +45,28 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss01", "ss03";
+    font-optical-sizing: auto;
+    scroll-behavior: smooth;
     scroll-padding-top: 5rem;
   }
   body {
     background: var(--color-ink);
     color: var(--color-fg);
     font-family: var(--font-sans);
-    font-feature-settings: "cv11", "ss01", "ss03";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss01", "ss03";
+    font-optical-sizing: auto;
+    letter-spacing: -0.011em;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+    letter-spacing: -0.025em;
+  }
+  p {
+    text-wrap: pretty;
   }
   ::selection {
     background: rgba(34, 184, 207, 0.35);
@@ -210,6 +225,16 @@
   pointer-events: none;
   user-select: none;
   transition: none;
+}
+
+/* Page Loader Shimmer */
+@keyframes loader-shimmer {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(50%); }
+  100% { transform: translateX(200%); }
+}
+.animate-loader-shimmer {
+  animation: loader-shimmer 1.25s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 /* SVG flowing lines */

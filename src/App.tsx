@@ -11,6 +11,7 @@ import ProblemsSection from "./components/ProblemsSection";
 import ProductPipeline from "./components/ProductPipeline";
 import SecurityAI from "./components/SecurityAI";
 import TechnologyGrid from "./components/TechnologyGrid";
+import PageLoader from "./components/PageLoader";
 import type { CaseStudySlug, InsightSlug, ServiceSlug } from "./data/content";
 import { useRoute, type RoutePath } from "./lib/router";
 import AboutPage from "./pages/AboutPage";
@@ -117,6 +118,7 @@ export default function App({ initialRoute }: { initialRoute?: RoutePath } = {})
 
   return (
     <div className="relative min-h-screen overflow-x-clip bg-ink text-fg">
+      <PageLoader initialRoute={initialRoute} />
       <ScrollProgress />
       <Navbar currentRoute={route} />
       <main id="main">{renderRoute(route)}</main>
