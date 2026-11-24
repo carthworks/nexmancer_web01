@@ -1001,8 +1001,8 @@ export const TRUST_PILLARS = [
   },
   {
     code: "TR/04",
-    title: "DPDP Act 2023 & Zero-Tracking Compliance",
-    desc: "Our web properties and platforms operate without third-party advertising trackers, behavioral fingerprinting, or data brokering, in full alignment with India's Digital Personal Data Protection Act (DPDP Act 2023).",
+    title: "DPDP Act 2023 & Consent-First Analytics",
+    desc: "Our website uses no advertising trackers, behavioral fingerprinting or data brokering. Google Analytics runs only after you opt in, and you can withdraw consent at any time — in line with India's Digital Personal Data Protection Act (DPDP Act 2023).",
     badge: "DPDP 2023 Aligned",
   },
 ];

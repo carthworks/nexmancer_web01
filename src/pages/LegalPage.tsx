@@ -28,9 +28,9 @@ const LEGAL_DOCS: Record<
     label: "Privacy Policy",
     eyebrow: "Privacy & Data Protection · DPDP Act 2023",
     title: "Privacy Policy",
-    updated: "Effective Date: 1 November 2026",
+    updated: "Effective Date: 24 November 2026",
     summary:
-      "NEXMANCER PRIVATE LIMITED operates on a strict zero-tracking, data-minimization principle in compliance with India's Digital Personal Data Protection Act (DPDP Act 2023) and international privacy standards.",
+      "NEXMANCER PRIVATE LIMITED follows a data-minimization, consent-first approach in line with India's Digital Personal Data Protection Act (DPDP Act 2023). No advertising trackers; Google Analytics only with your permission.",
     sections: [
       {
         heading: "1. Data Fiduciary & Controller",
@@ -39,10 +39,13 @@ const LEGAL_DOCS: Record<
         ],
       },
       {
-        heading: "2. Zero Behavioral Tracking & Cookie Policy",
+        heading: "2. Analytics, Cookies & Your Consent",
         paragraphs: [
-          "This website does not deploy third-party advertising cookies, cross-site tracking pixels, session recording scripts, or behavioral fingerprinting.",
-          "A single local preference key (nx-theme) may be stored in your browser's localStorage solely to remember your chosen dark or light display mode. Web fonts are served via Google Fonts, which receives standard HTTP request headers as part of static font delivery.",
+          "This website does not use advertising cookies, cross-site advertising pixels, session recording, or behavioral fingerprinting, and we never sell or broker visitor data.",
+          "Google Analytics (via Google Tag Manager, container GTM-TVMQVQ8J) — optional. It loads only after you click \"Allow analytics\" in the consent banner. If allowed, Google LLC sets first-party cookies (such as _ga) and processes your IP address, browser details and the pages you visit so we can see which content is useful. Google may process this data outside India. If you decline or ignore the banner, no Google Analytics script is loaded and no such cookies are set.",
+          "Vercel Web Analytics & Speed Insights — always on. Our hosting provider, Vercel Inc., measures aggregated page views and page-load performance without cookies and without identifying individual visitors.",
+          "Local storage — we store your theme choice (nx-theme), your analytics choice (nx-consent), and a short anti-spam timestamp when you submit the contact form. These never leave your browser. Web fonts are served by Google Fonts, which receives standard request information (such as IP address) when fonts load.",
+          "You can change or withdraw your analytics consent at any time with the \"Cookie settings\" link in the site footer; withdrawing stops Google Analytics and removes its cookies from this site.",
         ],
       },
       {

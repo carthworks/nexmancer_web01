@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import ProblemsSection from "./components/ProblemsSection";
 import ProductPipeline from "./components/ProductPipeline";
 import PageLoader from "./components/PageLoader";
+import ConsentBanner from "./components/ConsentBanner";
 import type { CaseStudySlug, InsightSlug, ServiceSlug } from "./data/content";
 import { useRoute, type RoutePath } from "./lib/router";
 import AboutPage from "./pages/AboutPage";
@@ -114,6 +115,7 @@ export default function App({ initialRoute }: { initialRoute?: RoutePath } = {})
       <Navbar currentRoute={route} />
       <main id="main">{renderRoute(route)}</main>
       <Footer />
+      <ConsentBanner />
     </div>
   );
 }

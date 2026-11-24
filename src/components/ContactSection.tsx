@@ -323,7 +323,7 @@ function ContactForm() {
       <div className="mt-4 border-t border-white/[0.07] pt-4">
         <div className="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[11.5px] leading-snug text-muted">
-            Zero tracking. Reviewed directly by our engineering leads.
+            Never sold or used for marketing. Reviewed directly by our engineering leads.
             {!endpointReady && " Direct email fallback ready."}
           </p>
           <button

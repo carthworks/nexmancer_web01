@@ -1,5 +1,6 @@
 import { Container, Logo } from "./ui";
 import { SITE, isExternal } from "../lib/site";
+import { openConsentSettings } from "../lib/consent";
 
 type LinkItem = { l: string; href: string };
 
@@ -94,7 +95,12 @@ export default function Footer() {
 
         <div className="mt-16 flex flex-col gap-3 border-t border-white/[0.07] py-8 text-sm text-muted md:flex-row md:items-center md:justify-between">
           <p>© 2026 {SITE.legal}. All rights reserved.</p>
-          <p className="font-mono text-xs uppercase tracking-[0.16em]">{SITE.city}</p>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <button type="button" onClick={openConsentSettings} className="text-sm text-muted underline-offset-4 transition-colors hover:text-fg hover:underline">
+              Cookie settings
+            </button>
+            <p className="font-mono text-xs uppercase tracking-[0.16em]">{SITE.city}</p>
+          </div>
         </div>
       </Container>
 
