@@ -30,7 +30,22 @@ const nodes = HERO_METHODS.map((m, i) => {
   const angle = -90 + i * (360 / HERO_METHODS.length);
   const [lx, ly] = polar(LABEL_R, angle);
   const label = m.name.toUpperCase();
-  return { ...m, i, angle, lx, ly, label, w: Math.max(120, label.length * 7.9 + 40) };
+  // Long labels wrap onto two balanced lines so the pills don't collide on the dial.
+  const words = label.split(" ");
+  let lines = [label];
+  if (label.length > 16) {
+    let best = Infinity;
+    for (let k = 1; k < words.length; k++) {
+      const a = words.slice(0, k).join(" ");
+      const b = words.slice(k).join(" ");
+      if (Math.max(a.length, b.length) < best) {
+        best = Math.max(a.length, b.length);
+        lines = [a, b];
+      }
+    }
+  }
+  const longest = Math.max(...lines.map((l) => l.length));
+  return { ...m, i, angle, lx, ly, label, lines, h: lines.length > 1 ? 44 : 34, w: Math.max(120, longest * 7.9 + 40) };
 });
 
 /* Inbound "problem" streams: curved paths from the edge into the core, between the labels. */
@@ -223,17 +238,21 @@ export default function HeroVisual({
                 if (e.key === "ArrowLeft" || e.key === "ArrowUp") { e.preventDefault(); onSelect((n.i + nodes.length - 1) % nodes.length); }
               }}
               className="cursor-pointer outline-none [&:focus-visible>rect:first-child]:stroke-[var(--color-cyan)]">
-              <rect x={n.lx - n.w / 2} y={n.ly - 17} width={n.w} height="34" rx="17"
+              <rect x={n.lx - n.w / 2} y={n.ly - n.h / 2} width={n.w} height={n.h} rx={n.h / 2}
                 fill={on ? "var(--color-graphite)" : "var(--color-ink)"}
                 stroke={on ? "var(--color-accent)" : "color-mix(in srgb, var(--color-white) 15%, transparent)"}
                 strokeWidth={on ? 1.4 : 1} style={{ transition: "stroke .35s, fill .35s" }} />
               <circle cx={n.lx - n.w / 2 + 15} cy={n.ly} r="3.2"
                 fill={on ? "var(--color-accent)" : "color-mix(in srgb, var(--color-white) 32%, transparent)"}
                 style={{ transition: "fill .35s" }} />
-              <text x={n.lx + 6} y={n.ly + 4.2} textAnchor="middle" fontSize="11.6" letterSpacing="1"
+              <text x={n.lx + 6} y={n.ly + 4.2 - (n.lines.length - 1) * 6.5} textAnchor="middle" fontSize="11.6" letterSpacing="1"
                 fontWeight={on ? 700 : 500} fontFamily="JetBrains Mono, monospace"
                 fill={on ? "var(--color-fg)" : "var(--color-muted)"} style={{ transition: "fill .35s" }}>
-                {n.label}
+                {n.lines.map((l, li) => (
+                  <tspan key={l} x={n.lx + 6} dy={li === 0 ? 0 : 13}>
+                    {l}
+                  </tspan>
+                ))}
               </text>
             </g>
           );

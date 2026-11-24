@@ -6,11 +6,11 @@
 export type DomainKey = "software" | "ai" | "security" | "data" | "cloud";
 
 export const HERO_PILLARS = [
-  "Custom Software",
-  "AI & Automation",
-  "Secure Architecture",
-  "Data & Forecasting",
-  "Cloud Systems",
+  "AI & Software Engineering",
+  "AI & Intelligent Automation",
+  "Cybersecurity & Architecture",
+  "Data Intelligence & Analytics",
+  "Cloud & Infrastructure",
 ];
 
 export type HeroMethodNode = {
@@ -27,7 +27,7 @@ export type HeroMethodNode = {
 export const HERO_METHODS: HeroMethodNode[] = [
   {
     code: "NX/SW",
-    name: "Custom Software",
+    name: "AI & Software Engineering",
     category: "Workflow & Custom Apps",
     problem: "“Our team wastes hours copying data between spreadsheets, PDFs, and disconnected tools.”",
     outcome: "Your operations run in one place, manual re-entry drops sharply, and every change has a clear audit trail.",
@@ -37,7 +37,7 @@ export const HERO_METHODS: HeroMethodNode[] = [
   },
   {
     code: "NX/AI",
-    name: "AI & Automation",
+    name: "AI & Intelligent Automation",
     category: "AI With Cited Sources",
     problem: "“We want to use AI on our internal documents and assessments, but generic chatbots guess or leak data.”",
     outcome: "Your team gets answers they can trust, with the exact source page cited and zero data leaving your control.",
@@ -47,7 +47,7 @@ export const HERO_METHODS: HeroMethodNode[] = [
   },
   {
     code: "NX/SEC",
-    name: "Secure Architecture",
+    name: "Cybersecurity & Architecture",
     category: "Security & Alert Triage",
     problem: "“Security scanners dump thousands of alerts a week and engineers don’t know what’s actually exploitable.”",
     outcome: "Your developers fix the real security risks first and spend far less time chasing false alarms before audits.",
@@ -57,7 +57,7 @@ export const HERO_METHODS: HeroMethodNode[] = [
   },
   {
     code: "NX/DATA",
-    name: "Data & Forecasting",
+    name: "Data Intelligence & Analytics",
     category: "Document Digitisation & Early Alerts",
     problem: "“Important records are locked in scanned PDFs, or operational data arrives too late to act on.”",
     outcome: "Scanned files become searchable archives on your own machines, and field teams get early risk alerts.",
@@ -67,7 +67,7 @@ export const HERO_METHODS: HeroMethodNode[] = [
   },
   {
     code: "NX/CLOUD",
-    name: "Cloud Systems",
+    name: "Cloud & Infrastructure",
     category: "Reliable Multi-Tenant Cloud",
     problem: "“Our platform slows down during traffic spikes, and enterprise buyers ask for strict tenant isolation.”",
     outcome: "Your product stays fast under peak load with provable separation between every customer’s data.",
@@ -189,35 +189,35 @@ export const DOMAINS: { n: string; key: DomainKey; title: string; desc: string; 
   {
     n: "01",
     key: "software",
-    title: "Custom Software",
+    title: "AI & Software Engineering",
     desc: "When off-the-shelf SaaS doesn't fit your workflow, we design and ship production web applications, internal tools, and APIs built around your exact operations.",
     tags: ["Workflow Automation", "Multi-Tenant SaaS", "APIs & Integrations", "Offline-First Apps"],
   },
   {
     n: "02",
     key: "ai",
-    title: "AI & Automation",
+    title: "AI & Intelligent Automation",
     desc: "When you need AI that answers from your own data and cites its sources, we combine hybrid search with deterministic scoring and private model runtimes.",
     tags: ["Cited Document Search", "Bayesian IRT Scoring", "Local / Private LLMs", "Workflow Automation"],
   },
   {
     n: "03",
     key: "security",
-    title: "Secure Architecture",
+    title: "Cybersecurity & Architecture",
     desc: "When security audits or alert backlogs slow your releases, we harden application boundaries and rank vulnerabilities by whether they can actually be exploited.",
     tags: ["Zero-Trust Architecture", "CVE Reachability", "CISA KEV & EPSS", "DevSecOps Automation"],
   },
   {
     n: "04",
     key: "data",
-    title: "Data & Forecasting",
+    title: "Data Intelligence & Analytics",
     desc: "When critical data is trapped in scans or delayed batch jobs, we engineer offline OCR archival pipelines, real-time telemetry streams, and localized forecasting.",
     tags: ["High-Throughput Telemetry", "OCR & ISO PDF/A", "Spatiotemporal Forecasting", "Analytics Pipelines"],
   },
   {
     n: "05",
     key: "cloud",
-    title: "Cloud Systems",
+    title: "Cloud & Infrastructure",
     desc: "When traffic spikes or tenant isolation requirements outgrow your stack, we build resilient, cost-controlled container infrastructure on AWS, Linux, and Kubernetes.",
     tags: ["AWS & Kubernetes", "PostgreSQL RLS", "Distributed Systems", "Infrastructure as Code"],
   },
@@ -599,7 +599,7 @@ export const ABOUT_CAPABILITIES = [
 ];
 
 export const ABOUT_FOCUS = [
-  "Custom Software",
+  "AI & Software Engineering",
   "Private AI & Cited Search",
   "Application Security",
   "Data & OCR Pipelines",

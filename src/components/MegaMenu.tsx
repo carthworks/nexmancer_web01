@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CASE_STUDIES, ENGAGEMENT_MODELS, PRODUCTS, SOLUTIONS } from "../data/content";
+import { CASE_STUDIES, DOMAINS, ENGAGEMENT_MODELS, PRODUCTS, SOLUTIONS, type DomainKey, type ServiceSlug } from "../data/content";
 import { scheduleMailto, slugify, type NavMenuKey } from "../lib/site";
 import { cn } from "../utils/cn";
 import { Arrow, ArrowUpRight } from "./ui";
@@ -18,6 +18,8 @@ export type MenuEntry = {
   href: string;
   code: string;
   title: string;
+  /** Optional second line under the title (services: the specific track name). */
+  sub?: string;
   meta: string;
   kicker: string;
   blurb: string;
@@ -27,6 +29,16 @@ export type MenuEntry = {
   dot?: string;
 };
 
+// Each service track sits under one capability area; the menu leads with the capability name.
+const TRACK_DOMAIN: Record<ServiceSlug, DomainKey> = {
+  "custom-software": "software",
+  "ai-and-automation": "ai",
+  "security-architecture": "security",
+  "document-digitisation": "data",
+  "cloud-infrastructure": "cloud",
+};
+const domainTitle = (slug: ServiceSlug) => DOMAINS.find((d) => d.key === TRACK_DOMAIN[slug])?.title;
+
 const clip = (s: string, n = 150) => (s.length > n ? `${s.slice(0, n).replace(/\s+\S*$/, "")}…` : s);
 
 export const MENU_ENTRIES: Record<NavMenuKey, MenuEntry[]> = {
@@ -34,7 +46,8 @@ export const MENU_ENTRIES: Record<NavMenuKey, MenuEntry[]> = {
     id: s.slug,
     href: `/services/${s.slug}`,
     code: s.code,
-    title: s.title,
+    title: domainTitle(s.slug) ?? s.title,
+    sub: s.title,
     meta: s.timeline,
     kicker: `Built for ${s.buyer}`,
     blurb: s.tagline,
@@ -158,11 +171,11 @@ export function MegaPanel({
                     ) : null}
                     {e.code}
                   </span>
-                  <span className={cn("min-w-0 flex-1 truncate text-[13.5px] font-medium", idx === i ? "text-fg" : "text-fg/85")}>
-                    {e.title}
-                  </span>
-                  <span className="hidden shrink-0 rounded-full border border-white/[0.08] px-2 py-0.5 font-mono text-[9.5px] uppercase tracking-wider text-muted xl:inline">
-                    {e.meta}
+                  <span className="min-w-0 flex-1">
+                    <span className={cn("block truncate text-[13.5px] font-medium", idx === i ? "text-fg" : "text-fg/85")}>
+                      {e.title}
+                    </span>
+                    {e.sub && <span className="mt-0.5 block truncate text-[11.5px] text-muted">{e.sub}</span>}
                   </span>
                 </a>
               </li>
@@ -171,10 +184,15 @@ export function MegaPanel({
 
           {/* Live preview */}
           <div className="border-l border-white/[0.07] bg-graphite/60 p-5" aria-live="polite">
-            <p className="flex items-center gap-1.5 font-mono text-[11px] text-muted">
+            <div className="flex items-center justify-between gap-3">
+              <p className="flex items-center gap-1.5 font-mono text-[11px] text-muted">
               <span className="text-accent">$</span> nx inspect {cur.code.toLowerCase()}
               <span className="ml-0.5 inline-block h-3 w-[6px] animate-pulse bg-accent/80" aria-hidden />
             </p>
+              <span className="shrink-0 rounded-full border border-white/[0.1] px-2 py-0.5 font-mono text-[9.5px] uppercase tracking-wider text-muted">
+                {cur.meta}
+              </span>
+            </div>
             <p className="mt-4 font-mono text-[10.5px] uppercase tracking-[0.16em] text-accent">{cur.kicker}</p>
             <p key={cur.id} className="mt-2 text-[15px] font-semibold leading-snug text-fg">
               {cur.blurb}
@@ -236,7 +254,10 @@ export function MobileSubmenu({ menu, onNavigate }: { menu: NavMenuKey; onNaviga
           <li key={e.id}>
             <a href={e.href} onClick={onNavigate} className="flex items-baseline gap-2.5 rounded-lg py-2 pr-2 text-[15px] text-fg/85 hover:text-accent">
               <span className="w-16 shrink-0 font-mono text-[10px] text-accent/90">{e.code}</span>
-              <span className="leading-snug">{e.title}</span>
+              <span className="leading-snug">
+                {e.title}
+                {e.sub && <span className="mt-0.5 block text-[12.5px] text-muted">{e.sub}</span>}
+              </span>
             </a>
           </li>
         ))}
