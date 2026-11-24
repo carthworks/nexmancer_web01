@@ -4,7 +4,8 @@ import { SITE, scheduleMailto } from "../lib/site";
 import { ABOUT_CAPABILITIES, ABOUT_FOCUS, ABOUT_STATS, ETHOS_PRINCIPLES, TEAM } from "../data/content";
 import { spotlightHandler } from "../lib/hooks";
 
-export default function AboutSection() {
+export default function AboutSection({ asPage = false }: { asPage?: boolean } = {}) {
+  const Heading = asPage ? "h1" : "h2";
   return (
     <section id="about" aria-labelledby="about-title" className="relative overflow-hidden border-t border-white/[0.07] py-24 sm:py-32">
       <div className="grid-bg grid-fade absolute inset-0 -z-10 opacity-50" aria-hidden />
@@ -16,10 +17,10 @@ export default function AboutSection() {
               <Eyebrow>About NEXMANCER</Eyebrow>
             </Reveal>
             <Reveal delay={80}>
-              <h2 id="about-title" className="mt-5 text-4xl font-bold leading-[1.06] tracking-[-0.035em] text-fg sm:text-5xl lg:text-6xl">
+              <Heading id="about-title" className="mt-5 text-4xl font-bold leading-[1.06] tracking-[-0.035em] text-fg sm:text-5xl lg:text-6xl">
                 An engineering partner
                 <br className="hidden sm:block" /> built on <span className="text-gradient">first principles.</span>
-              </h2>
+              </Heading>
             </Reveal>
             <Reveal delay={140}>
               <p className="mt-7 max-w-2xl text-lg leading-relaxed text-fg/90 sm:text-xl">
@@ -41,10 +42,14 @@ export default function AboutSection() {
                     className="rounded-2xl border border-white/[0.08] bg-graphite/60 p-4 transition-colors hover:border-accent/30"
                   >
                     <dt className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted">{s.label}</dt>
-                    <dd className="mt-2 text-2xl font-extrabold tracking-tight text-fg sm:text-3xl">
+                    <dd
+                      className={`mt-2 font-extrabold tracking-tight text-fg ${
+                        s.value.length > 6 ? "text-xl sm:text-2xl lg:text-xl xl:text-2xl" : "text-2xl sm:text-3xl"
+                      }`}
+                    >
                       <span className="text-gradient">{s.value}</span>
                     </dd>
-                    <p className="mt-1 font-mono text-[11px] text-muted/75">{s.detail}</p>
+                    <dd className="mt-1 font-mono text-[11px] text-muted/75">{s.detail}</dd>
                   </div>
                 ))}
               </dl>
@@ -75,40 +80,40 @@ export default function AboutSection() {
                 </span>
               </div>
 
-              <dl className="divide-y divide-white/[0.07]">
-                <div className="p-6">
+              <div className="divide-y divide-white/[0.07]">
+                <dl className="p-6">
                   <dt className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted">Legal Entity</dt>
                   <dd className="mt-1.5 text-lg font-semibold tracking-tight text-fg">{SITE.legal}</dd>
-                  <p className="mt-1 font-mono text-xs text-muted/80">Private Limited Company · Registered in India</p>
-                </div>
+                  <dd className="mt-1 font-mono text-xs text-muted/80">Private Limited Company · Registered in India</dd>
+                </dl>
 
                 <div className="grid grid-cols-1 gap-4 p-6 sm:grid-cols-2">
-                  <div>
+                  <dl>
                     <dt className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted">Engineering Hub</dt>
                     <dd className="mt-1.5 flex items-start gap-2 text-sm font-medium text-fg">
                       <IconPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                       <span>{SITE.city}</span>
                     </dd>
-                  </div>
-                  <div>
+                  </dl>
+                  <dl>
                     <dt className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted">Operating Model</dt>
                     <dd className="mt-1.5 flex items-start gap-2 text-sm font-medium text-fg">
                       <IconGlobe className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                       <span>Problem-First Engineering &amp; R&amp;D</span>
                     </dd>
-                  </div>
+                  </dl>
                 </div>
 
-                <div className="p-6">
+                <dl className="p-6">
                   <dt className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted">Core Disciplines</dt>
                   <dd className="mt-3 flex flex-wrap gap-1.5">
                     {ABOUT_FOCUS.map((f) => (
                       <Tag key={f}>{f}</Tag>
                     ))}
                   </dd>
-                </div>
+                </dl>
 
-                <div className="p-6">
+                <dl className="p-6">
                   <dt className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted">Proprietary Platforms</dt>
                   <dd className="mt-2 text-sm leading-relaxed text-muted">
                     Alongside client engineering, we also build and maintain our own software platforms —{" "}
@@ -119,7 +124,7 @@ export default function AboutSection() {
                       explore our products →
                     </a>
                   </dd>
-                </div>
+                </dl>
 
                 <div className="flex flex-wrap items-center justify-between gap-3 bg-ink/40 px-6 py-4 text-xs">
                   <a
@@ -130,7 +135,7 @@ export default function AboutSection() {
                   </a>
                   <span className="font-mono text-muted/80">{SITE.domain}</span>
                 </div>
-              </dl>
+              </div>
             </div>
           </Reveal>
         </div>

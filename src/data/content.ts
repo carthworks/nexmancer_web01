@@ -242,6 +242,9 @@ export type ProductItem = {
   key: DomainKey | "platform" | "climate" | "archive";
   tags: string[];
   status: string;
+  brandColor: string;
+  image: string;
+  features: string[];
 };
 
 export const PRODUCTS: ProductItem[] = [
@@ -250,11 +253,18 @@ export const PRODUCTS: ProductItem[] = [
     category: "Adaptive Learning & Assessment",
     tagline: "Universal adaptive learning and psychometric assessment.",
     desc: "Generative AI builds the curriculum and questions for any subject — a deterministic Bayesian IRT engine scores every answer, so results are fair, repeatable and verifiable.",
-    url: "https://sensighty.nexmancer.com/",
+    url: "https://sensighty.vercel.app/",
     code: "NX/EDU",
     key: "ai",
     tags: ["Generative AI", "Bayesian IRT", "Psychometrics"],
     status: "Live",
+    brandColor: "#F6004B",
+    image: "/images/products/sensighty.webp",
+    features: [
+      "AI-synthesized curriculum & adaptive question banks",
+      "Deterministic Bayesian IRT psychometric scoring",
+      "Fair, repeatable & auditable competency results",
+    ],
   },
   {
     name: "SigmaSec",
@@ -266,6 +276,13 @@ export const PRODUCTS: ProductItem[] = [
     key: "security",
     tags: ["CVE Triage", "CISA KEV", "EPSS", "Reachability"],
     status: "Live Demo",
+    brandColor: "#6366F1",
+    image: "/images/products/sigmasec.webp",
+    features: [
+      "Unified Nuclei, Trivy, Gitleaks, Opengrep & Nmap",
+      "CISA KEV & EPSS exploit-probability ranking",
+      "AST call-graph reachability & plain-English triage",
+    ],
   },
   {
     name: "LibraDigit",
@@ -277,6 +294,13 @@ export const PRODUCTS: ProductItem[] = [
     key: "archive",
     tags: ["OCR", "PDF/A", "Offline-First"],
     status: "Live Demo",
+    brandColor: "#F08418",
+    image: "/images/products/libradigit.webp",
+    features: [
+      "100% offline OCR with zero external cloud uploads",
+      "Human-in-the-loop text & catalogue correction",
+      "ISO-compliant PDF/A archival package export",
+    ],
   },
   {
     name: "AskMyDocs",
@@ -288,6 +312,13 @@ export const PRODUCTS: ProductItem[] = [
     key: "data",
     tags: ["RAG", "Hybrid Search", "Ollama", "Local-First"],
     status: "Live Demo",
+    brandColor: "#8B5CF6",
+    image: "/images/products/askmydocs.webp",
+    features: [
+      "Hybrid BM25 lexical + semantic vector retrieval",
+      "Automatic indexing with page-level source citations",
+      "Run fully local or connect to Ollama Cloud",
+    ],
   },
   {
     name: "Hyperlocal Heat",
@@ -299,6 +330,13 @@ export const PRODUCTS: ProductItem[] = [
     key: "climate",
     tags: ["Forecasting", "Parametric Insurance", "Geospatial"],
     status: "Live Demo",
+    brandColor: "#FF5722",
+    image: "/images/products/hyperlocal-heat.webp",
+    features: [
+      "48-hour, 100-metre street-level heat-stress forecasts",
+      "Automated parametric insurance payout triggers",
+      "Workforce safety & municipal response alerts",
+    ],
   },
 ];
 
@@ -704,7 +742,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       {
         name: "Sensighty",
         role: "Live Adaptive Learning & Psychometric Assessment Platform",
-        url: "https://sensighty.nexmancer.com/",
+        url: "https://sensighty.vercel.app/",
         status: "Live",
       },
     ],

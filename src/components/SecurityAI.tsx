@@ -169,7 +169,7 @@ function MobileDiagram({ activeOp }: { activeOp: number }) {
                 i === activeOp ? "border-violet/60 bg-graphite text-fg" : "border-white/[0.1] bg-ink text-muted"
               )}
             >
-              <span className={i === activeOp ? "text-violet" : "text-muted/60"}>0{i + 1}</span>
+              <span className={i === activeOp ? "text-violet" : "text-muted/80"}>0{i + 1}</span>
               {s}
             </li>
           ))}

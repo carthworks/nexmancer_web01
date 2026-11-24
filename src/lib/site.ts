@@ -10,6 +10,7 @@ export const SITE = {
   url: "https://nexmancer.com/",
   domain: "nexmancer.com",
   email: "business@nexmancer.com",
+  altEmail: "admin.nexmancer@gmail.com",
   legalEmail: "legal@nexmancer.com",
   responseSla: "Within 1 business day (Mon–Fri, 09:00–18:00 IST)",
   schedulerUrl: envScheduler,
@@ -17,19 +18,24 @@ export const SITE = {
   githubLabel: "github.com/NEXMANCER",
   x: "https://x.com/nexmancer",
   xLabel: "x.com/nexmancer",
-  linkedin: "https://www.linkedin.com/in/carthworks",
-  linkedinLabel: "linkedin.com/in/carthworks",
+  linkedin: "https://www.linkedin.com/company/nexmancer",
+  linkedinLabel: "linkedin.com/company/nexmancer",
   city: "Coimbatore, Tamil Nadu, India",
   address: ["6/35 1, Kutty Naicker Street,", "Pachapalayam, Perur,", "Coimbatore,", "Tamil Nadu, India"],
 } as const;
 
-export const NAV = [
-  { label: "Problems", href: "#problems" },
-  { label: "Services", href: "/services" },
-  { label: "Work", href: "/work" },
+export type NavMenuKey = "services" | "work" | "products";
+
+export const NAV: readonly { label: string; href: string; menu?: NavMenuKey }[] = [
+  { label: "Services", href: "/services", menu: "services" },
+  { label: "Work", href: "/work", menu: "work" },
+  { label: "Products", href: "/products", menu: "products" },
+  { label: "Insights", href: "/insights" },
   { label: "About", href: "/about" },
-  { label: "Labs", href: "/products" },
-] as const;
+];
+
+/** URL-safe id for in-page anchors, e.g. "Hyperlocal Heat" → "hyperlocal-heat". */
+export const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
 export const mailto = (subject = "Problem Discovery — NEXMANCER", body = "") =>
   `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}${body ? `&body=${encodeURIComponent(body)}` : ""}`;

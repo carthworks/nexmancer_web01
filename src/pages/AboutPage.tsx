@@ -26,7 +26,7 @@ export default function AboutPage() {
         </Reveal>
       </Container>
 
-      <AboutSection />
+      <AboutSection asPage />
       <ProductPipeline />
       <GlobalSection />
     </div>

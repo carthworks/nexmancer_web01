@@ -3,14 +3,11 @@ import AboutSection from "./components/AboutSection";
 import CaseStudies from "./components/CaseStudies";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
-import GlobalSection from "./components/GlobalSection";
+import { GlobalStrip } from "./components/GlobalSection";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
-import ObjectivesSection from "./components/ObjectivesSection";
 import ProblemsSection from "./components/ProblemsSection";
 import ProductPipeline from "./components/ProductPipeline";
-import SecurityAI from "./components/SecurityAI";
-import TechnologyGrid from "./components/TechnologyGrid";
 import PageLoader from "./components/PageLoader";
 import type { CaseStudySlug, InsightSlug, ServiceSlug } from "./data/content";
 import { useRoute, type RoutePath } from "./lib/router";
@@ -86,28 +83,22 @@ function renderRoute(route: RoutePath) {
       {/* 2. PROBLEMS WE SOLVE */}
       <ProblemsSection />
 
-      {/* 3. CAPABILITIES & METHODS */}
-      <TechnologyGrid />
+      {/* Capabilities, service tracks and AI × Security now live on /services
+          and are reachable from the Services mega-menu — keeps the homepage short. */}
 
-      {/* 4. SERVICES & ENGAGEMENT MODELS */}
-      <ObjectivesSection />
-
-      {/* 5. PROOF OF WORK: CASE STUDIES */}
+      {/* 3. PROOF OF WORK: CASE STUDIES */}
       <CaseStudies />
 
-      {/* 6. ENGINEERING METHODOLOGY */}
+      {/* 4. ENGINEERING METHODOLOGY */}
       <ProductPipeline />
 
-      {/* 7. DEEP-TECH ARCHITECTURE: AI x SECURITY */}
-      <SecurityAI />
-
-      {/* 8. GLOBAL CONNECTIVITY & PRESENCE */}
-      <GlobalSection />
-
-      {/* 9. COMPANY FOUNDATIONS, LEADERSHIP & ENGINEERING ETHOS */}
+      {/* 5. COMPANY FOUNDATIONS, LEADERSHIP & ENGINEERING ETHOS */}
       <AboutSection />
 
-      {/* 10. CONTACT & DISCOVERY */}
+      {/* 6. GLOBAL PRESENCE — one line (full map lives on /about) */}
+      <GlobalStrip />
+
+      {/* 7. CONTACT & DISCOVERY */}
       <ContactSection />
     </>
   );

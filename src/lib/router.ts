@@ -163,20 +163,29 @@ export function navigateTo(href: string) {
     return;
   }
 
-  // Handle route paths
+  // Handle route paths (optionally with a section hash, e.g. "/services#security")
+  const hashIdx = href.indexOf("#");
+  const sectionHash = hashIdx > -1 ? href.slice(hashIdx) : "";
+  const scrollToSection = () => {
+    const el = sectionHash ? document.getElementById(sectionHash.slice(1)) : null;
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+    else window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   const targetPath = normalizePath(href);
   const currentPath = normalizePath(window.location.pathname);
   if (currentPath !== targetPath) {
     const pageName = ROUTE_PAGE_NAMES[targetPath] || "Overview & Core Systems";
     notifyNavigation({ isLoading: true, pageName, route: targetPath });
-    window.history.pushState({}, "", targetPath === "/404" ? href : targetPath);
+    window.history.pushState({}, "", targetPath === "/404" ? href : targetPath + sectionHash);
     window.dispatchEvent(new PopStateEvent("popstate"));
     window.scrollTo({ top: 0, behavior: "smooth" });
     window.setTimeout(() => {
       notifyNavigation({ isLoading: false, pageName, route: targetPath });
+      if (sectionHash) scrollToSection();
     }, 280);
   } else {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (sectionHash) window.history.replaceState({}, "", targetPath + sectionHash);
+    scrollToSection();
   }
 }
 

@@ -33,6 +33,7 @@ const COLS: { h: string; links: LinkItem[] }[] = [
       { l: "GitHub", href: SITE.github },
       { l: "X (Twitter)", href: SITE.x },
       { l: "Email Enquiries", href: `mailto:${SITE.email}` },
+      { l: "Alternate Email", href: `mailto:${SITE.altEmail}` },
     ],
   },
   {

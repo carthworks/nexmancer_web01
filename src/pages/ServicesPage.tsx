@@ -1,3 +1,5 @@
+import SecurityAI from "../components/SecurityAI";
+import TechnologyGrid from "../components/TechnologyGrid";
 import { SOLUTIONS, ENGAGEMENT_MODELS, PIPELINE, type ServiceSlug } from "../data/content";
 import { spotlightHandler } from "../lib/hooks";
 import { SITE, scheduleMailto } from "../lib/site";
@@ -45,6 +47,7 @@ export default function ServicesPage({ slug }: { slug?: ServiceSlug }) {
       };
 
   return (
+    <>
     <section
       id="services-page"
       aria-labelledby="services-page-title"
@@ -440,6 +443,12 @@ export default function ServicesPage({ slug }: { slug?: ServiceSlug }) {
         )}
       </Container>
     </section>
+    {!slug && (
+      <>
+        <TechnologyGrid />
+        <SecurityAI />
+      </>
+    )}
+    </>
   );
 }
-

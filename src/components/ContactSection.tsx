@@ -54,7 +54,7 @@ function Field({
               *
             </span>
           ) : (
-            <span className="ml-1.5 text-[10px] lowercase tracking-normal text-muted/60">(opt)</span>
+            <span className="ml-1.5 text-[10px] lowercase tracking-normal text-muted/80">(opt)</span>
           )}
         </label>
         {hint}
@@ -383,7 +383,8 @@ function ContactForm() {
   );
 }
 
-export default function ContactSection() {
+export default function ContactSection({ asPage = false }: { asPage?: boolean } = {}) {
+  const Heading = asPage ? "h1" : "h2";
   const [copiedEmail, setCopiedEmail] = useState(false);
 
   const copyDirectEmail = async () => {
@@ -430,14 +431,14 @@ export default function ContactSection() {
               </Reveal>
 
               <Reveal delay={60}>
-                <h2
+                <Heading
                   id="contact-title"
                   className="mt-4 text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] text-fg sm:text-5xl"
                 >
                   Have a hard
                   <br />
                   <span className="text-gradient">engineering problem?</span>
-                </h2>
+                </Heading>
               </Reveal>
 
               <Reveal delay={120}>
@@ -488,6 +489,12 @@ export default function ContactSection() {
                       )}
                     </div>
                   </div>
+                  <p className="mt-2.5 border-t border-white/[0.07] pt-2.5 font-mono text-[11.5px] text-muted">
+                    Alternate:{" "}
+                    <a href={`mailto:${SITE.altEmail}`} className="text-fg transition-colors hover:text-accent">
+                      {SITE.altEmail}
+                    </a>
+                  </p>
                 </div>
               </Reveal>
             </div>

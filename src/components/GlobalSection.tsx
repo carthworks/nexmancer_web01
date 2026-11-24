@@ -57,7 +57,7 @@ function WorldMap() {
         if (band[1].some(([a, b]) => lon >= a && lon <= b)) out.push(toXY(lon, lat));
       }
     }
-    return out;
+    return out.map((p) => `M${p.x} ${p.y}h0`).join("");
   }, []);
 
   return (
@@ -68,9 +68,14 @@ function WorldMap() {
           <stop offset="1" stopColor="var(--color-violet)" stopOpacity=".5" />
         </linearGradient>
       </defs>
-      {dots.map((d, i) => (
-        <circle key={i} cx={d.x} cy={d.y} r="0.62" fill="color-mix(in srgb, var(--color-fg) 22%, transparent)" />
-      ))}
+      {/* All land dots drawn as ONE path (zero-length round-capped segments) instead of ~1,700 <circle> nodes */}
+      <path
+        d={dots}
+        fill="none"
+        stroke="color-mix(in srgb, var(--color-fg) 22%, transparent)"
+        strokeWidth="1.24"
+        strokeLinecap="round"
+      />
       {LINKS.map((l) => {
         const mx = (HUB.x + l.x) / 2;
         const my = Math.min(HUB.y, l.y) - Math.abs(HUB.x - l.x) * 0.22 - 4;
@@ -129,6 +134,36 @@ export default function GlobalSection() {
             </div>
           </div>
         </Reveal>
+      </Container>
+    </section>
+  );
+}
+
+/**
+ * One-line presence band for the homepage — replaces the full world map there
+ * (the map still lives on /about).
+ */
+export function GlobalStrip() {
+  return (
+    <section id="global" aria-label="Where we work" className="border-y border-white/[0.07] bg-graphite/40">
+      <Container>
+        <div className="flex flex-col gap-3 py-5 font-mono text-[11px] uppercase tracking-[0.16em] text-muted sm:flex-row sm:items-center sm:justify-between">
+          <p className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+            <span className="relative flex h-2 w-2" aria-hidden>
+              <span className="absolute animate-ping inline-flex h-full w-full rounded-full bg-accent opacity-60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+            </span>
+            <span className="text-fg">Engineered in Coimbatore, India</span>
+            <span aria-hidden className="hidden h-px w-10 bg-gradient-to-r from-accent to-transparent sm:inline-block" />
+            <span>Remote-first delivery for teams in India &amp; international markets</span>
+          </p>
+          <p className="flex items-center gap-4">
+            <span>Mon–Fri · 09:00–18:00 IST</span>
+            <a href="/about" className="text-accent transition-colors hover:text-fg">
+              About us →
+            </a>
+          </p>
+        </div>
       </Container>
     </section>
   );

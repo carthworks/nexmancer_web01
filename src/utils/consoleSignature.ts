@@ -51,7 +51,7 @@ export function initConsoleSignature() {
     location: "Coimbatore, Tamil Nadu, India",
     domains: ["Software", "AI", "Cybersecurity", "Data", "Cloud"],
     products: [
-      { name: "Sensighty", url: "https://sensighty.nexmancer.com/", focus: "Adaptive Learning & Bayesian IRT Assessment" },
+      { name: "Sensighty", url: "https://sensighty.vercel.app/", focus: "Adaptive Learning & Bayesian IRT Assessment" },
       { name: "SigmaSec", url: "https://sigmasec.vercel.app/", focus: "Multi-scanner CVE Triage, CISA KEV & EPSS" },
       { name: "LibraDigit", url: "https://libra-digit-ai.vercel.app/", focus: "Offline OCR & PDF/A Digital Archiving" },
       { name: "AskMyDocs", url: "https://ask-mydocs.vercel.app/", focus: "Hybrid BM25 + Semantic RAG System" },

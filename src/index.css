@@ -152,8 +152,8 @@
   opacity: 1;
 }
 
-/* Reveal on scroll */
-.reveal {
+/* Reveal on scroll — only hidden once JS has run (html.js), so content stays visible without JS */
+.js .reveal {
   opacity: 0;
   transform: translate3d(0, 18px, 0);
   transition:
@@ -162,7 +162,7 @@
   transition-delay: var(--d, 0ms);
   will-change: opacity, transform;
 }
-.reveal.is-in {
+.js .reveal.is-in {
   opacity: 1;
   transform: none;
 }
@@ -344,7 +344,7 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
-  .reveal { opacity: 1; transform: none; }
+  .js .reveal { opacity: 1; transform: none; }
   .fade-up { opacity: 1; animation: none; }
   .line-mask > span { animation: none; }
   .line-mask > span { transform: none; }

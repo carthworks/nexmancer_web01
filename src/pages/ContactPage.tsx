@@ -23,7 +23,7 @@ export default function ContactPage() {
         </Reveal>
       </Container>
 
-      <ContactSection />
+      <ContactSection asPage />
     </div>
   );
 }
